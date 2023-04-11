@@ -1,0 +1,3141 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.ontologies.khaos.uma.es/titan/"
+     xml:base="http://www.ontologies.khaos.uma.es/titan/"
+     xmlns:dct="http://purl.org/dc/terms/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:sdo="https://schema.org/"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vann="http://purl.org/vocab/vann/"
+     xmlns:bigowl="http://www.ontologies.khaos.uma.es/bigowl/">
+    <owl:Ontology rdf:about="http://www.ontologies.khaos.uma.es/titan/">
+        <owl:imports rdf:resource="http://www.ontologies.khaos.uma.es/bigowl"/>
+        <dct:creator>
+            <rdf:Description>
+                <sdo:affiliation>
+                    <rdf:Description>
+                        <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                        <sdo:url rdf:resource="https://www.uma.es/"/>
+                    </rdf:Description>
+                </sdo:affiliation>
+                <sdo:email rdf:resource="mailto:cbarba@lcc.uma.es"/>
+                <sdo:identifier rdf:resource="https://orcid.org/0000-0002-8764-5076"/>
+                <sdo:name xml:lang="en">Cristóbal Barba-González</sdo:name>
+            </rdf:Description>
+        </dct:creator>
+        <dct:creator>
+            <rdf:Description>
+                <sdo:affiliation>
+                    <rdf:Description>
+                        <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                        <sdo:url rdf:resource="https://www.uma.es/"/>
+                    </rdf:Description>
+                </sdo:affiliation>
+                <sdo:email rdf:resource="mailto:antoniobenitez@lcc.uma.es"/>
+                <sdo:identifier rdf:resource="https://orcid.org/0000-0002-4396-8359"/>
+                <sdo:name xml:lang="en">Antonio Benítez-Hidalgo</sdo:name>
+            </rdf:Description>
+        </dct:creator>
+        <dct:creator>
+            <rdf:Description>
+                <sdo:affiliation>
+                    <rdf:Description>
+                        <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                        <sdo:url rdf:resource="https://www.uma.es/"/>
+                    </rdf:Description>
+                </sdo:affiliation>
+                <sdo:email rdf:resource="mailto:mpaneque@lcc.uma.es"/>
+                <sdo:identifier rdf:resource="https://orcid.org/0000-0002-7973-3746"/>
+                <sdo:name xml:lang="en">Manuel Paneque-Romero</sdo:name>
+            </rdf:Description>
+        </dct:creator>
+        <dct:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-11-30T23:59:59</dct:modified>
+        <dct:publisher rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Khaos Research Group</dct:publisher>
+        <dct:rights rdf:datatype="http://www.w3.org/2001/XMLSchema#string">(c) Khaos Research Group, University of Málaga</dct:rights>
+        <dct:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TITAN graphs</dct:title>
+        <vann:preferredNamespacePrefix rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">titan</vann:preferredNamespacePrefix>
+        <vann:preferredNamespaceUri rdf:datatype="http://www.w3.org/2000/01/rdf-schema#Literal">http://www.ontologies.khaos.uma.es/titan/</vann:preferredNamespaceUri>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TITAN graphs</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">TITAN graphs</rdfs:label>
+        <owl:versionInfo rdf:datatype="http://www.w3.org/2001/XMLSchema#string">V8</owl:versionInfo>
+        <sdo:codeRepository rdf:resource="https://github.com/KhaosResearch/TITAN-graphs"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/creator -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/creator"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/modified -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/modified"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/publisher -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/publisher"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/rights -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/rights"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/dc/terms/title"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespacePrefix -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespacePrefix"/>
+    
+
+
+    <!-- http://purl.org/vocab/vann/preferredNamespaceUri -->
+
+    <owl:AnnotationProperty rdf:about="http://purl.org/vocab/vann/preferredNamespaceUri"/>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#versionInfo -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/2002/07/owl#versionInfo"/>
+    
+
+
+    <!-- https://schema.org/affiliation -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/affiliation"/>
+    
+
+
+    <!-- https://schema.org/codeRepository -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/codeRepository"/>
+    
+
+
+    <!-- https://schema.org/email -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/email"/>
+    
+
+
+    <!-- https://schema.org/identifier -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/identifier"/>
+    
+
+
+    <!-- https://schema.org/name -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/name"/>
+    
+
+
+    <!-- https://schema.org/url -->
+
+    <owl:AnnotationProperty rdf:about="https://schema.org/url"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmDTClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmDTClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DTC"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decision Tree Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmDataToJSON -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmDataToJSON">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data to JSON</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmExportMongoDB -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmExportMongoDB">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSinkAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Export MongoDB</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierPredict -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierPredict">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/ClassificationPredictingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Predict</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierTest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierTest">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/ClassificationTestingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Test</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierPredict -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierPredict">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/ClassificationPredictingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Predict</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierTest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierTest">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/ClassificationTestingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Test</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportBinAsCSV -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportBinAsCSV">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Bin As CSV</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportFile -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportFile">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import file</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportMlModel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportMlModel">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import MlModel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTSV -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTSV">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import TSV</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Tabular Dataset</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmImportZip -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportZip">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Zip</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmKNNClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmKNNClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/KNN"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KNN Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmLSTMClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmLSTMClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/ConvNetLSTM"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LSTM Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmMerger -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmMerger">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Merger</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmRFClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmRFClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/RF"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RFClassifierTrain</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitter">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitterFromInternetArchive -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitterFromInternetArchive">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataCollectionAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter From Internet Archive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmRemoveOutliers -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmRemoveOutliers">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Remove Outliers</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmSVCClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmSVCClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/SVM"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SVC Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitShuffle -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitShuffle">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Shuffle</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitStratified -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitStratified">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Stratified</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterCountByDate -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterCountByDate">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Count By Date</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterDistributionAnalysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterDistributionAnalysis">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Distribution Analysis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterFilter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterFilter">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Filter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterLocation -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterLocation">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSinkAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterMostPopular -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterMostPopular">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Most Popular</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPolarityAnalysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPolarityAnalysis">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Polarity Analysis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPreProcessing -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPreProcessing">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Pre Processing</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterTopTweets -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterTopTweets">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessingAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Top Tweets</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterWordCloud -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterWordCloud">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSinkAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Word Cloud</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/AlgorithmViewTabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/AlgorithmViewTabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSinkAlgorithm"/>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">View Tabular Dataset</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ClassificationReport -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ClassificationReport">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentDTClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentDTClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmDTClassifierTrain"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationDTClassifierTrainPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterDTClassifierTrainLabel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModelDTC"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decision tree classifier training stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decision Tree Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentDataToJSON -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentDataToJSON">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataTransform"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmDataToJSON"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationDataToJSON"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/InputData"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Convert any input into a JSON Document</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data to JSON</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentExportMongoDB -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentExportMongoDB">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSink"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmExportMongoDB"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationExportMongoDB"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBCollection"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBConnectionUri"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBDatabase"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Exports data into a mongoDB instance given its credentials.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Export MongoDB</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentGenericClassifierPredict -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentGenericClassifierPredict">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierPredict"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierPredictPython"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic classifier predict stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Predict</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentGenericClassifierTest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentGenericClassifierTest">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericClassifierTest"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierTestPython"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/ClassificationReport"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/ConfusionMatrix"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Scores"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic classifier test stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Test</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentGenericSlidingWindowClassifierPredict -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentGenericSlidingWindowClassifierPredict">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierPredict"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierPredictPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictBatchSize"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictIgnoreColumns"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictStride"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictTimeWindow"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic classifier predict stage for algorithms using a sliding window.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Predict</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentGenericSlidingWindowClassifierTest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentGenericSlidingWindowClassifierTest">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmGenericSlidingWindowClassifierTest"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierTestPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestIgnoreColumns"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestStride"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestTimeWindow"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/ClassificationReport"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/ConfusionMatrix"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Scores"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">3</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic classifier test stage for algorithms using a sliding window.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Test</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportBinAsCSV -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportBinAsCSV">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportBinAsCSV"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportBinAsCSVPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVDownsample"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVParameters"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a bin file from an online resource given its url and converts it to CSV.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Bin As CSV</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportFile -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportFile">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportFile"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportFilePython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportFileParameters"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportFileUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TempFile"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a file from an online resource given its url.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import File</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportMlModel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportMlModel">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportMlModel"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportMlModel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelParameters"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModel"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a machine learning model from an online resource given its url.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import MlModel</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportTSV -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportTSV">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTSV"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportTSVPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVComment"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVDelimiter"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a tab-separated values file from an online resource given its url.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import TSV</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportTabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportTabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportTabularDataset"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportTabularDatasetPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetDelimiter"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHasHeader"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderNames"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderTypes"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetLineDelimiter"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a tabular dataset from an online resource given its url.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Tabular Dataset</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentImportZip -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentImportZip">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmImportZip"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationImportZipPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportZipParameters"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterImportZipUrl"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Imports a dataset from a zip file from an online resource given its url. Every dataset receives a new column with the class</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Zip</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentKNNClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentKNNClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmKNNClassifierTrain"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationKNNClassifierTrainPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainLabel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainNNeighbors"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModelKNN"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KNN classifier training stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KNN Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentLSTMClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentLSTMClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmLSTMClassifierTrain"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationLSTMClassifierTrainPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainBatchSize"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainEpochs"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainIgnoreColumns"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainLabel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainNNeurons"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainStride"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainTimeWindow"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainVerbose"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModelLSTM"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Long Short-Term Memory Recurrent Neural Network training stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LSTM Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentMerger -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentMerger">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmMerger"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationMergerPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterMergerDropJoinColumn"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterMergerJoinLabel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDatasetB"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Merges to datasets into one by column.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Merger</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentRFClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentRFClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmRFClassifierTrain"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationRFClassifierTrainPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainLabel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainNEstimators"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModelRF"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Random forest classifier training stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RF Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentReadTwitter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentReadTwitter">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitter"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerKey"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerSecret"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterCount"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterLang"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterQuery"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterResultType"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Query twitter about some words and create a dataset with the results</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentReadTwitterFromInternetArchive -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentReadTwitterFromInternetArchive">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataIngestion"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmReadTwitterFromInternetArchive"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterFromInternetArchivePython"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Query internet archive about tweets between two dates. Size of result ~2 MB per minute between dates.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter From Internet Archive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentRemoveOutliers -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentRemoveOutliers">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/RemoveOutlier"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmRemoveOutliers"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationRemoveOutliersPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersIgnoreColumns"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersLabel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersNPartitions"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersOutlierThreshold"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Remove outliers from a tabular dataset based on the Mahalanobis distance.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Remove Outliers</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentSVCClassifierTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentSVCClassifierTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/MachineLearning"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmSVCClassifierTrain"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationSVCClassifierTrainPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterSVCClassifierTrainLabel"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/MlModelSVC"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Support Vector Machine classifier training stage.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SVC Classifier Train</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentSplitShuffle -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentSplitShuffle">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/SplitShuffle"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitShuffle"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationSplitShufflePython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterSplitShuffleProportion"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/STDatasetTest"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/STDatasetTrain"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Horizontal tabular dataset split shuffle.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Shuffle</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentSplitStratified -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentSplitStratified">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/SplitShuffle"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmSplitStratified"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationSplitStratifiedPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedLabel"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedProportion"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/STDatasetTest"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/STDatasetTrain"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">2</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Horizontal tabular dataset split shuffle.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Stratified</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterCountByDate -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterCountByDate">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterCountByDate"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterCountByDatePython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterCountByDatePeriod"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Count number of tweet posted in temporal groups.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Count By Date</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterDistributionAnalysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterDistributionAnalysis">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterDistributionAnalysis"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterDistributionAnalysisPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterDistributionAnalysisAnalysis"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Calculate one of several distribution analysis from tweets.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Distribution Analysis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterFilter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterFilter">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterFilter"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterFilterPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterFilterMode"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterWords"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Filter tweets body for the given word(s)</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Filter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterLocation -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterLocation">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSink"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterLocation"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterLocationPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationBackEnd"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationColumn"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationMapboxToken"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationSetZoom"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Scatter plot tweets location</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Location</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterMostPopular -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterMostPopular">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterMostPopular"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterMostPopularPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularColumn"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularGroupBy"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Get most popular values for a specific field</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Most Popular</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterPolarityAnalysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterPolarityAnalysis">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPolarityAnalysis"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPolarityAnalysisPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlySensitive"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlyVerifiedUser"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisPeriod"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Get average polarity on a certain period.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Polarity Analysis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterPreProcessing -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterPreProcessing">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterPreProcessing"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPreProcessingPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPreProcessingFieldsToRemove"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/Json"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Pre-processing for a batch of tweets.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Pre Processing</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterTopTweets -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterTopTweets">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataProcessing"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterTopTweets"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterTopTweetsPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsAscending"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsBy"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsNTweets"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:specifiesOutputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Get the Top tweets by some criteria</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Top Tweets</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentTwitterWordCloud -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentTwitterWordCloud">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSink"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmTwitterWordCloud"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterWordCloudPython"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudColumn"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudMaximumWords"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetBackgroundColour"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetHeigth"/>
+        <bigowl:hasParameter rdf:resource="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetWidth"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generate a word cloud image with the tweets received</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Word Cloud</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ComponentViewTabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ComponentViewTabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/DataSink"/>
+        <bigowl:hasAlgorithm rdf:resource="http://www.ontologies.khaos.uma.es/titan/AlgorithmViewTabularDataset"/>
+        <bigowl:hasImplementation rdf:resource="http://www.ontologies.khaos.uma.es/titan/ImplementationViewTabularDataset"/>
+        <bigowl:specifiesInputClass rdf:resource="http://www.ontologies.khaos.uma.es/titan/TabularDataset"/>
+        <bigowl:numberOfInputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">1</bigowl:numberOfInputs>
+        <bigowl:numberOfOutputs rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</bigowl:numberOfOutputs>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Subscriber that picks up a tabular dataset and returns it that the UI can show it.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">View Tabular Dataset</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ConfusionMatrix -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ConfusionMatrix">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationDTClassifierTrainPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationDTClassifierTrainPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.DTClassifierTrain</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Decision Tree Classifier Train in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationDataToJSON -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationDataToJSON">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.DataToJson</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Data to JSON in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationExportMongoDB -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationExportMongoDB">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.subscriber.ExportMongoDB</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Export MongoDB in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierPredictPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierPredictPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.GenericClassifierPredict</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Predict in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierTestPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericClassifierTestPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.GenericClassifierTest</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Classifier Test in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierPredictPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierPredictPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.GenericSlidingWindowClassifierPredict</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Predict in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierTestPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationGenericSlidingWindowClassifierTestPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.GenericSlidingWindowClassifierTest</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Generic Sliding Window Classifier Test in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportBinAsCSVPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportBinAsCSVPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.load.ImportBinAsCSV</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Bin As CSV in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportFilePython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportFilePython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama.core.catalog.load.ImportFile</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import file Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportMlModel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportMlModel">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.load.ImportMlModel</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import MlModel in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportTSVPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportTSVPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama.core.catalog.load.ImportTSV</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import TSV in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportTabularDatasetPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportTabularDatasetPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.load.ImportTabularDataset</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Tabular Dataset in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationImportZipPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationImportZipPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.load.ImportZip</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Import Zip in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationKNNClassifierTrainPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationKNNClassifierTrainPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.KNNClassifierTrain</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">KNN Classifier Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationLSTMClassifierTrainPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationLSTMClassifierTrainPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.LSTMClassifierTrain</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LSTM Classifier Train in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationMergerPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationMergerPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.df.Merger</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Merger in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationRFClassifierTrainPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationRFClassifierTrainPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.RFClassifierTrain</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">RF Classifier Train in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterFromInternetArchivePython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterFromInternetArchivePython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.ReadTwitterFromInternetArchive</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter From Internet Archive in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationReadTwitterPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.publisher.ReadTwitter</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Read Twitter in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationRemoveOutliersPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationRemoveOutliersPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.df.RemoveOutliers</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Remove Outliers in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationSVCClassifierTrainPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationSVCClassifierTrainPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.ml.SVCClassifierTrain</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SVC Classifier Train in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationSplitShufflePython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationSplitShufflePython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.df.SplitShuffle</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Shuffle in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationSplitStratifiedPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationSplitStratifiedPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.df.SplitStratified</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Split Stratified in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterCountByDatePython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterCountByDatePython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterCountByDate</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Count By Date in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterDistributionAnalysisPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterDistributionAnalysisPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterDistributionAnalysis</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Distribution Analysis in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterFilterPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterFilterPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterFilter</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Filter in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterLocationPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterLocationPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.subscriber.TwitterLocation</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Location in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterMostPopularPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterMostPopularPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterMostPopular</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Most Popular in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPolarityAnalysisPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPolarityAnalysisPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterPolarityAnalysis</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Polarity Analysis in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPreProcessingPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterPreProcessingPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterPreProcessing</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Pre Processing in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterTopTweetsPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterTopTweetsPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.processor.TwitterTopTweets</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Top Tweets in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterWordCloudPython -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationTwitterWordCloudPython">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.subscriber.TwitterWordCloud</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Twitter Word Cloud in Python</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ImplementationViewTabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ImplementationViewTabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Implementation"/>
+        <bigowl:implementationLanguage rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Python</bigowl:implementationLanguage>
+        <bigowl:module rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drama_titan.catalog.subscriber.ViewTabularDataset</bigowl:module>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">View Tabular Dataset</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/InputData -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/InputData">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Data"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/Json -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/Json">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Json"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModelDTC -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModelDTC">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModelKNN -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModelKNN">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModelLSTM -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModelLSTM">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModelRF -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModelRF">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/MlModelSVC -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/MlModelSVC">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterDTClassifierTrainLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterDTClassifierTrainLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBCollection -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBCollection">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">collection</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Collection to store the data in.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">collection</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBConnectionUri -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBConnectionUri">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">connectionUri</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">URI to connect to a MongoDB instance.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">connection uri</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBDatabase -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterExportMongoDBDatabase">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">database</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Database to connect on the MongoDB instance.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">database</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictBatchSize -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictBatchSize">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">batch_size</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Batch size for training. Defaults to 1.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">batch size</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictIgnoreColumns -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictIgnoreColumns">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore_columns</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">List of column names to ignore during training. Defaults to [].</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore columns</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictStride -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictStride">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Movement of the sliding window. Defaults to 10.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictTimeWindow -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierPredictTimeWindow">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1000</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time_window</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size of the sliding window. Defaults to 1000.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time window</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestIgnoreColumns -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestIgnoreColumns">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore_columns</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">List of column names to ignore during training. Defaults to [].</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore columns</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestStride -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestStride">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Movement of the sliding window. Defaults to 10.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestTimeWindow -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterGenericSlidingWindowClassifierTestTimeWindow">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1000</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time_window</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size of the sliding window. Defaults to 1000.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time window</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVDownsample -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVDownsample">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Float"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.4</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">downsample</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Downsample value for conversion. Between 0.0 and 1.0, with 1 being the same as original. Defaults to &quot;0.4&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">downsample</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVParameters -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVParameters">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET parameters to append to url</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportBinAsCSVUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportFileParameters -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportFileParameters">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET parameters to append to url</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportFileUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportFileUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelParameters -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelParameters">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET parameters to append to url</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportMlModelUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVComment -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVComment">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">#</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">comment</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Character representing starting comment. Defaults to &quot;#&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">comment</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVDelimiter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVDelimiter">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">\t</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delimiter</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Line column delimiter. Defaults to &quot;\t&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delimiter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTSVUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetDelimiter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetDelimiter">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">,</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delimiter</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Line column delimiter. Defaults to &quot;,&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">delimiter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHasHeader -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHasHeader">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Boolean"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has_header</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Whenever the dataset has header line. Defaults to True.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">has header</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderNames -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderNames">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">header_names</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Column names. Defaults to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">header names</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderTypes -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetHeaderTypes">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">header_types</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Column types. Default to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">header types</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetLineDelimiter -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetLineDelimiter">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">line_delimiter</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Line delimiter. Defaults to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">line delimiter</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportTabularDatasetUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportZipParameters -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportZipParameters">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GET parameters to append to url</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">parameters</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterImportZipUrl -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterImportZipUrl">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Public accessible resource</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">url</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainNNeighbors -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterKNNClassificationTrainNNeighbors">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">-1</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n_neighbors</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of neighbors to use. Defaults to -1.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n neighbors</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainBatchSize -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainBatchSize">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">16</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">batch_size</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Batch size for training. Defaults to 16.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">batch size</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainEpochs -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainEpochs">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">3</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epochs</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of epochs to train. Defaults to 3.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">epochs</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainIgnoreColumns -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainIgnoreColumns">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore_columns</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">List of column names to ignore during training. Defaults to [].</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore columns</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainNNeurons -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainNNeurons">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">50</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n_neurons</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of neurons for the hidden layers of the LSTM. Defaults to 50.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n neurons</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainStride -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainStride">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Movement of the sliding window. Defaults to 10.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">stride</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainTimeWindow -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainTimeWindow">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1000</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time_window</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Size of the sliding window. Defaults to 1000.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time window</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainVerbose -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterLSTMClassifierTrainVerbose">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">verbose</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Verbosity of the training. 0 - silent, 1 - progress bar, 2 - number of epoch. Defaults to 2.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">verbose</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterMergerDropJoinColumn -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterMergerDropJoinColumn">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Boolean"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">True</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drop_join_column</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Whenever drop the joined column. Defaults to True.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">drop join column</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterMergerJoinLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterMergerJoinLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">class</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">join_label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Common column name. Defaults to &quot;class&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">join label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainNEstimators -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRFClassifierTrainNEstimators">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">100</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n_estimators</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of trees in the forest to use. Defaults to 100.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n estimators</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerKey -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerKey">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">consumer_key</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of twitter&apos;s applications credentials</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">consumer key</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerSecret -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterConsumerSecret">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">consumer_secret</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Part of twitter&apos;s applications credentials</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">consumerSecret</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterCount -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterCount">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">100</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">count</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of tweets to receive as a response up to a maximum of 100. Defaults to 100.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">count</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveEndDatetime -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveEndDatetime">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">end_datetime</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Date to begin collecting tweets. Format: &quot;%m/%d/%Y %H:%M&quot;</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">end datetime</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveInitialDatetime -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveInitialDatetime">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">initial_datetime</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Date to begin collecting tweets. Format: &quot;%m/%d/%Y %H:%M&quot;</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">initial datetime</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveSleepTime -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterFromInternetArchiveSleepTime">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sleep_time</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Seconds to sleep between the download of each file. Defaults to 2.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sleep time</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterLang -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterLang">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lang</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Restricts tweets to the given language, given by an ISO 639-1 code. Defaults to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">lang</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterQuery -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterQuery">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">query</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A UTF-8, URL-encoded search query of 500 characters maximum, including operators.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">query</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterResultType -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterReadTwitterResultType">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mixed</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">result_type</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Specifies what type of search results you would prefer to receive. Values: [&apos;recent&apos;, &apos;popular&apos;, &apos;mixed&apos;]. Defaults to mixed.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">result type</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersIgnoreColumns -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersIgnoreColumns">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/List"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore_columns</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Columns to ignore while calculating the Mahalanobis distance. Defaults to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ignore columns</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersNPartitions -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersNPartitions">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">4</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n_partitions</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of partitions the dataset is going to be split on. Partitions are executed in parallel. More partitions worse results, but faster compute time.  Defaults to 4.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n partitions</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersOutlierThreshold -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterRemoveOutliersOutlierThreshold">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Float"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.7</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">outlier_threshold</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Percentile of the original dataset to keep. Defaults to 0.7.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">outlier threshold</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterSVCClassifierTrainLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterSVCClassifierTrainLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterSplitShuffleProportion -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterSplitShuffleProportion">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Float"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.7</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">proportion</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proportion of axis to returns . Defaults to 0.7.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">proportion</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedLabel -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedLabel">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Classification column name</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">label</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedProportion -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterSplitStratifiedProportion">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Float"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0.7</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">proportion</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Proportion of axis to returns . Defaults to 0.7.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">proportion</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterCountByDatePeriod -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterCountByDatePeriod">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">day</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">period</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Period of time to group tweets by. Values [&apos;year&apos;, &apos;month&apos;, &apos;week&apos;, &apos;day&apos;, &apos;hour&apos;, &apos;minute&apos;]. Defaults to day</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterDistributionAnalysisAnalysis -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterDistributionAnalysisAnalysis">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">analysis</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Analysis to execute over the input tweets.
+   Values: [&apos;rt_fav&apos;, &apos;tweet_source&apos;, &apos;sentiment&apos;, &apos;polarity&apos;, &apos;is_reply&apos;, &apos;is_quote&apos;, &apos;is_sensitive&apos;, &apos;author_verified&apos;, &apos;average_entities&apos;, &apos;text_length&apos;]</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">analysis</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterFilterMode -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterFilterMode">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">and</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">filter_mode</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&apos;and&apos;: Filter tweets that have all words.
+&apos;or&apos;: Filter tweets that have at least one of the words.
+Defaults to &apos;and&apos;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">filter mode</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterWords -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterFilterWords">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">words</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Words used as filter for the tweets. If there is more than one word they must be separated by spaces.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">words</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationBackEnd -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationBackEnd">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">folium</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">back_end</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Library that will be used in the creation of the map. Values are
+  -&quot;folium&quot;: Scatter plot of the location
+  -&quot;plotly&quot;: Scatter plot of the location coloured by parameter column and animated among time. TOKEN REQUIRED!
+   Default to &quot;folium&quot;.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">back end</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationColumn -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationColumn">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Column from the data set in which scatter point will be coloured if back_end is set to &quot;plotly&quot;</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationMapboxToken -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationMapboxToken">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mapbox_token</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Token necessary for back_end &quot;plotly&quot;. More info at https://docs.mapbox.com/help/how-mapbox-works/access-tokens/ . Default to None</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">mapbox token</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationSetZoom -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterLocationSetZoom">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">8</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set_zoom</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Set the map&apos;s zoom level. Values from 0 to 20 in descedending order. Default to 8.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set zoom</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularColumn -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularColumn">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Name of the colum to get the most popular values from.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularGroupBy -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterMostPopularGroupBy">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">None</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">group_by</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">How to group most popular column. Values: [None, &apos;month&apos;, &apos;country&apos;]. Defaults to None.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">group by</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlySensitive -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlySensitive">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Boolean"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">False</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">only_sensitive</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Only use tweets with the &apos;possibly_sensitive&apos; value set to True. Defaults to False.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">only sensitive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlyVerifiedUser -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisOnlyVerifiedUser">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Boolean"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">False</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">only_verified_user</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Only use tweets with the &apos;user.verified&apos; value set to True. Defaults to False.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">only verified user</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisPeriod -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPolarityAnalysisPeriod">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">period</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Period of time to group tweets by. Values [&apos;year&apos;, &apos;month&apos;, &apos;week&apos;, &apos;day&apos;, &apos;hour&apos;, &apos;minute&apos;].</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">period</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPreProcessingFieldsToRemove -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterPreProcessingFieldsToRemove">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">{
+    &quot;created_at&quot;: false,
+    &quot;id&quot;: true,
+    &quot;id_str&quot;: false,
+    &quot;text&quot;: true,
+    &quot;truncated&quot;: false,
+    &quot;entities&quot;: {
+        &quot;hashtags&quot;: [
+            {
+                &quot;text&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;media&quot;: [
+            {
+                &quot;display_url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;media_url&quot;: false,
+                &quot;media_url_https&quot;: false,
+                &quot;sizes&quot;: {
+                    &quot;thumb&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;large&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;medium&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;small&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    }
+                },
+                &quot;source_status_id&quot;: false,
+                &quot;source_status_id_str&quot;: false,
+                &quot;type&quot;: false,
+                &quot;url&quot;: false
+            }
+        ],
+        &quot;symbols&quot;: [
+            {
+                &quot;text&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;user_mentions&quot;: [
+            {
+                &quot;screen_name&quot;: false,
+                &quot;name&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;urls&quot;: [
+            {
+                &quot;url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;display_url&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;unwound&quot;: {
+                    &quot;url&quot;: false,
+                    &quot;status&quot;: false,
+                    &quot;title&quot;: false,
+                    &quot;description&quot;: false
+                }
+            }
+        ],
+        &quot;polls&quot;: [
+            {
+                &quot;options&quot;: [
+                    {
+                    &quot;position&quot;: false,
+                    &quot;text&quot;: false
+                    }
+                ],
+                &quot;end_datetime&quot;: false,
+                &quot;duration_minutes&quot;: false
+            }
+        ]
+    },
+    &quot;extended_entities&quot;: {
+        &quot;media&quot;: [
+            {
+                &quot;display_url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;media_url&quot;: false,
+                &quot;media_url_https&quot;: false,
+                &quot;sizes&quot;: {
+                    &quot;thumb&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;large&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;medium&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;small&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    }
+                },
+                &quot;source_status_id&quot;: false,
+                &quot;source_status_id_str&quot;: false,
+                &quot;type&quot;: false,
+                &quot;url&quot;: false
+            }
+        ]
+    },
+    &quot;metadata&quot;: {
+        &quot;result_type&quot;: false,
+        &quot;iso_language_code&quot;: false
+    },
+    &quot;source&quot;: false,
+    &quot;in_reply_to_status_id&quot;: false,
+    &quot;reply_count&quot;: false,
+    &quot;in_reply_to_status_id_str&quot;: false,
+    &quot;in_reply_to_user_id&quot;: false,
+    &quot;in_reply_to_user_id_str&quot;: false,
+    &quot;in_reply_to_screen_name&quot;: false,
+    &quot;user&quot;: {
+        &quot;id&quot;: true,
+        &quot;id_str&quot;: false,
+        &quot;name&quot;: true,
+        &quot;screen_name&quot;: true,
+        &quot;location&quot;: false,
+        &quot;description&quot;: false,
+        &quot;url&quot;: false,
+        &quot;entities&quot;: {
+            &quot;url&quot;: {
+                &quot;urls&quot;: [
+                    {
+                        &quot;url&quot;: false,
+                        &quot;expanded_url&quot;: false,
+                        &quot;display_url&quot;: false,
+                        &quot;indices&quot;: [false]
+                    }
+                ]
+            },
+            &quot;description&quot;: {
+                &quot;urls&quot;: [
+                    {
+                        &quot;url&quot;: false,
+                        &quot;expanded_url&quot;: false,
+                        &quot;display_url&quot;: false,
+                        &quot;indices&quot;: false
+                    }
+                ]
+            }
+        },
+        &quot;protected&quot;: false,
+        &quot;followers_count&quot;: false,
+        &quot;friends_count&quot;: false,
+        &quot;listed_count&quot;: false,
+        &quot;created_at&quot;: false,
+        &quot;favourites_count&quot;: false,
+        &quot;utc_offset&quot;: false,
+        &quot;time_zone&quot;: false,
+        &quot;geo_enabled&quot;: false,
+        &quot;verified&quot;: false,
+        &quot;statuses_count&quot;: false,
+        &quot;lang&quot;: false,
+        &quot;contributors_enabled&quot;: false,
+        &quot;is_translator&quot;: false,
+        &quot;is_translation_enabled&quot;: false,
+        &quot;profile_background_color&quot;: false,
+        &quot;profile_background_image_url&quot;: false,
+        &quot;profile_background_image_url_https&quot;: false,
+        &quot;profile_background_tile&quot;: false,
+        &quot;profile_image_url&quot;: false,
+        &quot;profile_image_url_https&quot;: false,
+        &quot;profile_banner_url&quot;: false,
+        &quot;profile_link_color&quot;: false,
+        &quot;profile_sidebar_border_color&quot;: false,
+        &quot;profile_sidebar_fill_color&quot;: false,
+        &quot;profile_text_color&quot;: false,
+        &quot;profile_use_background_image&quot;: false,
+        &quot;has_extended_profile&quot;: false,
+        &quot;default_profile&quot;: false,
+        &quot;default_profile_image&quot;: false,
+        &quot;following&quot;: false,
+        &quot;follow_request_sent&quot;: false,
+        &quot;notifications&quot;: false,
+        &quot;translator_type&quot;: false,
+        &quot;withheld_in_countries&quot;: [false],
+        &quot;withheld_scope&quot;: false
+    },
+    &quot;geo&quot;: false,
+    &quot;coordinates&quot;: false,
+    &quot;place&quot;: false,
+    &quot;contributors&quot;: false,
+    &quot;is_quote_status&quot;: false,
+    &quot;quoted_status_id&quot;: false,
+    &quot;quoted_status_id_str&quot;: false,
+    &quot;quote_count&quot;: false,
+    &quot;quoted_status&quot;: {
+        &quot;id&quot;: false,
+        &quot;id_str&quot;: false,
+        &quot;text&quot;: false,
+        &quot;user&quot;: {
+            &quot;id&quot;: false,
+            &quot;id_str&quot;: false,
+            &quot;name&quot;: false,
+            &quot;screen_name&quot;: false
+        }
+    },
+    &quot;retweet_count&quot;: false,
+    &quot;retweeted_status&quot;: {
+        &quot;id&quot;: false,
+        &quot;id_str&quot;: false,
+        &quot;text&quot;: false,
+        &quot;user&quot;: {
+            &quot;id&quot;: false,
+            &quot;id_str&quot;: false,
+            &quot;name&quot;: false,
+            &quot;screen_name&quot;: false
+        }
+    },
+    &quot;favorite_count&quot;: false,
+    &quot;favorited&quot;: false,
+    &quot;retweeted&quot;: false,
+    &quot;filter_level&quot;: false,
+    &quot;possibly_sensitive&quot;: false,
+    &quot;lang&quot;: false
+}</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fields_to_remove</bigowl:hasName>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">String representation of the input json with True or False as values indicating wheter to keep or delete the values. Defaults to 
+&quot;{
+    &quot;created_at&quot;: false,
+    &quot;id&quot;: true,
+    &quot;id_str&quot;: false,
+    &quot;text&quot;: true,
+    &quot;truncated&quot;: false,
+    &quot;entities&quot;: {
+        &quot;hashtags&quot;: [
+            {
+                &quot;text&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;media&quot;: [
+            {
+                &quot;display_url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;media_url&quot;: false,
+                &quot;media_url_https&quot;: false,
+                &quot;sizes&quot;: {
+                    &quot;thumb&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;large&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;medium&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;small&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    }
+                },
+                &quot;source_status_id&quot;: false,
+                &quot;source_status_id_str&quot;: false,
+                &quot;type&quot;: false,
+                &quot;url&quot;: false
+            }
+        ],
+        &quot;symbols&quot;: [
+            {
+                &quot;text&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;user_mentions&quot;: [
+            {
+                &quot;screen_name&quot;: false,
+                &quot;name&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false]
+            }
+        ],
+        &quot;urls&quot;: [
+            {
+                &quot;url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;display_url&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;unwound&quot;: {
+                    &quot;url&quot;: false,
+                    &quot;status&quot;: false,
+                    &quot;title&quot;: false,
+                    &quot;description&quot;: false
+                }
+            }
+        ],
+        &quot;polls&quot;: [
+            {
+                &quot;options&quot;: [
+                    {
+                    &quot;position&quot;: false,
+                    &quot;text&quot;: false
+                    }
+                ],
+                &quot;end_datetime&quot;: false,
+                &quot;duration_minutes&quot;: false
+            }
+        ]
+    },
+    &quot;extended_entities&quot;: {
+        &quot;media&quot;: [
+            {
+                &quot;display_url&quot;: false,
+                &quot;expanded_url&quot;: false,
+                &quot;id&quot;: false,
+                &quot;id_str&quot;: false,
+                &quot;indices&quot;: [false],
+                &quot;media_url&quot;: false,
+                &quot;media_url_https&quot;: false,
+                &quot;sizes&quot;: {
+                    &quot;thumb&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;large&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;medium&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    },
+                    &quot;small&quot;: {
+                    &quot;h&quot;: false,
+                    &quot;resize&quot;: false,
+                    &quot;w&quot;: false
+                    }
+                },
+                &quot;source_status_id&quot;: false,
+                &quot;source_status_id_str&quot;: false,
+                &quot;type&quot;: false,
+                &quot;url&quot;: false
+            }
+        ]
+    },
+    &quot;metadata&quot;: {
+        &quot;result_type&quot;: false,
+        &quot;iso_language_code&quot;: false
+    },
+    &quot;source&quot;: false,
+    &quot;in_reply_to_status_id&quot;: false,
+    &quot;reply_count&quot;: false,
+    &quot;in_reply_to_status_id_str&quot;: false,
+    &quot;in_reply_to_user_id&quot;: false,
+    &quot;in_reply_to_user_id_str&quot;: false,
+    &quot;in_reply_to_screen_name&quot;: false,
+    &quot;user&quot;: {
+        &quot;id&quot;: true,
+        &quot;id_str&quot;: false,
+        &quot;name&quot;: true,
+        &quot;screen_name&quot;: true,
+        &quot;location&quot;: false,
+        &quot;description&quot;: false,
+        &quot;url&quot;: false,
+        &quot;entities&quot;: {
+            &quot;url&quot;: {
+                &quot;urls&quot;: [
+                    {
+                        &quot;url&quot;: false,
+                        &quot;expanded_url&quot;: false,
+                        &quot;display_url&quot;: false,
+                        &quot;indices&quot;: [false]
+                    }
+                ]
+            },
+            &quot;description&quot;: {
+                &quot;urls&quot;: [
+                    {
+                        &quot;url&quot;: false,
+                        &quot;expanded_url&quot;: false,
+                        &quot;display_url&quot;: false,
+                        &quot;indices&quot;: false
+                    }
+                ]
+            }
+        },
+        &quot;protected&quot;: false,
+        &quot;followers_count&quot;: false,
+        &quot;friends_count&quot;: false,
+        &quot;listed_count&quot;: false,
+        &quot;created_at&quot;: false,
+        &quot;favourites_count&quot;: false,
+        &quot;utc_offset&quot;: false,
+        &quot;time_zone&quot;: false,
+        &quot;geo_enabled&quot;: false,
+        &quot;verified&quot;: false,
+        &quot;statuses_count&quot;: false,
+        &quot;lang&quot;: false,
+        &quot;contributors_enabled&quot;: false,
+        &quot;is_translator&quot;: false,
+        &quot;is_translation_enabled&quot;: false,
+        &quot;profile_background_color&quot;: false,
+        &quot;profile_background_image_url&quot;: false,
+        &quot;profile_background_image_url_https&quot;: false,
+        &quot;profile_background_tile&quot;: false,
+        &quot;profile_image_url&quot;: false,
+        &quot;profile_image_url_https&quot;: false,
+        &quot;profile_banner_url&quot;: false,
+        &quot;profile_link_color&quot;: false,
+        &quot;profile_sidebar_border_color&quot;: false,
+        &quot;profile_sidebar_fill_color&quot;: false,
+        &quot;profile_text_color&quot;: false,
+        &quot;profile_use_background_image&quot;: false,
+        &quot;has_extended_profile&quot;: false,
+        &quot;default_profile&quot;: false,
+        &quot;default_profile_image&quot;: false,
+        &quot;following&quot;: false,
+        &quot;follow_request_sent&quot;: false,
+        &quot;notifications&quot;: false,
+        &quot;translator_type&quot;: false,
+        &quot;withheld_in_countries&quot;: [false],
+        &quot;withheld_scope&quot;: false
+    },
+    &quot;geo&quot;: false,
+    &quot;coordinates&quot;: false,
+    &quot;place&quot;: false,
+    &quot;contributors&quot;: false,
+    &quot;is_quote_status&quot;: false,
+    &quot;quoted_status_id&quot;: false,
+    &quot;quoted_status_id_str&quot;: false,
+    &quot;quote_count&quot;: false,
+    &quot;quoted_status&quot;: {
+        &quot;id&quot;: false,
+        &quot;id_str&quot;: false,
+        &quot;text&quot;: false,
+        &quot;user&quot;: {
+            &quot;id&quot;: false,
+            &quot;id_str&quot;: false,
+            &quot;name&quot;: false,
+            &quot;screen_name&quot;: false
+        }
+    },
+    &quot;retweet_count&quot;: false,
+    &quot;retweeted_status&quot;: {
+        &quot;id&quot;: false,
+        &quot;id_str&quot;: false,
+        &quot;text&quot;: false,
+        &quot;user&quot;: {
+            &quot;id&quot;: false,
+            &quot;id_str&quot;: false,
+            &quot;name&quot;: false,
+            &quot;screen_name&quot;: false
+        }
+    },
+    &quot;favorite_count&quot;: false,
+    &quot;favorited&quot;: false,
+    &quot;retweeted&quot;: false,
+    &quot;filter_level&quot;: false,
+    &quot;possibly_sensitive&quot;: false,
+    &quot;lang&quot;: false
+}&quot;</rdfs:label>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fields to remove</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsAscending -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsAscending">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Boolean"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">False</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ascending</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ordering for the result. Defaults to False.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ascending</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsBy -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsBy">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">by</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Criteria to get top tweets. Values: [&apos;retweets&apos;, &apos;favorites&apos;, &apos;polarity&apos;]</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">by</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsNTweets -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterTopTweetsNTweets">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n_tweets</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Number of tweets to return. Defaults to 10.</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">n tweets</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudColumn -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudColumn">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Select the column from the dataset to generate the wordcloud. Default to text</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">column</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudMaximumWords -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudMaximumWords">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">maximum_words</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Select the maximum number of words to plot. Default to 10</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">maximum words</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetBackgroundColour -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetBackgroundColour">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/String"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">black</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set_brackground_colour</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Select the background colour. Default to black</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set brackground colour</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetHeigth -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetHeigth">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">400</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set_heigth</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Select the heigth of the image. Default to 400</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set heigth</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetWidth -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/ParameterTwitterWordCloudSetWidth">
+        <rdf:type rdf:resource="http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"/>
+        <bigowl:hasDataType rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/Integer"/>
+        <bigowl:hasDefaultValue rdf:datatype="http://www.w3.org/2001/XMLSchema#string">800</bigowl:hasDefaultValue>
+        <bigowl:hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set_width</bigowl:hasName>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Select the width of the image. Default to 800</rdfs:comment>
+        <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">set width</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/STDatasetTest -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/STDatasetTest">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/STDatasetTrain -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/STDatasetTrain">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/Scores -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/Scores">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/TabularDataset -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/TabularDataset">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/TabularDatasetB -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/TabularDatasetB">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TabularDataSet"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.ontologies.khaos.uma.es/titan/TempFile -->
+
+    <owl:NamedIndividual rdf:about="http://www.ontologies.khaos.uma.es/titan/TempFile">
+        <rdf:type rdf:resource="http://www.ontologies.khaos.uma.es/bigowl/TempFile"/>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <sdo:affiliation>
+            <rdf:Description>
+                <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                <sdo:url rdf:resource="https://www.uma.es/"/>
+            </rdf:Description>
+        </sdo:affiliation>
+        <sdo:email rdf:resource="mailto:cbarba@lcc.uma.es"/>
+        <sdo:identifier rdf:resource="https://orcid.org/0000-0002-8764-5076"/>
+        <sdo:name xml:lang="en">Cristóbal Barba-González</sdo:name>
+    </rdf:Description>
+    <rdf:Description>
+        <sdo:affiliation>
+            <rdf:Description>
+                <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                <sdo:url rdf:resource="https://www.uma.es/"/>
+            </rdf:Description>
+        </sdo:affiliation>
+        <sdo:email rdf:resource="mailto:antoniobenitez@lcc.uma.es"/>
+        <sdo:identifier rdf:resource="https://orcid.org/0000-0002-4396-8359"/>
+        <sdo:name xml:lang="en">Antonio Benítez-Hidalgo</sdo:name>
+    </rdf:Description>
+    <rdf:Description>
+        <sdo:affiliation>
+            <rdf:Description>
+                <sdo:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">University of Málaga</sdo:name>
+                <sdo:url rdf:resource="https://www.uma.es/"/>
+            </rdf:Description>
+        </sdo:affiliation>
+        <sdo:email rdf:resource="mailto:mpaneque@lcc.uma.es"/>
+        <sdo:identifier rdf:resource="https://orcid.org/0000-0002-7973-3746"/>
+        <sdo:name xml:lang="en">Manuel Paneque-Romero</sdo:name>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
