@@ -1,0 +1,6 @@
+@prefix ns1: <https://diviloper.dev/ontology#> .
+
+<https://diviloper.dev/ABox#ClusteringIntent1> a ns1:UserIntent ;
+    ns1:overData <https://diviloper.dev/ABox#penguins.csv> ;
+    ns1:tacklesProblem ns1:Clustering .
+
