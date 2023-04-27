@@ -7,7 +7,7 @@
 <https://diviloper.dev/ABox> owl:imports <https://diviloper.dev/ontology>,
         <https://w3id.org/BIGOWLData> .
 
-dab:penguins.csv a boa:TabularDataSet ;
+dab:penguins.csv a div:TabularDataset ;
     div:fileFormat "csv" ;
     boa:delimiter "," ;
     boa:doubleQuote false ;
@@ -24,54 +24,75 @@ dab:penguins.csv a boa:TabularDataSet ;
 """ ;
     boa:numberOfColumns 7 ;
     boa:numberOfLines 344 ;
-    boa:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\penguins.csv" ;
+    boa:path "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\penguins.csv" ;
     boa:quoteChar "\"" ;
     boa:skipInitialSpace false .
 
 <https://diviloper.dev/ABox#penguins.csv/body_mass_g> a boa:Column ;
+    div:containsNulls true ;
     div:isCategorical false ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "body_mass_g" ;
     boa:hasDataPrimitiveTypeColumn boa:Float ;
     boa:hasPosition 5 .
 
 <https://diviloper.dev/ABox#penguins.csv/culmen_depth_mm> a boa:Column ;
+    div:containsNulls true ;
     div:isCategorical false ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "culmen_depth_mm" ;
     boa:hasDataPrimitiveTypeColumn boa:Float ;
     boa:hasPosition 3 .
 
 <https://diviloper.dev/ABox#penguins.csv/culmen_length_mm> a boa:Column ;
+    div:containsNulls true ;
     div:isCategorical false ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "culmen_length_mm" ;
     boa:hasDataPrimitiveTypeColumn boa:Float ;
     boa:hasPosition 2 .
 
 <https://diviloper.dev/ABox#penguins.csv/flipper_length_mm> a boa:Column ;
+    div:containsNulls true ;
     div:isCategorical false ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "flipper_length_mm" ;
     boa:hasDataPrimitiveTypeColumn boa:Float ;
     boa:hasPosition 4 .
 
 <https://diviloper.dev/ABox#penguins.csv/island> a boa:Column ;
+    div:containsNulls false ;
     div:isCategorical true ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "island" ;
     boa:hasDataPrimitiveTypeColumn boa:String ;
     boa:hasPosition 1 .
 
 <https://diviloper.dev/ABox#penguins.csv/sex> a boa:Column ;
+    div:containsNulls true ;
     div:isCategorical true ;
+    div:isFeature true ;
+    div:isLabel false ;
     div:isUnique false ;
     boa:hasColumnName "sex" ;
     boa:hasDataPrimitiveTypeColumn boa:String ;
     boa:hasPosition 6 .
 
 <https://diviloper.dev/ABox#penguins.csv/species> a boa:Column ;
+    div:containsNulls false ;
     div:isCategorical true ;
+    div:isFeature false ;
+    div:isLabel true ;
     div:isUnique false ;
     boa:hasColumnName "species" ;
     boa:hasDataPrimitiveTypeColumn boa:String ;

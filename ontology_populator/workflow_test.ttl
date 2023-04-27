@@ -1,0 +1,63 @@
+@prefix bow: <https://w3id.org/BIGOWLWorkflows/> .
+@prefix da: <https://diviloper.dev/ABox#> .
+@prefix do: <https://diviloper.dev/ontology#> .
+@prefix dr: <https://diviloper.dev/ontology/restrictions#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+da:store_as_csv_task a bow:Task ;
+    do:hasParameterValue [ do:forParameter do:URL_Param ;
+            do:hasValue "/workflows/test/clustered_penguins.csv" ] ;
+    bow:hasComponent do:Export_CSV ;
+    bow:hasInput _:N2aa666aa31144b988dec6fb546fdaa52 ;
+    bow:order 5 .
+
+da:workflow_test a bow:Workflow ;
+    bow:hasTask da:convert_to_numeric_task,
+        da:drop_nulls_task,
+        da:kmeans_task,
+        da:load_task .
+
+da:load_task a bow:Task ;
+    do:connectedTo da:drop_nulls_task ;
+    do:hasParameterValue [ do:forParameter do:URL_Param ;
+            do:hasValue "/workflows/test/penguins.csv" ] ;
+    bow:hasComponent do:Import_CSV ;
+    bow:hasOutput da:penguins.csv ;
+    bow:order 1 .
+
+da:convert_to_numeric_task a bow:Task ;
+    do:connectedTo da:kmeans_task ;
+    bow:hasComponent do:ConvertToNumericComponent ;
+    bow:hasInput _:N01cd1182cba54603a998ce22d70d4504 ;
+    bow:hasOutput _:N88a91d60f52d46ba8b628467ca5e0731 ;
+    bow:order 3 .
+
+da:drop_nulls_task a bow:Task ;
+    do:connectedTo da:convert_to_numeric_task ;
+    do:hasParameterValue [ do:forParameter do:dropNullsMethod ;
+            do:hasValue "drop_rows" ] ;
+    bow:hasComponent do:DropNullsComponent ;
+    bow:hasInput da:penguins.csv ;
+    bow:hasOutput _:N01cd1182cba54603a998ce22d70d4504 ;
+    bow:order 2 .
+
+da:kmeans_task a bow:Task ;
+    do:hasParameterValue [ do:forParameter do:NumberOfClusters ;
+            do:hasValue 3 ] ;
+    bow:hasComponent do:KMeansComponent ;
+    bow:hasInput _:N88a91d60f52d46ba8b628467ca5e0731 ;
+    bow:hasOutput _:N2aa666aa31144b988dec6fb546fdaa52,
+        [ a do:TabularDataset ;
+            do:conformsTo dr:LabeledTabularDatasetShape ] ;
+    bow:order 4 .
+
+_:N01cd1182cba54603a998ce22d70d4504 a do:TabularDataset ;
+    do:conformsTo dr:NonNullTabularDatasetShape .
+
+_:N2aa666aa31144b988dec6fb546fdaa52 a do:TabularDataset ;
+    do:conformsTo dr:LabeledTabularDatasetShape .
+
+_:N88a91d60f52d46ba8b628467ca5e0731 a do:TabularDataset ;
+    do:conformsTo dr:NonNullTabularDatasetShape,
+        dr:NumericTabularDatasetShape .
+

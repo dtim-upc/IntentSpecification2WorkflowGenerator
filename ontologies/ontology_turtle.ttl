@@ -42,6 +42,11 @@ diviloper:isCategorical rdf:type owl:DatatypeProperty ;
                         rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
                         rdfs:range xsd:boolean .
 
+###  https://diviloper.dev/ontology#containsNulls
+diviloper:containsNulls rdf:type owl:DatatypeProperty ;
+                        rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+                        rdfs:range xsd:boolean .
+
 
 ###  https://diviloper.dev/ontology#isUnique
 diviloper:isUnique rdf:type owl:DatatypeProperty ;

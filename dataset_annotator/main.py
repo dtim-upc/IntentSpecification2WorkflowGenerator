@@ -15,7 +15,7 @@ abox = Namespace('https://diviloper.dev/ABox#')
 
 def add_dataset_info(dataset_path, graph):
     dataset_node = abox.term(path.basename(dataset_path))
-    graph.add((dataset_node, RDF.type, bigowl_data.TabularDataSet))
+    graph.add((dataset_node, RDF.type, diviloper.TabularDataset))
     dataset = pd.read_csv(dataset_path)
     add_csv_info(dataset_path, dataset, dataset_node, graph)
     add_column_info(dataset_path, dataset, dataset_node, graph)
@@ -62,6 +62,10 @@ def get_column_type(column_type, column):
         return bigowl_data.String
 
 
+def has_nulls(column):
+    return column.isnull().values.any() or column.isna().values.any()
+
+
 def is_categorical(column_type, column):
     if column_type != 'object' and column_type != 'int64':
         return False
@@ -88,12 +92,17 @@ def add_column_info(dataset_path, dataset, dataset_node, graph):
         column_type = get_column_type(col_type, dataset[col])
         categorical = is_categorical(col_type, dataset[col])
         unique = is_unique(col_type, dataset[col])
+        nulls = has_nulls(dataset[col])
         position = dataset.columns.get_loc(col)
+
         graph.add((col_node, bigowl_data.hasDataPrimitiveTypeColumn, column_type))
         graph.add((col_node, diviloper.isCategorical, Literal(categorical)))
         graph.add((col_node, diviloper.isUnique, Literal(unique)))
+        graph.add((col_node, diviloper.containsNulls, Literal(nulls)))
+        graph.add((col_node, diviloper.isFeature, Literal(True)))
+        graph.add((col_node, diviloper.isLabel, Literal(False)))
         graph.add((col_node, bigowl_data.hasPosition, Literal(position)))
-        print(f'\t\t{col}: {column_type} - {categorical=} - {unique=} - {position=}')
+        print(f'\t\t{col}: {column_type} - {categorical=} - {unique=} - {position=} - {nulls=}')
 
 
 def read_graph(urls):

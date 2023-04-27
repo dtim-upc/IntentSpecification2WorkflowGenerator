@@ -1,0 +1,257 @@
+,Subject,Predicate,Object
+29,http://www.w3.org/2002/07/owl#hasValue,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#AnnotationProperty
+56,https://diviloper.dev/ontology,http://www.w3.org/2002/07/owl#imports,https://w3id.org/BIGOWLData
+212,https://diviloper.dev/ontology,http://www.w3.org/2002/07/owl#imports,https://w3id.org/BIGOWLProblems
+191,https://diviloper.dev/ontology,http://www.w3.org/2002/07/owl#imports,https://w3id.org/BIGOWLAlgorithms
+79,https://diviloper.dev/ontology,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Ontology
+84,https://diviloper.dev/ontology,http://www.w3.org/2002/07/owl#imports,https://w3id.org/BIGOWLWorkflows
+63,https://diviloper.dev/ontology#Aggregation,http://www.w3.org/2000/01/rdf-schema#subClassOf,https://w3id.org/BIGOWLWorkflows/DataProcessing
+11,https://diviloper.dev/ontology#Aggregation,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+228,https://diviloper.dev/ontology#Assess,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+193,https://diviloper.dev/ontology#Assess,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+245,https://diviloper.dev/ontology#CategoricalColumnRestriction,http://www.w3.org/2002/07/owl#hasValue,true
+35,https://diviloper.dev/ontology#CategoricalTabularDataset,http://www.w3.org/2000/01/rdf-schema#subClassOf,https://diviloper.dev/ontology#TabularDataset
+96,https://diviloper.dev/ontology#CategoricalTabularDataset,http://www.w3.org/2002/07/owl#equivalentClass,https://diviloper.dev/ontology#CategoricalTabularDatasetRestriction
+184,https://diviloper.dev/ontology#CategoricalTabularDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+40,https://diviloper.dev/ontology#CategoricalTabularDatasetRestriction,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+1,https://diviloper.dev/ontology#Centroids,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+156,https://diviloper.dev/ontology#Classification,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+148,https://diviloper.dev/ontology#Classification,https://diviloper.dev/ontology#subProblemOf,https://diviloper.dev/ontology#Describe
+75,https://diviloper.dev/ontology#ClassificationAlgorithms,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+93,https://diviloper.dev/ontology#ClassificationAlgorithms,http://www.w3.org/2000/01/rdf-schema#subClassOf,https://w3id.org/BIGOWLAlgorithms/DataAnalysingAlgorithm
+116,https://diviloper.dev/ontology#ClusteredDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+142,https://diviloper.dev/ontology#Clustering,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+49,https://diviloper.dev/ontology#Clustering,https://diviloper.dev/ontology#subProblemOf,https://diviloper.dev/ontology#Describe
+115,https://diviloper.dev/ontology#Clustering,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+134,https://diviloper.dev/ontology#ClusteringAlgorithm,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+25,https://diviloper.dev/ontology#ClusteringAlgorithm,http://www.w3.org/2000/01/rdf-schema#subClassOf,https://w3id.org/BIGOWLAlgorithms/DataAnalysingAlgorithm
+211,https://diviloper.dev/ontology#Contains_Headers_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+52,https://diviloper.dev/ontology#Contains_Headers_Param,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,true
+42,https://diviloper.dev/ontology#Contains_Headers_Param,http://www.w3.org/2000/01/rdf-schema#comment,Specifies whether the input file contains headers. Defaults to True
+17,https://diviloper.dev/ontology#Contains_Headers_Param,http://www.w3.org/2000/01/rdf-schema#label,Contains Headers Params
+235,https://diviloper.dev/ontology#Contains_Headers_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+187,https://diviloper.dev/ontology#Contains_Headers_Param,https://w3id.org/BIGOWLWorkflows/hasName,contains_headers
+130,https://diviloper.dev/ontology#Contains_Headers_Param,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/Boolean
+126,https://diviloper.dev/ontology#DBSCAN,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+188,https://diviloper.dev/ontology#DBSCAN,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Clustering
+241,https://diviloper.dev/ontology#DBSCAN,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClusteringAlgorithm
+192,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/specifiesInputClass,https://diviloper.dev/ontology#TabularDataset
+140,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,1
+105,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Epsilon
+195,https://diviloper.dev/ontology#DBSCANComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+114,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/hasAlgorithm,https://diviloper.dev/ontology#DBSCAN
+6,https://diviloper.dev/ontology#DBSCANComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/DataAnalysing
+236,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#ClusteredDataset
+33,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#minPoints
+229,https://diviloper.dev/ontology#DBSCANComponent,https://w3id.org/BIGOWLWorkflows/numberOfInputs,1
+31,https://diviloper.dev/ontology#Data,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+16,https://diviloper.dev/ontology#DecisionTree,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClassificationAlgorithms
+28,https://diviloper.dev/ontology#DecisionTree,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Classification
+206,https://diviloper.dev/ontology#DecisionTree,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+221,https://diviloper.dev/ontology#Describe,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+2,https://diviloper.dev/ontology#Describe,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+136,https://diviloper.dev/ontology#Epsilon,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/Float
+12,https://diviloper.dev/ontology#Epsilon,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,0.5
+217,https://diviloper.dev/ontology#Epsilon,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+201,https://diviloper.dev/ontology#Epsilon,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+61,https://diviloper.dev/ontology#Epsilon,https://w3id.org/BIGOWLWorkflows/hasName,Epsilon
+143,https://diviloper.dev/ontology#Explain,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+254,https://diviloper.dev/ontology#Explain,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+208,https://diviloper.dev/ontology#Field_Delimiter,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+7,https://diviloper.dev/ontology#Field_Delimiter,http://www.w3.org/2000/01/rdf-schema#comment,"Specifies the characters to use as delimiters. Defaults to ','."
+137,https://diviloper.dev/ontology#Field_Delimiter,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/String
+43,https://diviloper.dev/ontology#Field_Delimiter,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+224,https://diviloper.dev/ontology#Field_Delimiter,https://w3id.org/BIGOWLWorkflows/hasName,delimiter
+117,https://diviloper.dev/ontology#Field_Delimiter,http://www.w3.org/2000/01/rdf-schema#label,CSV Field Delimiter Param
+54,https://diviloper.dev/ontology#Field_Delimiter,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,","
+67,https://diviloper.dev/ontology#Gaussians,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+89,https://diviloper.dev/ontology#Import_CSV,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/DataIngestion
+18,https://diviloper.dev/ontology#Import_CSV,http://www.w3.org/2000/01/rdf-schema#comment,Import a CSV file from a url into a TabularDataset
+14,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Line_Dilimiter_Param
+238,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Field_Delimiter
+237,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#URL_Param
+80,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#TabularDataset
+165,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/hasImplementation,https://diviloper.dev/ontology#PandasReadCSV
+150,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,1
+227,https://diviloper.dev/ontology#Import_CSV,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+102,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/numberOfInputs,0
+248,https://diviloper.dev/ontology#Import_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Contains_Headers_Param
+32,https://diviloper.dev/ontology#Import_CSV,http://www.w3.org/2000/01/rdf-schema#label,Import CSV
+60,https://diviloper.dev/ontology#Import_CSV,https://diviloper.dev/ontology#fileFormat,csv
+243,https://diviloper.dev/ontology#KMeans,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Clustering
+10,https://diviloper.dev/ontology#KMeans,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClusteringAlgorithm
+157,https://diviloper.dev/ontology#KMeans,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+239,https://diviloper.dev/ontology#KMeans:NumberOfClusters,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/Integer
+220,https://diviloper.dev/ontology#KMeans:NumberOfClusters,http://www.w3.org/2000/01/rdf-schema#label,Number of Clusters
+108,https://diviloper.dev/ontology#KMeans:NumberOfClusters,https://w3id.org/BIGOWLWorkflows/hasName,n_clusters
+234,https://diviloper.dev/ontology#KMeans:NumberOfClusters,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+214,https://diviloper.dev/ontology#KMeans:NumberOfClusters,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+249,https://diviloper.dev/ontology#KMeansComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/DataAnalysing
+176,https://diviloper.dev/ontology#KMeansComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+213,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#ClusteredDataset
+169,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,2
+205,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/numberOfInputs,1
+171,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/specifiesInputClass,https://diviloper.dev/ontology#TabularDataset
+210,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#Centroids
+39,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/hasAlgorithm,https://diviloper.dev/ontology#KMeans
+66,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#KMeans:NumberOfClusters
+15,https://diviloper.dev/ontology#KMeansComponent,https://w3id.org/BIGOWLWorkflows/hasImplementation,https://diviloper.dev/ontology#SklearnKMeans
+124,https://diviloper.dev/ontology#KNN,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Classification
+57,https://diviloper.dev/ontology#KNN,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+109,https://diviloper.dev/ontology#KNN,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClassificationAlgorithms
+197,https://diviloper.dev/ontology#Line_Dilimiter_Param,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/String
+86,https://diviloper.dev/ontology#Line_Dilimiter_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+23,https://diviloper.dev/ontology#Line_Dilimiter_Param,http://www.w3.org/2000/01/rdf-schema#comment,Specifies the characters to use as line delimiters
+118,https://diviloper.dev/ontology#Line_Dilimiter_Param,http://www.w3.org/2000/01/rdf-schema#label,Line Delimiter Param
+95,https://diviloper.dev/ontology#Line_Dilimiter_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+44,https://diviloper.dev/ontology#Line_Dilimiter_Param,https://w3id.org/BIGOWLWorkflows/hasName,Line Delimiter
+178,https://diviloper.dev/ontology#Line_Dilimiter_Param,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,None
+230,https://diviloper.dev/ontology#LogisticRegression,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClassificationAlgorithms
+250,https://diviloper.dev/ontology#LogisticRegression,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Classification
+161,https://diviloper.dev/ontology#LogisticRegression,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+202,https://diviloper.dev/ontology#MixtureGaussian,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Clustering
+138,https://diviloper.dev/ontology#MixtureGaussian,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+222,https://diviloper.dev/ontology#MixtureGaussian,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClusteringAlgorithm
+170,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+0,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters,http://www.w3.org/2000/01/rdf-schema#label,Number of Clusters
+69,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/Integer
+92,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters,https://w3id.org/BIGOWLWorkflows/hasName,n_clusters
+4,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+151,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/specifiesInputClass,https://diviloper.dev/ontology#TabularDataset
+246,https://diviloper.dev/ontology#MixtureGaussianComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/DataAnalysing
+55,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#Gaussians
+226,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,2
+218,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/hasAlgorithm,https://diviloper.dev/ontology#MixtureGaussian
+172,https://diviloper.dev/ontology#MixtureGaussianComponent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+19,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/numberOfInputs,1
+113,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters
+131,https://diviloper.dev/ontology#MixtureGaussianComponent,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#ClusteredDataset
+174,https://diviloper.dev/ontology#OutlierDetection,https://diviloper.dev/ontology#subProblemOf,https://diviloper.dev/ontology#Describe
+125,https://diviloper.dev/ontology#OutlierDetection,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+231,https://diviloper.dev/ontology#OutlierDetection,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+146,https://diviloper.dev/ontology#PandasReadCSV,https://w3id.org/BIGOWLWorkflows/implementationLanguage,python
+36,https://diviloper.dev/ontology#PandasReadCSV,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/Implementation
+74,https://diviloper.dev/ontology#PandasReadCSV,http://www.w3.org/2000/01/rdf-schema#label,Pandas CSV Reader
+186,https://diviloper.dev/ontology#PandasReadCSV,https://w3id.org/BIGOWLWorkflows/module,pandas
+141,https://diviloper.dev/ontology#PandasReadCSV,https://w3id.org/BIGOWLWorkflows/function,read_csv
+253,https://diviloper.dev/ontology#ParameterValue,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+232,https://diviloper.dev/ontology#Predict,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+71,https://diviloper.dev/ontology#Predict,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+77,https://diviloper.dev/ontology#RandomForest,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#ClassificationAlgorithms
+91,https://diviloper.dev/ontology#RandomForest,https://w3id.org/BIGOWLAlgorithms/solves,https://diviloper.dev/ontology#Classification
+13,https://diviloper.dev/ontology#RandomForest,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+20,https://diviloper.dev/ontology#SklearnKMeans,https://w3id.org/BIGOWLWorkflows/module,diviloper.cluster
+76,https://diviloper.dev/ontology#SklearnKMeans,https://w3id.org/BIGOWLWorkflows/function,sklearn_kmeans
+62,https://diviloper.dev/ontology#SklearnKMeans,https://w3id.org/BIGOWLWorkflows/implementationLanguage,python
+207,https://diviloper.dev/ontology#SklearnKMeans,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/Implementation
+53,https://diviloper.dev/ontology#SklearnKMeans,http://www.w3.org/2000/01/rdf-schema#label,Sklearn KMeans
+97,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Field_Delimiter
+111,https://diviloper.dev/ontology#Store_as_CSV,http://www.w3.org/2000/01/rdf-schema#label,Store as CSV
+82,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,0
+196,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Line_Dilimiter_Param
+166,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#Contains_Headers_Param
+139,https://diviloper.dev/ontology#Store_as_CSV,http://www.w3.org/2000/01/rdf-schema#comment,Stores a TabularDataset as a CSV file
+158,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#URL_Param
+183,https://diviloper.dev/ontology#Store_as_CSV,https://w3id.org/BIGOWLWorkflows/numberOfInputs,1
+152,https://diviloper.dev/ontology#Store_as_CSV,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+90,https://diviloper.dev/ontology#Store_as_CSV,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/DataSink
+247,https://diviloper.dev/ontology#TabularAggregator,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+98,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/specifiesInputClass,https://diviloper.dev/ontology#TabularDataset
+107,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/numberOfOutputs,1
+189,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/numberOfInputs,1
+5,https://diviloper.dev/ontology#TabularAggregator,http://www.w3.org/2000/01/rdf-schema#label,Tabular Aggregator
+34,https://diviloper.dev/ontology#TabularAggregator,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://diviloper.dev/ontology#Aggregation
+45,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/specifiesOutputClass,https://diviloper.dev/ontology#UniqueTabularDataset
+9,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#aggregates_by
+160,https://diviloper.dev/ontology#TabularAggregator,http://www.w3.org/2000/01/rdf-schema#comment,Aggregates a Tabular Dataset
+88,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#using
+129,https://diviloper.dev/ontology#TabularAggregator,https://w3id.org/BIGOWLWorkflows/hasParameter,https://diviloper.dev/ontology#aggregates
+216,https://diviloper.dev/ontology#TabularDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+180,https://diviloper.dev/ontology#TabularDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+252,https://diviloper.dev/ontology#TopK,https://diviloper.dev/ontology#subProblemOf,https://diviloper.dev/ontology#Describe
+132,https://diviloper.dev/ontology#TopK,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+162,https://diviloper.dev/ontology#TopK,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLProblems/Problem
+133,https://diviloper.dev/ontology#URL_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+120,https://diviloper.dev/ontology#URL_Param,https://w3id.org/BIGOWLWorkflows/hasName,filepath_or_buffer
+106,https://diviloper.dev/ontology#URL_Param,http://www.w3.org/2000/01/rdf-schema#label,URL Param
+119,https://diviloper.dev/ontology#URL_Param,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+110,https://diviloper.dev/ontology#URL_Param,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/String
+101,https://diviloper.dev/ontology#URL_Param,http://www.w3.org/2000/01/rdf-schema#comment,URL to a publicly available resource
+46,https://diviloper.dev/ontology#URL_Param,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,None
+185,https://diviloper.dev/ontology#UniqueColumnRestriction,http://www.w3.org/2002/07/owl#hasValue,true
+51,https://diviloper.dev/ontology#UniqueTabularDataset,http://www.w3.org/2002/07/owl#equivalentClass,https://diviloper.dev/ontology#UniqueTabularDatasetRestriction
+58,https://diviloper.dev/ontology#UniqueTabularDataset,http://www.w3.org/2000/01/rdf-schema#subClassOf,https://diviloper.dev/ontology#TabularDataset
+127,https://diviloper.dev/ontology#UniqueTabularDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+99,https://diviloper.dev/ontology#UniqueTabularDataset,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+159,https://diviloper.dev/ontology#UniqueTabularDatasetRestriction,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+38,https://diviloper.dev/ontology#UserIntent,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class
+47,https://diviloper.dev/ontology#W1,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow
+204,https://diviloper.dev/ontology#W1,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+173,https://diviloper.dev/ontology#W1,https://w3id.org/BIGOWLWorkflows/hasTask,https://diviloper.dev/ontology#W1T2
+209,https://diviloper.dev/ontology#W1,https://w3id.org/BIGOWLWorkflows/hasTask,https://diviloper.dev/ontology#W1T3
+72,https://diviloper.dev/ontology#W1,https://w3id.org/BIGOWLWorkflows/hasTask,https://diviloper.dev/ontology#W1T1
+26,https://diviloper.dev/ontology#W1T1,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+147,https://diviloper.dev/ontology#W1T1,https://w3id.org/BIGOWLWorkflows/hasComponent,https://diviloper.dev/ontology#Import_CSV
+153,https://diviloper.dev/ontology#W1T1,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/Task
+121,https://diviloper.dev/ontology#W1T1,https://w3id.org/BIGOWLWorkflows/connectedTo,https://diviloper.dev/ontology#W1T2
+21,https://diviloper.dev/ontology#W1T2,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+81,https://diviloper.dev/ontology#W1T2,https://w3id.org/BIGOWLWorkflows/hasComponent,https://diviloper.dev/ontology#TabularAggregator
+155,https://diviloper.dev/ontology#W1T2,https://w3id.org/BIGOWLWorkflows/connectedTo,https://diviloper.dev/ontology#W1T3
+215,https://diviloper.dev/ontology#W1T2,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/Task
+200,https://diviloper.dev/ontology#W1T3,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+85,https://diviloper.dev/ontology#W1T3,https://w3id.org/BIGOWLWorkflows/hasComponent,https://diviloper.dev/ontology#Store_as_CSV
+83,https://diviloper.dev/ontology#W1T3,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,https://w3id.org/BIGOWLWorkflows/Task
+190,https://diviloper.dev/ontology#aggregates,https://w3id.org/BIGOWLWorkflows/hasName,aggregates
+22,https://diviloper.dev/ontology#aggregates,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+123,https://diviloper.dev/ontology#aggregates,http://www.w3.org/2000/01/rdf-schema#comment,Columns to aggregate
+64,https://diviloper.dev/ontology#aggregates,http://www.w3.org/2000/01/rdf-schema#label,Aggregates Param
+103,https://diviloper.dev/ontology#aggregates,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,None
+251,https://diviloper.dev/ontology#aggregates,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/List
+3,https://diviloper.dev/ontology#aggregates,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+244,https://diviloper.dev/ontology#aggregates_by,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/List
+94,https://diviloper.dev/ontology#aggregates_by,http://www.w3.org/2000/01/rdf-schema#comment,Columns to aggregate by
+27,https://diviloper.dev/ontology#aggregates_by,http://www.w3.org/2000/01/rdf-schema#label,Aggregates By Param
+24,https://diviloper.dev/ontology#aggregates_by,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+8,https://diviloper.dev/ontology#aggregates_by,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+37,https://diviloper.dev/ontology#aggregates_by,https://w3id.org/BIGOWLWorkflows/hasName,aggregates_by
+177,https://diviloper.dev/ontology#aggregates_by,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,None
+68,https://diviloper.dev/ontology#fileFormat,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+100,https://diviloper.dev/ontology#fileFormat,http://www.w3.org/2000/01/rdf-schema#range,http://www.w3.org/2001/XMLSchema#string
+122,https://diviloper.dev/ontology#fileFormat,http://www.w3.org/2000/01/rdf-schema#domain,https://w3id.org/BIGOWLData/DataSet
+144,https://diviloper.dev/ontology#forParameter,http://www.w3.org/2000/01/rdf-schema#domain,https://diviloper.dev/ontology#ParameterValue
+225,https://diviloper.dev/ontology#forParameter,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#ObjectProperty
+65,https://diviloper.dev/ontology#forParameter,http://www.w3.org/2000/01/rdf-schema#range,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+182,https://diviloper.dev/ontology#hasParameterValue,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#ObjectProperty
+87,https://diviloper.dev/ontology#hasParameterValue,http://www.w3.org/2000/01/rdf-schema#range,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+30,https://diviloper.dev/ontology#hasValue,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+73,https://diviloper.dev/ontology#hasValue,http://www.w3.org/2000/01/rdf-schema#domain,https://diviloper.dev/ontology#ParameterValue
+219,https://diviloper.dev/ontology#isCategorical,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+233,https://diviloper.dev/ontology#isCategorical,http://www.w3.org/2000/01/rdf-schema#range,http://www.w3.org/2001/XMLSchema#boolean
+223,https://diviloper.dev/ontology#isCategorical,http://www.w3.org/2000/01/rdf-schema#domain,https://w3id.org/BIGOWLData/Column
+149,https://diviloper.dev/ontology#isUnique,http://www.w3.org/2000/01/rdf-schema#range,http://www.w3.org/2001/XMLSchema#boolean
+203,https://diviloper.dev/ontology#isUnique,http://www.w3.org/2000/01/rdf-schema#domain,https://w3id.org/BIGOWLData/Column
+198,https://diviloper.dev/ontology#isUnique,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#DatatypeProperty
+179,https://diviloper.dev/ontology#minPoints,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+50,https://diviloper.dev/ontology#minPoints,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/Integer
+163,https://diviloper.dev/ontology#minPoints,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+240,https://diviloper.dev/ontology#minPoints,https://w3id.org/BIGOWLWorkflows/hasName,Minimum Points
+59,https://diviloper.dev/ontology#minPoints,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,5
+128,https://diviloper.dev/ontology#overData,http://www.w3.org/2000/01/rdf-schema#domain,https://diviloper.dev/ontology#UserIntent
+41,https://diviloper.dev/ontology#overData,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#ObjectProperty
+145,https://diviloper.dev/ontology#overData,http://www.w3.org/2000/01/rdf-schema#range,https://diviloper.dev/ontology#Data
+48,https://diviloper.dev/ontology#subProblemOf,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#ObjectProperty
+164,https://diviloper.dev/ontology#subProblemOf,http://www.w3.org/2000/01/rdf-schema#range,https://w3id.org/BIGOWLProblems/Problem
+242,https://diviloper.dev/ontology#subProblemOf,http://www.w3.org/2000/01/rdf-schema#domain,https://w3id.org/BIGOWLProblems/Problem
+167,https://diviloper.dev/ontology#tacklesProblem,http://www.w3.org/2000/01/rdf-schema#domain,https://diviloper.dev/ontology#UserIntent
+199,https://diviloper.dev/ontology#tacklesProblem,http://www.w3.org/2000/01/rdf-schema#range,https://w3id.org/BIGOWLProblems/Problem
+78,https://diviloper.dev/ontology#tacklesProblem,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#ObjectProperty
+181,https://diviloper.dev/ontology#using,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter
+112,https://diviloper.dev/ontology#using,https://w3id.org/BIGOWLWorkflows/hasName,using
+135,https://diviloper.dev/ontology#using,http://www.w3.org/2000/01/rdf-schema#label,Aggregation Method Param
+168,https://diviloper.dev/ontology#using,https://w3id.org/BIGOWLWorkflows/hasDataType,https://w3id.org/BIGOWLData/List
+194,https://diviloper.dev/ontology#using,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#NamedIndividual
+70,https://diviloper.dev/ontology#using,http://www.w3.org/2000/01/rdf-schema#seeAlso,https://diviloper.dev/ontology#aggregates
+175,https://diviloper.dev/ontology#using,http://www.w3.org/2000/01/rdf-schema#comment,"Method to use when aggregating a TabularDataset.
+Should have the same dimensionality as the corresponding ""aggregates"" Parameter."
+104,https://diviloper.dev/ontology#using,https://w3id.org/BIGOWLWorkflows/hasDefaultValue,None
+154,https://w3id.org/BIGOWLData/DataSet,http://www.w3.org/1999/02/22-rdf-syntax-ns#type,http://www.w3.org/2002/07/owl#Class

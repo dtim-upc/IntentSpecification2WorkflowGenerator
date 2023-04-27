@@ -6,6 +6,8 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+owl:hasValue a owl:AnnotationProperty .
+
 <https://diviloper.dev/ontology> a owl:Ontology ;
     owl:imports <https://w3id.org/BIGOWLAlgorithms>,
         <https://w3id.org/BIGOWLData>,
@@ -15,10 +17,14 @@
 diviloper:Assess a owl:NamedIndividual,
         bop:Problem .
 
-diviloper:CategoricalTabularDataset rdfs:subClassOf diviloper:TabularDataset ;
+diviloper:CategoricalColumnRestriction owl:hasValue true .
+
+diviloper:CategoricalTabularDataset a owl:Class ;
+    rdfs:subClassOf diviloper:TabularDataset ;
     owl:equivalentClass diviloper:CategoricalTabularDatasetRestriction .
 
-diviloper:DBSCANComponent a ns1:DataAnalysing ;
+diviloper:DBSCANComponent a owl:NamedIndividual,
+        ns1:DataAnalysing ;
     ns1:hasAlgorithm diviloper:DBSCAN ;
     ns1:hasParameter diviloper:Epsilon,
         diviloper:minPoints ;
@@ -27,30 +33,36 @@ diviloper:DBSCANComponent a ns1:DataAnalysing ;
     ns1:specifiesInputClass diviloper:TabularDataset ;
     ns1:specifiesOutputClass diviloper:ClusteredDataset .
 
-diviloper:DecisionTree a diviloper:ClassificationAlgorithms ;
+diviloper:DecisionTree a owl:NamedIndividual,
+        diviloper:ClassificationAlgorithms ;
     boa:solves diviloper:Classification .
 
 diviloper:Explain a owl:NamedIndividual,
         bop:Problem .
 
-diviloper:KMeansComponent a ns1:DataAnalysing ;
+diviloper:KMeansComponent a owl:NamedIndividual,
+        ns1:DataAnalysing ;
     ns1:hasAlgorithm diviloper:KMeans ;
-    ns1:hasParameter diviloper:NumberOfClusters ;
+    ns1:hasImplementation diviloper:SklearnKMeans ;
+    ns1:hasParameter <https://diviloper.dev/ontology#KMeans:NumberOfClusters> ;
     ns1:numberOfInputs 1 ;
     ns1:numberOfOutputs 2 ;
     ns1:specifiesInputClass diviloper:TabularDataset ;
     ns1:specifiesOutputClass diviloper:Centroids,
         diviloper:ClusteredDataset .
 
-diviloper:KNN a diviloper:ClassificationAlgorithms ;
+diviloper:KNN a owl:NamedIndividual,
+        diviloper:ClassificationAlgorithms ;
     boa:solves diviloper:Classification .
 
-diviloper:LogisticRegression a diviloper:ClassificationAlgorithms ;
+diviloper:LogisticRegression a owl:NamedIndividual,
+        diviloper:ClassificationAlgorithms ;
     boa:solves diviloper:Classification .
 
-diviloper:MixtureGaussianComponent a ns1:DataAnalysing ;
+diviloper:MixtureGaussianComponent a owl:NamedIndividual,
+        ns1:DataAnalysing ;
     ns1:hasAlgorithm diviloper:MixtureGaussian ;
-    ns1:hasParameter diviloper:NumberOfClusters ;
+    ns1:hasParameter <https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters> ;
     ns1:numberOfInputs 1 ;
     ns1:numberOfOutputs 2 ;
     ns1:specifiesInputClass diviloper:TabularDataset ;
@@ -64,12 +76,15 @@ diviloper:OutlierDetection a owl:NamedIndividual,
 diviloper:Predict a owl:NamedIndividual,
         bop:Problem .
 
-diviloper:RandomForest a diviloper:ClassificationAlgorithms ;
+diviloper:RandomForest a owl:NamedIndividual,
+        diviloper:ClassificationAlgorithms ;
     boa:solves diviloper:Classification .
 
 diviloper:TopK a owl:NamedIndividual,
         bop:Problem ;
     diviloper:subProblemOf diviloper:Describe .
+
+diviloper:UniqueColumnRestriction owl:hasValue true .
 
 diviloper:W1 a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow>,
         owl:NamedIndividual ;
@@ -91,6 +106,26 @@ diviloper:hasParameterValue a owl:ObjectProperty ;
 diviloper:hasValue a owl:DatatypeProperty ;
     rdfs:domain diviloper:ParameterValue .
 
+diviloper:isCategorical a owl:DatatypeProperty ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+    rdfs:range xsd:boolean .
+
+diviloper:containsNulls a owl:DatatypeProperty ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+    rdfs:range xsd:boolean .
+
+diviloper:isFeature a owl:DatatypeProperty ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+    rdfs:range xsd:boolean .
+
+diviloper:isLabel a owl:DatatypeProperty ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+    rdfs:range xsd:boolean .
+
+diviloper:isUnique a owl:DatatypeProperty ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
+    rdfs:range xsd:boolean .
+
 diviloper:overData a owl:ObjectProperty ;
     rdfs:domain diviloper:UserIntent ;
     rdfs:range diviloper:Data .
@@ -106,39 +141,69 @@ diviloper:tacklesProblem a owl:ObjectProperty ;
 diviloper:Aggregation a owl:Class ;
     rdfs:subClassOf ns1:DataProcessing .
 
-diviloper:CategoricalColumnRestriction a owl:Restriction ;
-    owl:hasValue true ;
-    owl:onProperty diviloper:isCategorical .
+diviloper:CategoricalTabularDatasetRestriction a owl:Class .
 
-diviloper:CategoricalTabularDatasetRestriction a owl:Restriction ;
-    owl:onProperty <https://w3id.org/BIGOWLData/hasColumn> ;
-    owl:someValuesFrom diviloper:CategoricalColumnRestriction .
+diviloper:Centroids a owl:NamedIndividual .
 
-diviloper:DBSCAN a diviloper:ClusteringAlgorithm ;
+diviloper:DBSCAN a owl:NamedIndividual,
+        diviloper:ClusteringAlgorithm ;
     boa:solves diviloper:Clustering .
 
-diviloper:Epsilon a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter> ;
+diviloper:Data a owl:Class .
+
+diviloper:Epsilon a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
+        owl:NamedIndividual ;
     ns1:hasDataType <https://w3id.org/BIGOWLData/Float> ;
     ns1:hasDefaultValue 5e-01 ;
     ns1:hasName "Epsilon" .
+
+diviloper:Gaussians a owl:NamedIndividual .
 
 diviloper:Import_CSV a owl:NamedIndividual,
         ns1:DataIngestion ;
     rdfs:label "Import CSV" ;
     rdfs:comment "Import a CSV file from a url into a TabularDataset" ;
     diviloper:fileFormat "csv" ;
+    ns1:hasImplementation diviloper:PandasReadCSV ;
     ns1:hasParameter diviloper:Contains_Headers_Param,
         diviloper:Field_Delimiter,
         diviloper:Line_Dilimiter_Param,
         diviloper:URL_Param ;
     ns1:numberOfInputs 0 ;
-    ns1:numberOfOutputs 1 .
+    ns1:numberOfOutputs 1 ;
+    ns1:specifiesOutputClass diviloper:TabularDataset .
 
-diviloper:KMeans a diviloper:ClusteringAlgorithm ;
+diviloper:KMeans a owl:NamedIndividual,
+        diviloper:ClusteringAlgorithm ;
     boa:solves diviloper:Clustering .
 
-diviloper:MixtureGaussian a diviloper:ClusteringAlgorithm ;
+<https://diviloper.dev/ontology#KMeans:NumberOfClusters> a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
+        owl:NamedIndividual ;
+    rdfs:label "Number of Clusters" ;
+    ns1:hasDataType <https://w3id.org/BIGOWLData/Integer> ;
+    ns1:hasName "n_clusters" .
+
+diviloper:MixtureGaussian a owl:NamedIndividual,
+        diviloper:ClusteringAlgorithm ;
     boa:solves diviloper:Clustering .
+
+<https://diviloper.dev/ontology#MixtureGaussian:NumberOfClusters> a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
+        owl:NamedIndividual ;
+    rdfs:label "Number of Clusters" ;
+    ns1:hasDataType <https://w3id.org/BIGOWLData/Integer> ;
+    ns1:hasName "n_clusters" .
+
+diviloper:PandasReadCSV a ns1:Implementation ;
+    rdfs:label "Pandas CSV Reader" ;
+    ns1:function "read_csv" ;
+    ns1:implementationLanguage "python" ;
+    ns1:module "pandas" .
+
+diviloper:SklearnKMeans a ns1:Implementation ;
+    rdfs:label "Sklearn KMeans" ;
+    ns1:function "sklearn_kmeans" ;
+    ns1:implementationLanguage "python" ;
+    ns1:module "diviloper.cluster" .
 
 diviloper:Store_as_CSV a owl:NamedIndividual,
         ns1:DataSink ;
@@ -163,16 +228,12 @@ diviloper:TabularAggregator a owl:NamedIndividual,
     ns1:specifiesInputClass diviloper:TabularDataset ;
     ns1:specifiesOutputClass diviloper:UniqueTabularDataset .
 
-diviloper:UniqueColumnRestriction a owl:Restriction ;
-    owl:hasValue true ;
-    owl:onProperty diviloper:isUnique .
-
-diviloper:UniqueTabularDataset rdfs:subClassOf diviloper:TabularDataset ;
+diviloper:UniqueTabularDataset a owl:Class,
+        owl:NamedIndividual ;
+    rdfs:subClassOf diviloper:TabularDataset ;
     owl:equivalentClass diviloper:UniqueTabularDatasetRestriction .
 
-diviloper:UniqueTabularDatasetRestriction a owl:Restriction ;
-    owl:onProperty <https://w3id.org/BIGOWLData/hasColumn> ;
-    owl:someValuesFrom diviloper:UniqueColumnRestriction .
+diviloper:UniqueTabularDatasetRestriction a owl:Class .
 
 diviloper:W1T1 a owl:NamedIndividual,
         ns1:Task ;
@@ -187,15 +248,8 @@ diviloper:aggregates_by a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Par
     ns1:hasDefaultValue "None" ;
     ns1:hasName "aggregates_by" .
 
-diviloper:isCategorical a owl:DatatypeProperty ;
-    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
-    rdfs:range xsd:boolean .
-
-diviloper:isUnique a owl:DatatypeProperty ;
-    rdfs:domain <https://w3id.org/BIGOWLData/Column> ;
-    rdfs:range xsd:boolean .
-
-diviloper:minPoints a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter> ;
+diviloper:minPoints a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
+        owl:NamedIndividual ;
     ns1:hasDataType <https://w3id.org/BIGOWLData/Integer> ;
     ns1:hasDefaultValue 5 ;
     ns1:hasName "Minimum Points" .
@@ -209,6 +263,8 @@ Should have the same dimensionality as the corresponding "aggregates" Parameter.
     ns1:hasDataType <https://w3id.org/BIGOWLData/List> ;
     ns1:hasDefaultValue "None" ;
     ns1:hasName "using" .
+
+<https://w3id.org/BIGOWLData/DataSet> a owl:Class .
 
 diviloper:Contains_Headers_Param a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
         owl:NamedIndividual ;
@@ -234,11 +290,6 @@ diviloper:Line_Dilimiter_Param a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.
     ns1:hasDefaultValue "None" ;
     ns1:hasName "Line Delimiter" .
 
-diviloper:NumberOfClusters a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter> ;
-    ns1:hasDataType <https://w3id.org/BIGOWLData/Integer> ;
-    ns1:hasDefaultValue "None" ;
-    ns1:hasName "Number of Clusters" .
-
 diviloper:ParameterValue a owl:Class .
 
 diviloper:URL_Param a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
@@ -247,7 +298,7 @@ diviloper:URL_Param a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Paramet
     rdfs:comment "URL to a publicly available resource" ;
     ns1:hasDataType <https://w3id.org/BIGOWLData/String> ;
     ns1:hasDefaultValue "None" ;
-    ns1:hasName "URL" .
+    ns1:hasName "filepath_or_buffer" .
 
 diviloper:UserIntent a owl:Class .
 
@@ -268,16 +319,24 @@ diviloper:aggregates a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parame
     ns1:hasDefaultValue "None" ;
     ns1:hasName "aggregates" .
 
+diviloper:ClusteredDataset a owl:NamedIndividual .
+
 diviloper:Clustering a owl:NamedIndividual,
         bop:Problem ;
     diviloper:subProblemOf diviloper:Describe .
 
-diviloper:ClusteringAlgorithm rdfs:subClassOf boa:DataAnalysingAlgorithm .
+diviloper:ClusteringAlgorithm a owl:Class ;
+    rdfs:subClassOf boa:DataAnalysingAlgorithm .
 
-diviloper:Classification diviloper:subProblemOf diviloper:Describe .
+diviloper:Classification a owl:NamedIndividual ;
+    diviloper:subProblemOf diviloper:Describe .
 
-diviloper:ClassificationAlgorithms rdfs:subClassOf boa:DataAnalysingAlgorithm .
+diviloper:ClassificationAlgorithms a owl:Class ;
+    rdfs:subClassOf boa:DataAnalysingAlgorithm .
 
 diviloper:Describe a owl:NamedIndividual,
         bop:Problem .
+
+diviloper:TabularDataset a owl:Class,
+        owl:NamedIndividual .
 

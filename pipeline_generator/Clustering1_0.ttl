@@ -1,18 +1,21 @@
-@prefix ns1: <https://diviloper.dev/ontology#> .
-@prefix ns2: <https://w3id.org/BIGOWLWorkflows/> .
+@prefix ns1: <https://w3id.org/BIGOWLWorkflows/> .
+@prefix ns2: <https://diviloper.dev/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://diviloper.dev/ABox#Clustering1> a ns2:Workflow ;
-    ns2:hasTask <https://diviloper.dev/ABox#Clustering1_1>,
-        <https://diviloper.dev/ABox#Clustering1_2> .
+<https://diviloper.dev/ABox#wf/Clustering1/0> a ns1:Workflow ;
+    ns1:hasTask <https://diviloper.dev/ABox#wf/Clustering1/0/1>,
+        <https://diviloper.dev/ABox#wf/Clustering1/0/2> .
 
-<https://diviloper.dev/ABox#Clustering1_1> a ns2:Task ;
-    ns1:hasParameterValue <https://diviloper.dev/ABox#Clustering1_1_path> ;
-    ns2:connectedTo <https://diviloper.dev/ABox#Clustering1_2> ;
-    ns2:hasComponent ns1:Import_CSV .
+<https://diviloper.dev/ABox#wf/Clustering1/0/1> a ns1:Task ;
+    ns2:hasParameterValue [ ns2:forParameter ns2:URL_Param ;
+            ns2:hasValue "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\penguins.csv" ] ;
+    ns1:connectedTo <https://diviloper.dev/ABox#wf/Clustering1/0/2> ;
+    ns1:hasComponent ns2:Import_CSV ;
+    ns1:order 1 .
 
-<https://diviloper.dev/ABox#Clustering1_1_path> ns1:forParameter ns1:path ;
-    ns1:hasValue "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\penguins.csv" .
-
-<https://diviloper.dev/ABox#Clustering1_2> a ns2:Task ;
-    ns2:hasComponent ns1:KMeansComponent .
+<https://diviloper.dev/ABox#wf/Clustering1/0/2> a ns1:Task ;
+    ns2:hasParameterValue [ ns2:forParameter <https://diviloper.dev/ontology#KMeans:NumberOfClusters> ;
+            ns2:hasValue "3"^^xsd:integer ] ;
+    ns1:hasComponent ns2:KMeansComponent ;
+    ns1:order 2 .
 

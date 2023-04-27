@@ -1,0 +1,35 @@
+@prefix bod: <https://w3id.org/BIGOWLData/> .
+@prefix bow: <https://w3id.org/BIGOWLWorkflows/> .
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
+@prefix do: <https://diviloper.dev/ontology#> .
+@prefix dr: <https://diviloper.dev/ontology/restrictions#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+do:ConvertToNumericComponent a bow:DataProcessing ;
+    bow:hasAlgorithm do:ConvertToNumeric ;
+    bow:numberOfInputs 1 ;
+    bow:numberOfOutputs 1 ;
+    bow:specifiesInputClass dr:TabularDatasetShape ;
+    bow:specifiesOutputClass dr:NumericTabularDatasetShape .
+
+do:DropNullsComponent a bow:DataProcessing ;
+    bow:hasAlgorithm do:DropNulls ;
+    bow:numberOfInputs 1 ;
+    bow:numberOfOutputs 1 ;
+    bow:specifiesInputClass dr:TabularDatasetShape ;
+    bow:specifiesOutputClass dr:NonNullTabularDatasetShape .
+
+do:KMeansComponent a bow:DataAnalysing ;
+    bow:hasAlgorithm do:KMeans ;
+    bow:hasParameter do:NumberOfClusters ;
+    bow:numberOfInputs 1 ;
+    bow:numberOfOutputs 2 ;
+    bow:specifiesInputClass dr:KMeansInputShape ;
+    bow:specifiesOutputClass do:Centroids,
+        do:ClusteredDataset .
+
+do:NumberOfClusters a dmop:Parameter ;
+    bow:hasDataType bod:Integer ;
+    bow:hasDefaultValue 3 ;
+    bow:hasName "Number of Clusters" .
+
