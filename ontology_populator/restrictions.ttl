@@ -1,6 +1,7 @@
 @prefix bod: <https://w3id.org/BIGOWLData/> .
 @prefix do: <https://diviloper.dev/ontology#> .
 @prefix dr: <https://diviloper.dev/ontology/restrictions#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -21,6 +22,10 @@ dr:LabeledTabularDatasetShape a sh:NodeShape ;
                     sh:path do:isLabel ] ] ;
     sh:targetClass do:TabularDataset .
 
+dr:LocalOutlierFactorInputShape a sh:NodeShape ;
+    sh:and ( dr:NonNullTabularDatasetShape dr:NumericTabularDatasetShape dr:NormalizedTabularDatasetShape ) ;
+    sh:targetClass do:TabularDataset .
+
 dr:NonNullNumericFeatureTabularDatasetShape a sh:NodeShape ;
     sh:property [ sh:node dr:NonNullNumericFeatureColumnShape ;
             sh:path bod:hasColumn ] ;
@@ -28,6 +33,8 @@ dr:NonNullNumericFeatureTabularDatasetShape a sh:NodeShape ;
 
 dr:TabularDatasetShape a sh:NodeShape ;
     sh:targetClass do:TabularDataset .
+
+dr:DataTag a owl:Class .
 
 dr:FeatureColumnProperty sh:datatype xsd:boolean ;
     sh:hasValue true ;
@@ -50,24 +57,28 @@ dr:NonNullNumericFeatureColumnShape a sh:NodeShape ;
         dr:NumericColumnProperty ;
     sh:targetClass dr:FeatureColumnShape .
 
-dr:NonNullTabularDatasetShape a sh:NodeShape ;
-    sh:property [ sh:node dr:NonNullColumnShape ;
-            sh:path bod:hasColumn ] ;
+dr:NormalizedTabularDatasetShape a sh:NodeShape,
+        dr:DataTag ;
     sh:targetClass do:TabularDataset .
 
 dr:NumericColumnShape a sh:NodeShape ;
     sh:property dr:NumericColumnProperty ;
     sh:targetClass bod:Column .
 
-dr:NumericTabularDatasetShape a sh:NodeShape ;
-    sh:property [ sh:node dr:NumericColumnShape ;
-            sh:path bod:hasColumn ] ;
-    sh:targetClass do:TabularDataset .
-
 dr:NonNullColumnProperty sh:datatype xsd:boolean ;
     sh:hasValue false ;
     sh:path do:containsNulls .
 
+dr:NonNullTabularDatasetShape a sh:NodeShape ;
+    sh:property [ sh:node dr:NonNullColumnShape ;
+            sh:path bod:hasColumn ] ;
+    sh:targetClass do:TabularDataset .
+
 dr:NumericColumnProperty sh:in ( bod:Integer bod:Float ) ;
     sh:path bod:hasDataPrimitiveTypeColumn .
+
+dr:NumericTabularDatasetShape a sh:NodeShape ;
+    sh:property [ sh:node dr:NumericColumnShape ;
+            sh:path bod:hasColumn ] ;
+    sh:targetClass do:TabularDataset .
 

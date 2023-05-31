@@ -40,17 +40,6 @@ diviloper:DecisionTree a owl:NamedIndividual,
 diviloper:Explain a owl:NamedIndividual,
         bop:Problem .
 
-diviloper:KMeansComponent a owl:NamedIndividual,
-        ns1:DataAnalysing ;
-    ns1:hasAlgorithm diviloper:KMeans ;
-    ns1:hasImplementation diviloper:SklearnKMeans ;
-    ns1:hasParameter <https://diviloper.dev/ontology#KMeans:NumberOfClusters> ;
-    ns1:numberOfInputs 1 ;
-    ns1:numberOfOutputs 2 ;
-    ns1:specifiesInputClass diviloper:TabularDataset ;
-    ns1:specifiesOutputClass diviloper:Centroids,
-        diviloper:ClusteredDataset .
-
 diviloper:KNN a owl:NamedIndividual,
         diviloper:ClassificationAlgorithms ;
     boa:solves diviloper:Classification .
@@ -176,6 +165,10 @@ diviloper:Import_CSV a owl:NamedIndividual,
 diviloper:KMeans a owl:NamedIndividual,
         diviloper:ClusteringAlgorithm ;
     boa:solves diviloper:Clustering .
+
+diviloper:LocalOutlierFactor a owl:NamedIndividual,
+        diviloper:AnomalyDetectionAlgorithm ;
+    boa:solves diviloper:AnomalyDetection .
 
 <https://diviloper.dev/ontology#KMeans:NumberOfClusters> a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
         owl:NamedIndividual ;
@@ -325,7 +318,14 @@ diviloper:Clustering a owl:NamedIndividual,
         bop:Problem ;
     diviloper:subProblemOf diviloper:Describe .
 
+diviloper:AnomalyDetection a owl:NamedIndividual,
+        bop:Problem ;
+    diviloper:subProblemOf diviloper:Describe .
+
 diviloper:ClusteringAlgorithm a owl:Class ;
+    rdfs:subClassOf boa:DataAnalysingAlgorithm .
+
+diviloper:AnomalyDetectionAlgorithm a owl:Class ;
     rdfs:subClassOf boa:DataAnalysingAlgorithm .
 
 diviloper:Classification a owl:NamedIndividual ;
