@@ -82,7 +82,7 @@ diviloper:W1 a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow>,
         diviloper:W1T3 .
 
 diviloper:fileFormat a owl:DatatypeProperty ;
-    rdfs:domain <https://w3id.org/BIGOWLData/DataSet> ;
+    rdfs:domain <https://w3id.org/BIGOWLData/Dataset> ;
     rdfs:range xsd:string .
 
 diviloper:forParameter a owl:ObjectProperty ;
@@ -257,7 +257,7 @@ Should have the same dimensionality as the corresponding "aggregates" Parameter.
     ns1:hasDefaultValue "None" ;
     ns1:hasName "using" .
 
-<https://w3id.org/BIGOWLData/DataSet> a owl:Class .
+<https://w3id.org/BIGOWLData/Dataset> a owl:Class .
 
 diviloper:Contains_Headers_Param a <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter>,
         owl:NamedIndividual ;

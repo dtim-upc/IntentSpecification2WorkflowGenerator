@@ -1,0 +1,9 @@
+@prefix do: <https://diviloper.dev/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://diviloper.dev/ABox#ClusteringIntent2> a do:UserIntent ;
+    do:overData <https://diviloper.dev/ABox#penguins.csv> ;
+    do:specifiesParameterValue [ do:forParameterName "Number of Clusters" ;
+            do:withValue 3 ] ;
+    do:tacklesProblem do:Describe .
+

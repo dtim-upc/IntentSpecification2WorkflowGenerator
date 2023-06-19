@@ -1,0 +1,9 @@
+@prefix ns1: <https://diviloper.dev/ontology#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://diviloper.dev/ABox#ClusteringIntent3> a ns1:UserIntent ;
+    ns1:overData <https://diviloper.dev/ABox#penguins.csv> ;
+    ns1:specifiesParameterValue [ ns1:forParameterName "epsilon" ;
+            ns1:withValue 7e-01 ] ;
+    ns1:tacklesProblem ns1:Describe .
+

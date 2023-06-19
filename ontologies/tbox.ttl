@@ -1,0 +1,168 @@
+@prefix dtbox: <https://diviloper.dev/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dtbox:applies a owl:ObjectProperty ;
+    rdfs:domain dtbox:Workflow ;
+    rdfs:range dtbox:Algorithm .
+
+dtbox:conformsTo a owl:ObjectProperty ;
+    rdfs:domain dtbox:Data ;
+    rdfs:range dtbox:DataTag .
+
+dtbox:copy_input a owl:DatatypeProperty ;
+    rdfs:domain dtbox:CopyTransformation ;
+    rdfs:range xsd:integer .
+
+dtbox:copy_output a owl:DatatypeProperty ;
+    rdfs:domain dtbox:CopyTransformation ;
+    rdfs:range xsd:integer .
+
+dtbox:createdFor a owl:ObjectProperty ;
+    rdfs:domain dtbox:Workflow ;
+    rdfs:range dtbox:Intent .
+
+dtbox:followedBy a owl:ObjectProperty ;
+    rdfs:domain dtbox:Step ;
+    rdfs:range dtbox:Step .
+
+dtbox:forParameter a owl:ObjectProperty ;
+    rdfs:domain dtbox:ParameterValue ;
+    rdfs:range dtbox:Parameter .
+
+dtbox:hasApplier a owl:ObjectProperty ;
+    rdfs:domain dtbox:LearnerImplementation ;
+    rdfs:range dtbox:ApplierImplementation .
+
+dtbox:hasData a owl:ObjectProperty ;
+    rdfs:domain dtbox:IOSpec ;
+    rdfs:range dtbox:Data .
+
+dtbox:hasDatatype a owl:ObjectProperty ;
+    rdfs:domain dtbox:Parameter .
+
+dtbox:hasDefaultValue a owl:ObjectProperty ;
+    rdfs:domain dtbox:Parameter .
+
+dtbox:hasInput a owl:ObjectProperty ;
+    rdfs:domain dtbox:Step ;
+    rdfs:range dtbox:IO .
+
+dtbox:hasLearner a owl:ObjectProperty ;
+    rdfs:domain dtbox:ApplierImplementation ;
+    rdfs:range dtbox:LearnerImplementation .
+
+dtbox:hasOutput a owl:ObjectProperty ;
+    rdfs:domain dtbox:Step ;
+    rdfs:range dtbox:IO .
+
+dtbox:hasParameter a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] ;
+    rdfs:range dtbox:Parameter .
+
+dtbox:hasParameterValue a owl:ObjectProperty ;
+    rdfs:domain dtbox:Step ;
+    rdfs:range dtbox:ParameterValue .
+
+dtbox:hasStep a owl:ObjectProperty ;
+    rdfs:domain dtbox:Workflow ;
+    rdfs:range dtbox:Step .
+
+dtbox:hasTag a owl:ObjectProperty ;
+    rdfs:domain dtbox:IOSpec ;
+    rdfs:range dtbox:DataTag .
+
+dtbox:hasTransformation a owl:ObjectProperty ;
+    rdfs:domain dtbox:Implementation ;
+    rdfs:range rdf:List .
+
+dtbox:has_position a owl:DatatypeProperty ;
+    rdfs:domain [ owl:unionOf ( dtbox:IO dtbox:IOSpec dtbox:Step dtbox:Parameter ) ] ;
+    rdfs:range xsd:integer .
+
+dtbox:has_value a rdf:Property ;
+    rdfs:domain dtbox:ParameterValue .
+
+dtbox:implements a owl:ObjectProperty ;
+    rdfs:domain dtbox:Implementation ;
+    rdfs:range dtbox:Algorithm .
+
+dtbox:overData a owl:ObjectProperty ;
+    rdfs:domain dtbox:Intent ;
+    rdfs:range dtbox:Data .
+
+dtbox:runs a owl:ObjectProperty ;
+    rdfs:domain dtbox:Step ;
+    rdfs:range [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] .
+
+dtbox:solves a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( dtbox:Algorithm dtbox:Workflow ) ] ;
+    rdfs:range dtbox:Problem .
+
+dtbox:specifiesInput a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] ;
+    rdfs:range dtbox:IOSpec .
+
+dtbox:specifiesOutput a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] ;
+    rdfs:range dtbox:IOSpec .
+
+dtbox:subProblemOf a owl:ObjectProperty,
+        owl:TransitiveProperty ;
+    rdfs:domain dtbox:Problem ;
+    rdfs:range dtbox:Problem .
+
+dtbox:tackles a owl:ObjectProperty ;
+    rdfs:domain dtbox:Intent ;
+    rdfs:range [ owl:unionOf ( dtbox:Problem dtbox:Algorithm ) ] .
+
+dtbox:transformation_language a owl:DatatypeProperty ;
+    rdfs:domain dtbox:Transformation ;
+    rdfs:range xsd:string .
+
+dtbox:transformation_query a owl:DatatypeProperty ;
+    rdfs:domain dtbox:Transformation ;
+    rdfs:range xsd:string .
+
+dtbox:usingParameter a owl:ObjectProperty ;
+    rdfs:domain dtbox:Intent ;
+    rdfs:range [ owl:unionOf ( dtbox:Parameter dtbox:ParameterValue ) ] .
+
+dtbox:CopyTransformation a owl:Class ;
+    rdfs:subClassOf dtbox:Transformation .
+
+dtbox:DataTag a owl:Class .
+
+dtbox:LearnerImplementation a owl:Class ;
+    rdfs:subClassOf dtbox:Implementation ;
+    owl:disjointWith dtbox:ApplierImplementation .
+
+dtbox:ApplierImplementation a owl:Class ;
+    rdfs:subClassOf dtbox:Implementation .
+
+dtbox:Data a owl:Class .
+
+dtbox:IO a owl:Class .
+
+dtbox:Transformation a owl:Class .
+
+dtbox:Algorithm a owl:Class .
+
+dtbox:Intent a owl:Class .
+
+dtbox:ParameterValue a owl:Class .
+
+dtbox:Problem a owl:Class .
+
+dtbox:IOSpec a owl:Class .
+
+dtbox:Parameter a owl:Class .
+
+dtbox:Implementation a owl:Class .
+
+dtbox:Step a owl:Class .
+
+dtbox:Workflow a owl:Class .
+

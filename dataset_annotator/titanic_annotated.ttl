@@ -1,155 +1,150 @@
-@prefix boa: <https://w3id.org/BIGOWLData/> .
-@prefix dab: <https://diviloper.dev/ABox#> .
-@prefix div: <https://diviloper.dev/ontology#> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix ddata: <https://diviloper.dev/ontology/Data#> .
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://diviloper.dev/ABox> owl:imports <https://diviloper.dev/ontology>,
-        <https://w3id.org/BIGOWLData> .
-
-dab:titanic.csv a div:TabularDataset ;
-    div:fileFormat "csv" ;
-    boa:delimiter "," ;
-    boa:doubleQuote false ;
-    boa:encoding "cp1252" ;
-    boa:hasColumn <https://diviloper.dev/ABox#titanic.csv/Age>,
-        <https://diviloper.dev/ABox#titanic.csv/Cabin>,
-        <https://diviloper.dev/ABox#titanic.csv/Embarked>,
-        <https://diviloper.dev/ABox#titanic.csv/Fare>,
-        <https://diviloper.dev/ABox#titanic.csv/Name>,
-        <https://diviloper.dev/ABox#titanic.csv/Parch>,
-        <https://diviloper.dev/ABox#titanic.csv/PassengerId>,
-        <https://diviloper.dev/ABox#titanic.csv/Pclass>,
-        <https://diviloper.dev/ABox#titanic.csv/Sex>,
-        <https://diviloper.dev/ABox#titanic.csv/SibSp>,
-        <https://diviloper.dev/ABox#titanic.csv/Survived>,
-        <https://diviloper.dev/ABox#titanic.csv/Ticket> ;
-    boa:hasHeader true ;
-    boa:lineDelimiter """\r
+ddata:titanic.csv a dmop:TabularDataset ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn <https://diviloper.dev/ontology/Data#titanic.csv/Age>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Cabin>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Embarked>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Fare>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Name>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Parch>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/PassengerId>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Pclass>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Sex>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/SibSp>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Survived>,
+        <https://diviloper.dev/ontology/Data#titanic.csv/Ticket> ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
 """ ;
-    boa:numberOfColumns 12 ;
-    boa:numberOfLines 891 ;
-    boa:path "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
-    boa:quoteChar "\"" ;
-    boa:skipInitialSpace false .
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 891 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
 
-<https://diviloper.dev/ABox#titanic.csv/Age> a boa:Column ;
-    div:containsNulls "True" ;
-    div:isCategorical false ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Age" ;
-    boa:hasDataPrimitiveTypeColumn boa:Float ;
-    boa:hasPosition 5 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Age> a dmop:Column ;
+    dmop:containsNulls "True" ;
+    dmop:hasColumnName "Age" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+    dmop:hasPosition 5 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Cabin> a boa:Column ;
-    div:containsNulls "True" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Cabin" ;
-    boa:hasDataPrimitiveTypeColumn boa:String ;
-    boa:hasPosition 10 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Cabin> a dmop:Column ;
+    dmop:containsNulls "True" ;
+    dmop:hasColumnName "Cabin" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
+    dmop:hasPosition 10 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Embarked> a boa:Column ;
-    div:containsNulls "True" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Embarked" ;
-    boa:hasDataPrimitiveTypeColumn boa:String ;
-    boa:hasPosition 11 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Embarked> a dmop:Column ;
+    dmop:containsNulls "True" ;
+    dmop:hasColumnName "Embarked" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
+    dmop:hasPosition 11 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Fare> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical false ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Fare" ;
-    boa:hasDataPrimitiveTypeColumn boa:Float ;
-    boa:hasPosition 9 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Fare> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Fare" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+    dmop:hasPosition 9 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Name> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical false ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique true ;
-    boa:hasColumnName "Name" ;
-    boa:hasDataPrimitiveTypeColumn boa:String ;
-    boa:hasPosition 3 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Name> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Name" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
+    dmop:hasPosition 3 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique true .
 
-<https://diviloper.dev/ABox#titanic.csv/Parch> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Parch" ;
-    boa:hasDataPrimitiveTypeColumn boa:Integer ;
-    boa:hasPosition 7 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Parch> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Parch" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 7 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/PassengerId> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical false ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique true ;
-    boa:hasColumnName "PassengerId" ;
-    boa:hasDataPrimitiveTypeColumn boa:Integer ;
-    boa:hasPosition 0 .
+<https://diviloper.dev/ontology/Data#titanic.csv/PassengerId> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "PassengerId" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 0 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique true .
 
-<https://diviloper.dev/ABox#titanic.csv/Pclass> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Pclass" ;
-    boa:hasDataPrimitiveTypeColumn boa:Integer ;
-    boa:hasPosition 2 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Pclass> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Pclass" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 2 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Sex> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Sex" ;
-    boa:hasDataPrimitiveTypeColumn boa:String ;
-    boa:hasPosition 4 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Sex> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Sex" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
+    dmop:hasPosition 4 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/SibSp> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "SibSp" ;
-    boa:hasDataPrimitiveTypeColumn boa:Integer ;
-    boa:hasPosition 6 .
+<https://diviloper.dev/ontology/Data#titanic.csv/SibSp> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "SibSp" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 6 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Survived> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical true ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Survived" ;
-    boa:hasDataPrimitiveTypeColumn boa:Integer ;
-    boa:hasPosition 1 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Survived> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Survived" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 1 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
-<https://diviloper.dev/ABox#titanic.csv/Ticket> a boa:Column ;
-    div:containsNulls "False" ;
-    div:isCategorical false ;
-    div:isFeature true ;
-    div:isLabel false ;
-    div:isUnique false ;
-    boa:hasColumnName "Ticket" ;
-    boa:hasDataPrimitiveTypeColumn boa:String ;
-    boa:hasPosition 8 .
+<https://diviloper.dev/ontology/Data#titanic.csv/Ticket> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Ticket" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
+    dmop:hasPosition 8 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
 
