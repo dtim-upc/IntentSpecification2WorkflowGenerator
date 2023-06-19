@@ -23,7 +23,7 @@ train_test_split = Implementation(
             query='''
 DELETE {
     $output1 dmop:numberOfRows ?rows1.
-    $output2 dmop:numberOfRows ?rows2.
+    $output2 dmop:numberOfRows ?rows1.
 }
 INSERT {
     $output1 dmop:numberOfRows ?newRows1 .
@@ -31,9 +31,8 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    $output2 dmop:numberOfRows ?rows2.
-    BIND(xsd:int(?rows1 * (1 - $parameter1)) AS ?newRows1)
-    BIND(xsd:int(?rows2 * $parameter1) AS ?newRows2)
+    BIND(ROUND(?rows1 * (1 - $parameter1)) AS ?newRows1)
+    BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 ''',
         ),

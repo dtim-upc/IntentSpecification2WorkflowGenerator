@@ -85,11 +85,11 @@ WHERE {
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:UnlabeledTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabelDatasetShape ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:UnlabeledTabularDatasetShape ;
+            dtbox:has_position 0 ] .
 
 <https://diviloper.dev/ontology/ABOX#implementation/train_test_split> a dtbox:Implementation ;
     rdfs:label "Train-Test Split" ;
@@ -109,7 +109,7 @@ WHERE {
                 dtbox:transformation_query """
 DELETE {
     $output1 dmop:numberOfRows ?rows1.
-    $output2 dmop:numberOfRows ?rows2.
+    $output2 dmop:numberOfRows ?rows1.
 }
 INSERT {
     $output1 dmop:numberOfRows ?newRows1 .
@@ -117,9 +117,8 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    $output2 dmop:numberOfRows ?rows2.
-    BIND(xsd:int(?rows1 * (1 - $parameter1)) AS ?newRows1)
-    BIND(xsd:int(?rows2 * $parameter1) AS ?newRows2)
+    BIND(ROUND(?rows1 * (1 - $parameter1)) AS ?newRows1)
+    BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
     dtbox:implements dabox:TrainTestSplit ;
@@ -127,11 +126,11 @@ WHERE {
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TrainDataset ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TestDataset ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TrainDataset ;
+            dtbox:has_position 0 ] .
 
 ddata:DecisionTreeModel rdfs:subClassOf ddata:Model .
 
@@ -293,11 +292,11 @@ INSERT DATA {
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ] .
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:MinMaxScalerModel ;
+            dtbox:has_position 1 ] .
 
 <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling/maximum> a dtbox:Parameter ;
     rdfs:label "Maximum" ;
@@ -350,11 +349,11 @@ INSERT DATA {
             """ ] ) ;
     dtbox:implements dabox:MinMaxScaling ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ] ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
             dtbox:has_position 0 ] .
