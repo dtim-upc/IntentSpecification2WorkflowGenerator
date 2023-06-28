@@ -1,7 +1,7 @@
-from .implementation import *
+from ontology_populator.implementations.core import *
 from common import *
 
-decision_tree_learner = Implementation(
+decision_tree_learner_implementation = Implementation(
     name='Decision Tree Learner',
     algorithm=da.DecisionTree,
     parameters=[
@@ -19,12 +19,16 @@ decision_tree_learner = Implementation(
     output=[
         ds.DecisionTreeModel,
     ],
-    transformations=[
-    ],
     implementation_type=do.LearnerImplementation
 )
 
-decision_tree_predictor = Implementation(
+decision_tree_learner_component = Component(
+    name='Decision Tree Learner',
+    implementation=decision_tree_learner_implementation,
+    transformations=[],
+)
+
+decision_tree_predictor_implementation = Implementation(
     name='Decision Tree Predictor',
     algorithm=da.DecisionTree,
     parameters=[
@@ -37,6 +41,14 @@ decision_tree_predictor = Implementation(
     output=[
         ds.LabeledTabularDatasetShape,
     ],
+    implementation_type=do.ApplierImplementation,
+    counterpart=decision_tree_learner_implementation,
+)
+
+decision_tree_predictor_component = Component(
+    name='Decision Tree Predictor',
+    implementation=decision_tree_predictor_implementation,
+
     transformations=[
         CopyTransformation(2, 1),
         Transformation(
@@ -49,6 +61,5 @@ INSERT DATA {
             ''',
         ),
     ],
-    implementation_type=do.ApplierImplementation,
-    counterpart=decision_tree_learner,
+    counterpart=decision_tree_learner_component,
 )

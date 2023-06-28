@@ -1,7 +1,7 @@
-from .implementation import *
 from common import *
+from ..core import *
 
-svm_learner = Implementation(
+svm_learner_implementation = Implementation(
     name='SVM Learner',
     algorithm=da.SVM,
     parameters=[
@@ -14,12 +14,16 @@ svm_learner = Implementation(
     output=[
         ds.SVMModel,
     ],
-    transformations=[
-    ],
     implementation_type=do.LearnerImplementation
 )
 
-svm_predictor = Implementation(
+svm_learner_component = Component(
+    name='SVM Learner',
+    implementation=svm_learner_implementation,
+    transformations=[],
+)
+
+svm_predictor_implementation = Implementation(
     name='SVM Predictor',
     algorithm=da.SVM,
     parameters=[
@@ -32,6 +36,13 @@ svm_predictor = Implementation(
     output=[
         ds.LabeledTabularDatasetShape,
     ],
+    implementation_type=do.ApplierImplementation,
+    counterpart=svm_learner_implementation,
+)
+
+svm_predictor_component = Component(
+    name='SVM Predictor',
+    implementation=svm_learner_implementation,
     transformations=[
         CopyTransformation(2, 1),
         Transformation(
@@ -44,6 +55,5 @@ INSERT DATA {
             ''',
         ),
     ],
-    implementation_type=do.ApplierImplementation,
-    counterpart=svm_learner,
+    counterpart=svm_learner_component,
 )

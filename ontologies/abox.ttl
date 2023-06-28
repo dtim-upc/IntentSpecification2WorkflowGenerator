@@ -59,9 +59,9 @@ dabox:RandomForest a dtbox:Algorithm ;
 dabox:RobustNormalization a dtbox:Algorithm ;
     dtbox:solves dabox:Normalization .
 
-<https://diviloper.dev/ontology/ABOX#implementation/label_extraction> a dtbox:Implementation ;
+dabox:implementation-label_extraction a dtbox:Implementation ;
     rdfs:label "Label Extraction" ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/label_extraction/label_column> ;
+    dtbox:hasParameter dabox:implementation-label_extraction-label_column ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -85,17 +85,17 @@ WHERE {
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:LabelDatasetShape ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:UnlabeledTabularDatasetShape ;
-            dtbox:has_position 0 ] .
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:LabelDatasetShape ;
+            dtbox:has_position 1 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/train_test_split> a dtbox:Implementation ;
+dabox:implementation-train_test_split a dtbox:Implementation ;
     rdfs:label "Train-Test Split" ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/train_test_split/random_sample>,
-        <https://diviloper.dev/ontology/ABOX#implementation/train_test_split/random_state>,
-        <https://diviloper.dev/ontology/ABOX#implementation/train_test_split/test_size> ;
+    dtbox:hasParameter dabox:implementation-train_test_split-random_sample,
+        dabox:implementation-train_test_split-random_state,
+        dabox:implementation-train_test_split-test_size ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -149,16 +149,16 @@ dabox:LabelExtraction a dtbox:Algorithm ;
 dabox:TrainTestSplit a dtbox:Algorithm ;
     dtbox:solves dabox:DataManagement .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner> a dtbox:LearnerImplementation ;
+dabox:implementation-decision_tree_learner a dtbox:LearnerImplementation ;
     rdfs:label "Decision Tree Learner" ;
-    dtbox:hasApplier <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_predictor> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_depth>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_features>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_leaf_nodes>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_samples_leaf>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_samples_split>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_weight_fraction_leaf>,
-        <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/random_state> ;
+    dtbox:hasApplier dabox:implementation-decision_tree_predictor ;
+    dtbox:hasParameter dabox:implementation-decision_tree_learner-max_depth,
+        dabox:implementation-decision_tree_learner-max_features,
+        dabox:implementation-decision_tree_learner-max_leaf_nodes,
+        dabox:implementation-decision_tree_learner-min_samples_leaf,
+        dabox:implementation-decision_tree_learner-min_samples_split,
+        dabox:implementation-decision_tree_learner-min_weight_fraction_leaf,
+        dabox:implementation-decision_tree_learner-random_state ;
     dtbox:hasTransformation [ rdf:rest () ] ;
     dtbox:implements dabox:DecisionTree ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
@@ -168,52 +168,52 @@ dabox:TrainTestSplit a dtbox:Algorithm ;
             dtbox:hasTag dshapes:DecisionTreeModel ;
             dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_depth> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-max_depth a dtbox:Parameter ;
     rdfs:label "Max Depth" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue 10 ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_features> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-max_features a dtbox:Parameter ;
     rdfs:label "Max Features" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 5 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/max_leaf_nodes> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-max_leaf_nodes a dtbox:Parameter ;
     rdfs:label "Max Leaf Nodes" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 3 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_samples_leaf> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-min_samples_leaf a dtbox:Parameter ;
     rdfs:label "Min Samples Leaf" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue 1 ;
     dtbox:has_position 2 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_samples_split> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-min_samples_split a dtbox:Parameter ;
     rdfs:label "Min Samples Split" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue 2 ;
     dtbox:has_position 1 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/min_weight_fraction_leaf> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-min_weight_fraction_leaf a dtbox:Parameter ;
     rdfs:label "Min Weight Fraction Leaf" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 0e+00 ;
     dtbox:has_position 4 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner/random_state> a dtbox:Parameter ;
+dabox:implementation-decision_tree_learner-random_state a dtbox:Parameter ;
     rdfs:label "Random State" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 6 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_predictor> a dtbox:ApplierImplementation ;
+dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
     rdfs:label "Decision Tree Predictor" ;
-    dtbox:hasLearner <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_learner> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/decision_tree_predictor/prediction_column> ;
+    dtbox:hasLearner dabox:implementation-decision_tree_learner ;
+    dtbox:hasParameter dabox:implementation-decision_tree_predictor-prediction_column ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 2 ;
                 dtbox:copy_output 1 ;
@@ -229,32 +229,32 @@ INSERT DATA {
             """ ] ) ;
     dtbox:implements dabox:DecisionTree ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:DecisionTreeModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/decision_tree_predictor/prediction_column> a dtbox:Parameter ;
+dabox:implementation-decision_tree_predictor-prediction_column a dtbox:Parameter ;
     rdfs:label "Prediction column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/label_extraction/label_column> a dtbox:Parameter ;
+dabox:implementation-label_extraction-label_column a dtbox:Parameter ;
     rdfs:label "Label Column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling> a dtbox:LearnerImplementation ;
+dabox:implementation-min_max_scaling a dtbox:LearnerImplementation ;
     rdfs:label "Min-Max Scaling" ;
-    dtbox:hasApplier <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling/maximum>,
-        <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling/minimum> ;
+    dtbox:hasApplier dabox:implementation-min_max_scaling_applier ;
+    dtbox:hasParameter dabox:implementation-min_max_scaling-maximum,
+        dabox:implementation-min_max_scaling-minimum ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -292,29 +292,29 @@ INSERT DATA {
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling/maximum> a dtbox:Parameter ;
+dabox:implementation-min_max_scaling-maximum a dtbox:Parameter ;
     rdfs:label "Maximum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 1 ;
     dtbox:has_position 1 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling/minimum> a dtbox:Parameter ;
+dabox:implementation-min_max_scaling-minimum a dtbox:Parameter ;
     rdfs:label "Minimum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 0 ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier> a dtbox:ApplierImplementation ;
+dabox:implementation-min_max_scaling_applier a dtbox:ApplierImplementation ;
     rdfs:label "Min-Max Scaling Applier" ;
-    dtbox:hasLearner <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier/maximum>,
-        <https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier/minimum> ;
+    dtbox:hasLearner dabox:implementation-min_max_scaling ;
+    dtbox:hasParameter dabox:implementation-min_max_scaling_applier-maximum,
+        dabox:implementation-min_max_scaling_applier-minimum ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -349,32 +349,32 @@ INSERT DATA {
             """ ] ) ;
     dtbox:implements dabox:MinMaxScaling ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:MinMaxScalerModel ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
             dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier/maximum> a dtbox:Parameter ;
+dabox:implementation-min_max_scaling_applier-maximum a dtbox:Parameter ;
     rdfs:label "Maximum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 1 ;
     dtbox:has_position 1 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/min_max_scaling_applier/minimum> a dtbox:Parameter ;
+dabox:implementation-min_max_scaling_applier-minimum a dtbox:Parameter ;
     rdfs:label "Minimum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 0 ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/svm_learner> a dtbox:LearnerImplementation ;
+dabox:implementation-svm_learner a dtbox:LearnerImplementation ;
     rdfs:label "SVM Learner" ;
-    dtbox:hasApplier <https://diviloper.dev/ontology/ABOX#implementation/svm_predictor> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/svm_learner/kernel>,
-        <https://diviloper.dev/ontology/ABOX#implementation/svm_learner/overlapping_penalty> ;
+    dtbox:hasApplier dabox:implementation-svm_predictor ;
+    dtbox:hasParameter dabox:implementation-svm_learner-kernel,
+        dabox:implementation-svm_learner-overlapping_penalty ;
     dtbox:hasTransformation [ rdf:rest () ] ;
     dtbox:implements dabox:SVM ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
@@ -386,22 +386,22 @@ INSERT DATA {
             dtbox:hasTag dshapes:SVMModel ;
             dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/svm_learner/kernel> a dtbox:Parameter ;
+dabox:implementation-svm_learner-kernel a dtbox:Parameter ;
     rdfs:label "Kernel" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 1 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/svm_learner/overlapping_penalty> a dtbox:Parameter ;
+dabox:implementation-svm_learner-overlapping_penalty a dtbox:Parameter ;
     rdfs:label "Overlapping Penalty" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 1e+00 ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/svm_predictor> a dtbox:ApplierImplementation ;
+dabox:implementation-svm_predictor a dtbox:ApplierImplementation ;
     rdfs:label "SVM Predictor" ;
-    dtbox:hasLearner <https://diviloper.dev/ontology/ABOX#implementation/svm_learner> ;
-    dtbox:hasParameter <https://diviloper.dev/ontology/ABOX#implementation/svm_predictor/prediction_column> ;
+    dtbox:hasLearner dabox:implementation-svm_learner ;
+    dtbox:hasParameter dabox:implementation-svm_predictor-prediction_column ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 2 ;
                 dtbox:copy_output 1 ;
@@ -417,42 +417,42 @@ INSERT DATA {
             """ ] ) ;
     dtbox:implements dabox:SVM ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:SVMModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/svm_predictor/prediction_column> a dtbox:Parameter ;
+dabox:implementation-svm_predictor-prediction_column a dtbox:Parameter ;
     rdfs:label "Prediction column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/train_test_split/random_sample> a dtbox:Parameter ;
+dabox:implementation-train_test_split-random_sample a dtbox:Parameter ;
     rdfs:label "Random Sample" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue true ;
     dtbox:has_position 1 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/train_test_split/random_state> a dtbox:Parameter ;
+dabox:implementation-train_test_split-random_state a dtbox:Parameter ;
     rdfs:label "Random State" ;
     dtbox:hasDatatype xsd:integer ;
     dtbox:hasDefaultValue "None" ;
     dtbox:has_position 2 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/train_test_split/test_size> a dtbox:Parameter ;
+dabox:implementation-train_test_split-test_size a dtbox:Parameter ;
     rdfs:label "Test Size" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 2e-01 ;
     dtbox:has_position 0 .
 
-<https://diviloper.dev/ontology/ABOX#implementation/z_score_scaling> a dtbox:LearnerImplementation ;
+dabox:implementation-z_score_scaling a dtbox:LearnerImplementation ;
     rdfs:label "Z-Score Scaling" ;
-    dtbox:hasApplier <https://diviloper.dev/ontology/ABOX#implementation/z_score_scaling_applier> ;
+    dtbox:hasApplier dabox:implementation-z_score_scaling_applier ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -490,15 +490,15 @@ INSERT DATA {
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:ZScoreScalerModel ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 0 ] .
 
-<https://diviloper.dev/ontology/ABOX#implementation/z_score_scaling_applier> a dtbox:ApplierImplementation ;
+dabox:implementation-z_score_scaling_applier a dtbox:ApplierImplementation ;
     rdfs:label "Z-Score Scaling Applier" ;
-    dtbox:hasLearner <https://diviloper.dev/ontology/ABOX#implementation/z_score_scaling> ;
+    dtbox:hasLearner dabox:implementation-z_score_scaling ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;

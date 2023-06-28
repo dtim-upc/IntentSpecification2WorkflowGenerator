@@ -1,7 +1,7 @@
-from .implementation import *
+from ..core import *
 from common import *
 
-train_test_split = Implementation(
+train_test_split_implementation = Implementation(
     name='Train-Test Split',
     algorithm=da.TrainTestSplit,
     parameters=[
@@ -16,6 +16,12 @@ train_test_split = Implementation(
         ds.TrainDataset,
         ds.TestDataset,
     ],
+)
+
+train_test_split_component = Component(
+    name='Train-Test Split',
+    implementation=train_test_split_implementation,
+
     transformations=[
         CopyTransformation(1, 1),
         CopyTransformation(1, 2),
@@ -39,7 +45,7 @@ WHERE {
     ],
 )
 
-label_extraction = Implementation(
+label_extraction_implementation = Implementation(
     name='Label Extraction',
     algorithm=da.LabelExtraction,
     parameters=[
@@ -52,6 +58,12 @@ label_extraction = Implementation(
         ds.UnlabeledTabularDatasetShape,
         ds.LabelDatasetShape,
     ],
+)
+
+label_extraction_component = Component(
+    name='Label Extraction',
+    implementation=label_extraction_implementation,
+
     transformations=[
         CopyTransformation(1, 1),
         Transformation(
