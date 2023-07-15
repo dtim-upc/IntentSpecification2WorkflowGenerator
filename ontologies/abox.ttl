@@ -174,8 +174,8 @@ WHERE {
                 dtbox:transformation_language "SPARQL" ;
                 dtbox:transformation_query """
 INSERT {
-    ?column dmop:hasMinValue $parameter1;
-            dmop:hasMaxValue $parameter2;
+    ?column dmop:hasMinValue $parameter2;
+            dmop:hasMaxValue $parameter3;
             dmop:isNormalized true.
 }
 WHERE {
@@ -187,8 +187,8 @@ WHERE {
                 dtbox:transformation_query """
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:newMin $parameter1;
-             da:newMax $parameter2.
+    $output2 da:newMin $parameter2;
+             da:newMax $parameter3.
 }
             """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
@@ -265,16 +265,16 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(MAX(?rows1 - $parameter1, 0) AS ?newRows1)
+    BIND(IF( ?rows1 - $parameter4>0, ?rows1 - $parameter4, 0 ) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Random" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Absolute" ] .
+            dtbox:has_value "Absolute" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Random" ] .
 
 dabox:component-random_relative_train_test_split a dtbox:Component ;
     rdfs:label "Random Relative Train-Test Split" ;
@@ -302,7 +302,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(ROUND(?rows1 * (1 - $parameter1)) AS ?newRows1)
+    BIND(ROUND(?rows1 * (1 - $parameter3)) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
@@ -338,16 +338,16 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(MAX(?rows1 - $parameter1, 0) AS ?newRows1)
+    BIND(IF( ?rows1 - $parameter4>0, ?rows1 - $parameter4, 0 ) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Absolute" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Top" ] .
+            dtbox:has_value "Top" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ] .
 
 dabox:component-top_k_relative_train_test_split a dtbox:Component ;
     rdfs:label "Top K Relative Train-Test Split" ;
@@ -374,7 +374,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(ROUND(?rows1 * (1 - $parameter1)) AS ?newRows1)
+    BIND(ROUND(?rows1 * (1 - $parameter3)) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
@@ -873,7 +873,8 @@ dabox:component-svm_predictor a dtbox:ApplierComponent ;
 INSERT DATA {
     $output1 dmop:hasColumn _:labelColumn .
     _:labelColumn a dmop:Column ;
-        dmop:isLabel true .
+        dmop:isLabel true;
+      dmop:hasName $parameter1.
 }
             """ ] ) .
 
@@ -913,11 +914,11 @@ dabox:implementation-normalizer_\(pmml\) a dtbox:LearnerImplementation ;
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizerModel ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 0 ] .
 
 dabox:implementation-normalizer_\(pmml\)-normalization_mode a dtbox:Parameter ;
     rdfs:label "Normalization mode" ;
@@ -992,7 +993,7 @@ dabox:implementation-svm_learner a dtbox:LearnerImplementation ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
             dtbox:hasTag [ a sh:NodeShape,
                         dtbox:DataTag ;
-                    sh:and ( dshapes:LabeledTabularDatasetShape dshapes:NormalizedTabularDatasetShape ) ] ;
+                    sh:and ( dshapes:LabeledTabularDatasetShape dshapes:NormalizedTabularDatasetShape dshapes:NonNullTabularDatasetShape ) ] ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:SVMModel ;

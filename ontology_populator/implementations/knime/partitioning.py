@@ -84,7 +84,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(MAX(?rows1 - $parameter4, 0) AS ?newRows1)
+    BIND(IF( ?rows1 - $parameter4>0, ?rows1 - $parameter4, 0 ) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 ''',
@@ -150,7 +150,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:numberOfRows ?rows1.
-    BIND(MAX(?rows1 - $parameter4, 0) AS ?newRows1)
+    BIND(IF( ?rows1 - $parameter4>0, ?rows1 - $parameter4, 0 ) AS ?newRows1)
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 ''',

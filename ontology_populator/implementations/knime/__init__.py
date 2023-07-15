@@ -1,4 +1,4 @@
-from .data_management import *
+from .partitioning import *
 from .decision_tree import *
 from .normalization import *
 from .decision_tree import *
