@@ -3,6 +3,7 @@ from .decision_tree import *
 from .normalization import *
 from .decision_tree import *
 from .svm import *
+from .missing_values import *
 
 implementations = [
     partitioning_implementation,
@@ -12,6 +13,8 @@ implementations = [
     normalizer_applier_implementation,
     svm_learner_implementation,
     svm_predictor_implementation,
+    missing_value_implementation,
+    missing_value_applier_implementation
 ]
 
 components = [
@@ -24,11 +27,12 @@ components = [
     min_max_scaling_component,
     z_score_scaling_component,
     decimal_scaling_component,
-    min_max_scaling_applier_component,
-    z_score_scaling_applier_component,
-    decimal_scaling_applier_component,
+    normalizer_applier_component,
     polynomial_svm_learner_component,
     hypertangent_svm_learner_component,
     rbf_svm_learner_component,
     svm_predictor_component,
+    drop_rows_component,
+    mean_imputation_component,
+    missing_value_applier_component,
 ]

@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 
 from common import *
 from ontology_populator.implementations.core import Implementation, Parameter
@@ -27,6 +27,7 @@ class KnimeImplementation(Implementation):
         for parameter in self.parameters:
             if isinstance(parameter, KnimeParameter):
                 g.add((parameter.uri_ref, dtbox.knime_key, Literal(parameter.knime_key)))
+                g.add((parameter.uri_ref, dtbox.knime_path, Literal(parameter.path)))
 
         return self.uri_ref
 
@@ -34,9 +35,10 @@ class KnimeImplementation(Implementation):
 class KnimeParameter(Parameter):
 
     def __init__(self, label: str, datatype: URIRef, default_value: Union[URIRef, LiteralValue],
-                 knime_key: str) -> None:
+                 knime_key: str, path: str = 'model') -> None:
         super().__init__(label, datatype, default_value)
         self.knime_key = knime_key
+        self.path = path
 
 
 class KnimeBundle:

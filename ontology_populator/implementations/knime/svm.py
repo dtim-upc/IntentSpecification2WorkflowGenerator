@@ -83,7 +83,7 @@ svm_predictor_implementation = KnimeImplementation(
     ],
     input=[
         ds.SVMModel,
-        ds.NormalizedTabularDatasetShape,
+        [ds.NormalizedTabularDatasetShape, ds.NonNullTabularDatasetShape]
     ],
     output=[
         ds.LabeledTabularDatasetShape,

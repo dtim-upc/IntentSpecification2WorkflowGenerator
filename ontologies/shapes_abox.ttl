@@ -22,9 +22,9 @@ dshapes:LabeledTabularDatasetShape a sh:NodeShape ;
                     sh:path dmop:isLabel ] ] ;
     sh:targetClass dmop:TabularDataset .
 
-dshapes:MinMaxScalerModel a sh:NodeShape,
+dshapes:MissingValueModel a sh:NodeShape,
         dtbox:DataTag ;
-    sh:targetClass ddata:MinMaxScalerModel .
+    sh:targetClass ddata:MissingValueModel .
 
 dshapes:NonNullNumericFeatureTabularDatasetShape a sh:NodeShape ;
     sh:property [ sh:node dshapes:NonNullNumericFeatureColumnShape ;
@@ -41,6 +41,10 @@ dshapes:NormalizedTabularDatasetShape a sh:NodeShape,
     sh:property dshapes:isNormalizedConstraint ;
     sh:targetClass dmop:TabularDataset .
 
+dshapes:NormalizerModel a sh:NodeShape,
+        dtbox:DataTag ;
+    sh:targetClass ddata:NormalizerModel .
+
 dshapes:NumericTabularDatasetShape a sh:NodeShape ;
     sh:property [ sh:node dshapes:NumericColumnShape ;
             sh:path dmop:hasColumn ] ;
@@ -53,10 +57,6 @@ dshapes:SVMModel a sh:NodeShape,
 dshapes:TabularDataset a sh:NodeShape,
         dtbox:DataTag ;
     sh:targetClass dmop:TabularDataset .
-
-dshapes:ZScoreScalerModel a sh:NodeShape,
-        dtbox:DataTag ;
-    sh:targetClass ddata:ZScoreScalerModel .
 
 dshapes:FeatureColumnProperty sh:datatype xsd:boolean ;
     sh:hasValue true ;

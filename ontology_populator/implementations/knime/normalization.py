@@ -37,7 +37,7 @@ min_max_scaling_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
@@ -55,7 +55,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
 }
             ''',
         ),
@@ -63,7 +63,8 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:newMin $parameter2;
+    $output2 da:normalizationMode "MinMax";
+             da:newMin $parameter2;
              da:newMax $parameter3.
 }
             ''',
@@ -82,7 +83,7 @@ z_score_scaling_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
@@ -100,7 +101,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
 }
             ''',
         ),
@@ -108,6 +109,7 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
+    $output2 da:normalizationMode "ZScore".
 }
             ''',
         ),
@@ -125,7 +127,7 @@ decimal_scaling_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
@@ -141,7 +143,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
 }
             ''',
         ),
@@ -149,6 +151,7 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
+    $output2 da:normalizationMode "Decimal".
 }
             ''',
         ),
@@ -174,6 +177,73 @@ normalizer_applier_implementation = KnimeImplementation(
     knime_bundle=KnimeBaseBundle,
 )
 
+normalizer_applier_component = Component(
+    name='Normalizer Applier',
+    implementation=normalizer_applier_implementation,
+    transformations=[
+        CopyTransformation(1, 1),
+        CopyTransformation(2, 2),
+        Transformation(
+            query='''
+DELETE {
+    ?column ?valueProperty ?value.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            ''',
+        ),
+        Transformation(
+            query='''
+INSERT {
+    ?column dmop:hasMinValue $parameter2;
+            dmop:hasMaxValue $parameter3;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?column dmop:isFeature true .
+    $input1 da:normalizationMode "MinMax".
+}
+            ''',
+        ),
+        Transformation(
+            query='''
+INSERT {
+    ?column dmop:hasMeanValue 0;
+            dmop:hasStandardDeviation 1;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column .
+    ?column dmop:isFeature true ;
+    $input1 da:normalizationMode "ZScore".
+}
+            ''',
+        ),
+        Transformation(
+            query='''
+INSERT {
+    ?column dmop:isNormalized true.
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+    $input1 da:normalizationMode "Decimal".
+}
+            ''',
+        ),
+    ],
+    counterpart=[
+        min_max_scaling_component,
+        z_score_scaling_component,
+        decimal_scaling_component,
+    ]
+)
+
+"""
 min_max_scaling_applier_component = Component(
     name='Min-Max Scaling Applier',
     implementation=normalizer_applier_implementation,
@@ -183,7 +253,7 @@ min_max_scaling_applier_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output2 dmop:hasColumn ?column.
@@ -215,6 +285,7 @@ INSERT DATA {
             ''',
         ),
     ],
+    counterpart=min_max_scaling_component,
 )
 
 z_score_scaling_applier_component = Component(
@@ -226,7 +297,7 @@ z_score_scaling_applier_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output2 dmop:hasColumn ?column.
@@ -256,6 +327,7 @@ INSERT DATA {
             ''',
         ),
     ],
+    counterpart=z_score_scaling_component,
 )
 
 decimal_scaling_applier_component = Component(
@@ -267,7 +339,7 @@ decimal_scaling_applier_component = Component(
         Transformation(
             query='''
 DELETE {
-    ?column ?valueProperty ?value
+    ?column ?valueProperty ?value.
 }
 WHERE {
     $output2 dmop:hasColumn ?column.
@@ -295,4 +367,6 @@ INSERT DATA {
             ''',
         ),
     ],
+    counterpart=decimal_scaling_component,
 )
+"""
