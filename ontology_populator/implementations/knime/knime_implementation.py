@@ -18,12 +18,21 @@ class KnimeImplementation(Implementation):
 
     def add_to_graph(self, g: Graph):
         super().add_to_graph(g)
-        g.add((self.uri_ref, dtbox.knime_node_factory, Literal(self.knime_node_factory)))
-        g.add((self.uri_ref, dtbox.knime_bundle_name, Literal(self.knime_bundle.name)))
-        g.add((self.uri_ref, dtbox.knime_bundle_symbolic_name, Literal(self.knime_bundle.symbolic_name)))
-        g.add((self.uri_ref, dtbox.knime_bundle_vendor, Literal(self.knime_bundle.vendor)))
+
         g.add((self.uri_ref, dtbox.engine, Literal('KNIME')))
 
+        g.add((self.uri_ref, dtbox.term('knime-node-name'), Literal(self.name)))
+
+        # Node Factory
+        g.add((self.uri_ref, dtbox.term('knime-factory'), Literal(self.knime_node_factory)))
+
+        # Bundle
+        g.add((self.uri_ref, dtbox.term('knime-node-bundle-name'), Literal(self.knime_bundle.name)))
+        g.add((self.uri_ref, dtbox.term('knime-node-bundle-symbolic-name'), Literal(self.knime_bundle.symbolic_name)))
+        g.add((self.uri_ref, dtbox.term('knime-node-bundle-vendor'), Literal(self.knime_bundle.vendor)))
+        g.add((self.uri_ref, dtbox.term('knime-node-bundle-version'), Literal(self.knime_bundle.version)))
+
+        # Parameters
         for parameter in self.parameters:
             if isinstance(parameter, KnimeParameter):
                 g.add((parameter.uri_ref, dtbox.knime_key, Literal(parameter.knime_key)))
@@ -43,11 +52,13 @@ class KnimeParameter(Parameter):
 
 class KnimeBundle:
 
-    def __init__(self, name: str, symbolic_name: str, vendor: str) -> None:
+    def __init__(self, name: str, symbolic_name: str, vendor: str, version: str) -> None:
         super().__init__()
         self.name = name
         self.symbolic_name = symbolic_name
         self.vendor = vendor
+        self.version = version
 
 
-KnimeBaseBundle = KnimeBundle('KNIME Base Bundle', 'org.knime.base', 'KNIME AG, Zurich, Switzerland')
+KnimeBaseBundle = KnimeBundle('KNIME Base Bundle', 'org.knime.base', 'KNIME AG, Zurich, Switzerland',
+                              "4.7.0.v202301251625")
