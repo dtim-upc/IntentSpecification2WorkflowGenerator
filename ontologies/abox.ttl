@@ -102,11 +102,11 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Absolute" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Random" ] .
+            dtbox:has_value "Random" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ] .
 
 dabox:component-random_relative_train_test_split a dtbox:Component ;
     rdfs:label "Random Relative Train-Test Split" ;
@@ -255,7 +255,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
 }
             """ ] [ a dtbox:Transformation ;
                 dtbox:transformation_language "SPARQL" ;
@@ -340,17 +340,17 @@ WHERE {
                 dtbox:transformation_language "SPARQL" ;
                 dtbox:transformation_query """
 INSERT DATA {
-    $output2 dabox:removesProperty dmop:numberOfRows.
+    $output2 da:removesProperty dmop:numberOfRows.
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-integer ;
+            dtbox:forParameter dabox:implementation-missing_value-float ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-string ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-float ;
+            dtbox:forParameter dabox:implementation-missing_value-integer ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ] .
 
 dabox:component-hypertangent_svm_learner a dtbox:LearnerComponent ;
@@ -386,14 +386,14 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-string ;
-            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
+            dtbox:forParameter dabox:implementation-missing_value-integer ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-float ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-integer ;
-            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ] .
+            dtbox:forParameter dabox:implementation-missing_value-string ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ] .
 
 dabox:component-min_max_scaling a dtbox:LearnerComponent ;
     rdfs:label "Min-Max Scaling" ;
@@ -497,7 +497,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
 }
             """ ] [ a dtbox:Transformation ;
                 dtbox:transformation_language "SPARQL" ;
@@ -556,11 +556,11 @@ dabox:implementation-missing_value_\(applier\) a dtbox:ApplierImplementation ;
     dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
     dtbox:knime_node_factory "org.knime.base.node.preproc.pmml.missingval.apply.MissingValueApplyNodeFactory" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:MissingValueModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ] ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:MissingValueModel ;
+            dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NonNullTabularDatasetShape ;
             dtbox:has_position 0 ] .
@@ -619,7 +619,7 @@ DELETE {
     $output2 ?property ?value.
 }
 WHERE {
-    $output1 dabox:removesProperty ?property.
+    $output1 da:removesProperty ?property.
     $output2 ?property ?value.
 }
 """ ] ) .
@@ -819,11 +819,11 @@ dabox:implementation-normalizer_apply_\(pmml\) a dtbox:ApplierImplementation ;
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizerModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizerModel ;
+            dtbox:has_position 0 ] .
 
 dabox:implementation-svm_learner-bias a dtbox:Parameter ;
     rdfs:label "Bias" ;
@@ -875,13 +875,13 @@ dabox:implementation-svm_predictor a dtbox:ApplierImplementation ;
     dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
     dtbox:knime_node_factory "org.knime.base.node.mine.svm.predictor2.SVMPredictorNodeFactory" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:SVMModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag [ a sh:NodeShape,
                         dtbox:DataTag ;
                     sh:and ( dshapes:NormalizedTabularDatasetShape dshapes:NonNullTabularDatasetShape ) ] ;
-            dtbox:has_position 1 ] ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:SVMModel ;
+            dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
@@ -932,7 +932,7 @@ INSERT {
 WHERE {
     $output2 dmop:hasColumn ?column.
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "MinMax";
+    $input1 da:normalizationMode "MinMax".
 }
             """ ] [ a dtbox:Transformation ;
                 dtbox:transformation_language "SPARQL" ;
@@ -944,8 +944,8 @@ INSERT {
 }
 WHERE {
     $output2 dmop:hasColumn ?column .
-    ?column dmop:isFeature true ;
-    $input1 da:normalizationMode "ZScore";
+    ?column dmop:isFeature true .
+    $input1 da:normalizationMode "ZScore".
 }
             """ ] [ a dtbox:Transformation ;
                 dtbox:transformation_language "SPARQL" ;
@@ -955,8 +955,8 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
-    $input1 da:normalizationMode "Decimal";
+    ?column dmop:isFeature true .
+    $input1 da:normalizationMode "Decimal".
 }
             """ ] ) .
 
@@ -1063,11 +1063,11 @@ dabox:implementation-partitioning a dtbox:Implementation ;
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TestDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TrainDataset ;
-            dtbox:has_position 0 ] .
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TestDataset ;
+            dtbox:has_position 1 ] .
 
 dabox:implementation-svm_learner a dtbox:LearnerImplementation ;
     rdfs:label "SVM Learner" ;

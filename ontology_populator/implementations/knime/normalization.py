@@ -218,7 +218,7 @@ INSERT {
 }
 WHERE {
     $output2 dmop:hasColumn ?column .
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
     $input1 da:normalizationMode "ZScore".
 }
             ''',
@@ -230,7 +230,7 @@ INSERT {
 }
 WHERE {
     $output1 dmop:hasColumn ?column.
-    ?column dmop:isFeature true ;
+    ?column dmop:isFeature true .
     $input1 da:normalizationMode "Decimal".
 }
             ''',

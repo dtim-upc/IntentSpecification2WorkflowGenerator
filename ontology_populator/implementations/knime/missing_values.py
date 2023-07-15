@@ -83,7 +83,7 @@ WHERE {
         Transformation(
             query='''
 INSERT DATA {
-    $output2 dabox:removesProperty dmop:numberOfRows.
+    $output2 da:removesProperty dmop:numberOfRows.
 }
 ''',
         ),
@@ -120,7 +120,7 @@ DELETE {
     $output2 ?property ?value.
 }
 WHERE {
-    $output1 dabox:removesProperty ?property.
+    $output1 da:removesProperty ?property.
     $output2 ?property ?value.
 }
 ''',
