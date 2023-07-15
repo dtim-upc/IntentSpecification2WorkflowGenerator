@@ -30,6 +30,9 @@ dabox:KNN a dtbox:Algorithm ;
 dabox:KNNImputation a dtbox:Algorithm ;
     dtbox:solves dabox:MissingValueManagement .
 
+dabox:LabelExtraction a dtbox:Algorithm ;
+    dtbox:solves dabox:DataManagement .
+
 dabox:LocalOutlierFactor a dtbox:Algorithm ;
     dtbox:solves dabox:AnomalyDetection .
 
@@ -38,6 +41,9 @@ dabox:MeanImputation a dtbox:Algorithm ;
 
 dabox:MedianImputation a dtbox:Algorithm ;
     dtbox:solves dabox:MissingValueManagement .
+
+dabox:MinMaxScaling a dtbox:Algorithm ;
+    dtbox:solves dabox:Normalization .
 
 dabox:MissingValueRemoval a dtbox:Algorithm ;
     dtbox:solves dabox:MissingValueManagement .
@@ -59,9 +65,15 @@ dabox:RandomForest a dtbox:Algorithm ;
 dabox:RobustNormalization a dtbox:Algorithm ;
     dtbox:solves dabox:Normalization .
 
-dabox:implementation-label_extraction a dtbox:Implementation ;
-    rdfs:label "Label Extraction" ;
-    dtbox:hasParameter dabox:implementation-label_extraction-label_column ;
+dabox:TrainTestSplit a dtbox:Algorithm ;
+    dtbox:solves dabox:DataManagement .
+
+dabox:ZScoreScaling a dtbox:Algorithm ;
+    dtbox:solves dabox:Normalization .
+
+dabox:component-decimal_scaling a dtbox:LearnerComponent ;
+    rdfs:label "Decimal Scaling" ;
+    dtbox:hasImplementation dabox:implementation-normalizer_\(pmml\) ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -70,32 +82,205 @@ dabox:implementation-label_extraction a dtbox:Implementation ;
                 dtbox:transformation_language "SPARQL" ;
                 dtbox:transformation_query """
 DELETE {
-    $output1 dmop:hasColumn ?column .
-}
-INSERT {
-    $output2 dmop:hasColumn ?column .
+    ?column ?valueProperty ?value
 }
 WHERE {
-    $output1 dmop:hasColumn ?column .
-    ?column dmop:isLabel true .
+    $output1 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:isNormalized true.
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output1 dmop:isNormalized true.
+}
+            """ ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
+            dtbox:has_value 3 ] .
+
+dabox:component-decimal_scaling_applier a dtbox:ApplierComponent ;
+    rdfs:label "Decimal Scaling Applier" ;
+    dtbox:hasImplementation dabox:implementation-normalizer_apply_\(pmml\) ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 2 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 2 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    ?column ?valueProperty ?value
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:isNormalized true.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output2 dmop:isNormalized true.
+}
+            """ ] ) .
+
+dabox:component-min_max_scaling a dtbox:LearnerComponent ;
+    rdfs:label "Min-Max Scaling" ;
+    dtbox:exposesParameter dabox:implementation-normalizer_\(pmml\)-new_maximum,
+        dabox:implementation-normalizer_\(pmml\)-new_minimum ;
+    dtbox:hasImplementation dabox:implementation-normalizer_\(pmml\) ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    ?column ?valueProperty ?value
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:hasMinValue $parameter1;
+            dmop:hasMaxValue $parameter2;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output1 dmop:isNormalized true.
+    $output2 da:newMin $parameter1;
+             da:newMax $parameter2.
+}
+            """ ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
+            dtbox:has_value 1 ] .
+
+dabox:component-min_max_scaling_applier a dtbox:ApplierComponent ;
+    rdfs:label "Min-Max Scaling Applier" ;
+    dtbox:hasImplementation dabox:implementation-normalizer_apply_\(pmml\) ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 2 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 2 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    ?column ?valueProperty ?value
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:hasMinValue ?newMin;
+            dmop:hasMaxValue ?newMax;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    $input1 da:minValue ?newMin;
+            da:maxValue ?newMax.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output2 dmop:isNormalized true.
+}
+            """ ] ) .
+
+dabox:component-random_absolute_train_test_split a dtbox:Component ;
+    rdfs:label "Random Absolute Train-Test Split" ;
+    dtbox:exposesParameter dabox:implementation-partitioning-count_\(absolute_size\),
+        dabox:implementation-partitioning-random_seed ;
+    dtbox:hasImplementation dabox:implementation-partitioning ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    $output1 dmop:numberOfRows ?rows1.
+    $output2 dmop:numberOfRows ?rows1.
+}
+INSERT {
+    $output1 dmop:numberOfRows ?newRows1 .
+    $output2 dmop:numberOfRows ?newRows2 .
+}
+WHERE {
+    $output1 dmop:numberOfRows ?rows1.
+    BIND(MAX(?rows1 - $parameter1, 0) AS ?newRows1)
+    BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
-    dtbox:implements dabox:LabelExtraction ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:UnlabeledTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:LabelDatasetShape ;
-            dtbox:has_position 1 ] .
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Random" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ] .
 
-dabox:implementation-train_test_split a dtbox:Implementation ;
-    rdfs:label "Train-Test Split" ;
-    dtbox:hasParameter dabox:implementation-train_test_split-random_sample,
-        dabox:implementation-train_test_split-random_state,
-        dabox:implementation-train_test_split-test_size ;
+dabox:component-random_relative_train_test_split a dtbox:Component ;
+    rdfs:label "Random Relative Train-Test Split" ;
+    dtbox:exposesParameter dabox:implementation-partitioning-fraction_\(relative_size\),
+        dabox:implementation-partitioning-random_seed ;
+    dtbox:hasImplementation dabox:implementation-partitioning ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 1 ;
                 dtbox:copy_output 1 ;
@@ -121,99 +306,202 @@ WHERE {
     BIND(?rows1 - ?newRows1 AS ?newRows2)
 }
 """ ] ) ;
-    dtbox:implements dabox:TrainTestSplit ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TestDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TrainDataset ;
-            dtbox:has_position 0 ] .
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Random" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Relative" ] .
+
+dabox:component-top_k_absolute_train_test_split a dtbox:Component ;
+    rdfs:label "Top K Absolute Train-Test Split" ;
+    dtbox:exposesParameter dabox:implementation-partitioning-count_\(absolute_size\) ;
+    dtbox:hasImplementation dabox:implementation-partitioning ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    $output1 dmop:numberOfRows ?rows1.
+    $output2 dmop:numberOfRows ?rows1.
+}
+INSERT {
+    $output1 dmop:numberOfRows ?newRows1 .
+    $output2 dmop:numberOfRows ?newRows2 .
+}
+WHERE {
+    $output1 dmop:numberOfRows ?rows1.
+    BIND(MAX(?rows1 - $parameter1, 0) AS ?newRows1)
+    BIND(?rows1 - ?newRows1 AS ?newRows2)
+}
+""" ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Top" ] .
+
+dabox:component-top_k_relative_train_test_split a dtbox:Component ;
+    rdfs:label "Top K Relative Train-Test Split" ;
+    dtbox:exposesParameter dabox:implementation-partitioning-fraction_\(relative_size\) ;
+    dtbox:hasImplementation dabox:implementation-partitioning ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    $output1 dmop:numberOfRows ?rows1.
+    $output2 dmop:numberOfRows ?rows1.
+}
+INSERT {
+    $output1 dmop:numberOfRows ?newRows1 .
+    $output2 dmop:numberOfRows ?newRows2 .
+}
+WHERE {
+    $output1 dmop:numberOfRows ?rows1.
+    BIND(ROUND(?rows1 * (1 - $parameter1)) AS ?newRows1)
+    BIND(?rows1 - ?newRows1 AS ?newRows2)
+}
+""" ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Top" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Relative" ] .
+
+dabox:component-z_score_scaling a dtbox:LearnerComponent ;
+    rdfs:label "Z-Score Scaling" ;
+    dtbox:hasImplementation dabox:implementation-normalizer_\(pmml\) ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    ?column ?valueProperty ?value
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:hasMeanValue 0;
+            dmop:hasStandardDeviation 1;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output1 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output1 dmop:isNormalized true.
+}
+            """ ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
+            dtbox:has_value 2 ] .
+
+dabox:component-z_score_scaling_applier a dtbox:ApplierComponent ;
+    rdfs:label "Z-Score Scaling Applier" ;
+    dtbox:hasImplementation dabox:implementation-normalizer_apply_\(pmml\) ;
+    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 1 ;
+                dtbox:copy_output 1 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:CopyTransformation ;
+                dtbox:copy_input 2 ;
+                dtbox:copy_output 2 ;
+                dtbox:transformation_language "COPY" ;
+                dtbox:transformation_query "COPY input 2 TO output 2" ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+DELETE {
+    ?column ?valueProperty ?value
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
+    ?column ?valueProperty ?value.
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT {
+    ?column dmop:hasMeanValue 0;
+            dmop:hasStandardDeviation 1;
+            dmop:isNormalized true.
+}
+WHERE {
+    $output2 dmop:hasColumn ?column.
+    ?column dmop:isFeature true ;
+}
+            """ ] [ a dtbox:Transformation ;
+                dtbox:transformation_language "SPARQL" ;
+                dtbox:transformation_query """
+INSERT DATA {
+    $output2 dmop:isNormalized true.
+}
+            """ ] ) .
 
 ddata:DecisionTreeModel rdfs:subClassOf ddata:Model .
 
-ddata:MinMaxScalerModel rdfs:subClassOf ddata:Model .
+ddata:NormalizerModel rdfs:subClassOf ddata:Model .
 
 ddata:SVMModel rdfs:subClassOf ddata:Model .
-
-ddata:ZScoreScalerModel rdfs:subClassOf ddata:Model .
 
 dabox:DuplicationRemoval a dtbox:Problem ;
     dtbox:subProblemOf dabox:DataCleaning .
 
-dabox:LabelExtraction a dtbox:Algorithm ;
-    dtbox:solves dabox:DataManagement .
-
-dabox:TrainTestSplit a dtbox:Algorithm ;
-    dtbox:solves dabox:DataManagement .
-
-dabox:implementation-decision_tree_learner a dtbox:LearnerImplementation ;
+dabox:component-decision_tree_learner a dtbox:LearnerComponent ;
     rdfs:label "Decision Tree Learner" ;
-    dtbox:hasApplier dabox:implementation-decision_tree_predictor ;
-    dtbox:hasParameter dabox:implementation-decision_tree_learner-max_depth,
-        dabox:implementation-decision_tree_learner-max_features,
-        dabox:implementation-decision_tree_learner-max_leaf_nodes,
-        dabox:implementation-decision_tree_learner-min_samples_leaf,
-        dabox:implementation-decision_tree_learner-min_samples_split,
-        dabox:implementation-decision_tree_learner-min_weight_fraction_leaf,
-        dabox:implementation-decision_tree_learner-random_state ;
-    dtbox:hasTransformation [ rdf:rest () ] ;
-    dtbox:implements dabox:DecisionTree ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:DecisionTreeModel ;
-            dtbox:has_position 0 ] .
+    dtbox:exposesParameter dabox:implementation-decision_tree_learner-average_split_point,
+        dabox:implementation-decision_tree_learner-binary_nominal_splits,
+        dabox:implementation-decision_tree_learner-class_column,
+        dabox:implementation-decision_tree_learner-filter_invalid,
+        dabox:implementation-decision_tree_learner-force_root_split_columns,
+        dabox:implementation-decision_tree_learner-max_number_of_nominal_values,
+        dabox:implementation-decision_tree_learner-min_number_records_per_node,
+        dabox:implementation-decision_tree_learner-missing_value_strategy,
+        dabox:implementation-decision_tree_learner-no_true_child_strategy,
+        dabox:implementation-decision_tree_learner-number_of_threads,
+        dabox:implementation-decision_tree_learner-pruning_method,
+        dabox:implementation-decision_tree_learner-quality_measure,
+        dabox:implementation-decision_tree_learner-reduced_error_pruning,
+        dabox:implementation-decision_tree_learner-root_split_column,
+        dabox:implementation-decision_tree_learner-skip_nominal_columns_without_domain_information ;
+    dtbox:hasApplier dabox:component-decision_tree_predictor ;
+    dtbox:hasImplementation dabox:implementation-decision_tree_learner ;
+    dtbox:hasTransformation [ rdf:rest () ] .
 
-dabox:implementation-decision_tree_learner-max_depth a dtbox:Parameter ;
-    rdfs:label "Max Depth" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue 10 ;
-    dtbox:has_position 0 .
-
-dabox:implementation-decision_tree_learner-max_features a dtbox:Parameter ;
-    rdfs:label "Max Features" ;
-    dtbox:hasDatatype xsd:string ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 5 .
-
-dabox:implementation-decision_tree_learner-max_leaf_nodes a dtbox:Parameter ;
-    rdfs:label "Max Leaf Nodes" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 3 .
-
-dabox:implementation-decision_tree_learner-min_samples_leaf a dtbox:Parameter ;
-    rdfs:label "Min Samples Leaf" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue 1 ;
-    dtbox:has_position 2 .
-
-dabox:implementation-decision_tree_learner-min_samples_split a dtbox:Parameter ;
-    rdfs:label "Min Samples Split" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue 2 ;
-    dtbox:has_position 1 .
-
-dabox:implementation-decision_tree_learner-min_weight_fraction_leaf a dtbox:Parameter ;
-    rdfs:label "Min Weight Fraction Leaf" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 0e+00 ;
-    dtbox:has_position 4 .
-
-dabox:implementation-decision_tree_learner-random_state a dtbox:Parameter ;
-    rdfs:label "Random State" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 6 .
-
-dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
+dabox:component-decision_tree_predictor a dtbox:ApplierComponent ;
     rdfs:label "Decision Tree Predictor" ;
-    dtbox:hasLearner dabox:implementation-decision_tree_learner ;
-    dtbox:hasParameter dabox:implementation-decision_tree_predictor-prediction_column ;
+    dtbox:hasImplementation dabox:implementation-decision_tree_predictor ;
+    dtbox:hasLearner dabox:component-decision_tree_learner ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 2 ;
                 dtbox:copy_output 1 ;
@@ -224,184 +512,357 @@ dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
 INSERT DATA {
     $output1 dmop:hasColumn _:labelColumn.
     _:labelColumn a dmop:Column;
-    _:labelColumn dmop:isLabel true;
+                  dmop:isLabel true;
+                  dmop:hasName $parameter3.
 }
-            """ ] ) ;
+            """ ] ) .
+
+dabox:component-hypertangent_svm_learner a dtbox:LearnerComponent ;
+    rdfs:label "HyperTangent SVM Learner" ;
+    dtbox:exposesParameter dabox:implementation-svm_learner-class_column,
+        dabox:implementation-svm_learner-delta,
+        dabox:implementation-svm_learner-kappa,
+        dabox:implementation-svm_learner-overlapping_penalty ;
+    dtbox:hasApplier dabox:component-svm_predictor ;
+    dtbox:hasImplementation dabox:implementation-svm_learner ;
+    dtbox:hasTransformation [ rdf:rest () ] ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-svm_learner-kernel_type ;
+            dtbox:has_value "HyperTangent" ] .
+
+dabox:component-polynomial_svm_learner a dtbox:LearnerComponent ;
+    rdfs:label "Polynomial SVM Learner" ;
+    dtbox:exposesParameter dabox:implementation-svm_learner-bias,
+        dabox:implementation-svm_learner-class_column,
+        dabox:implementation-svm_learner-gamma,
+        dabox:implementation-svm_learner-overlapping_penalty,
+        dabox:implementation-svm_learner-power ;
+    dtbox:hasApplier dabox:component-svm_predictor ;
+    dtbox:hasImplementation dabox:implementation-svm_learner ;
+    dtbox:hasTransformation [ rdf:rest () ] ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-svm_learner-kernel_type ;
+            dtbox:has_value "Polynomial" ] .
+
+dabox:component-rbf_svm_learner a dtbox:LearnerComponent ;
+    rdfs:label "RBF SVM Learner" ;
+    dtbox:exposesParameter dabox:implementation-svm_learner-class_column,
+        dabox:implementation-svm_learner-overlapping_penalty,
+        dabox:implementation-svm_learner-sigma ;
+    dtbox:hasApplier dabox:component-svm_predictor ;
+    dtbox:hasImplementation dabox:implementation-svm_learner ;
+    dtbox:hasTransformation [ rdf:rest () ] ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-svm_learner-kernel_type ;
+            dtbox:has_value "RBF" ] .
+
+dabox:implementation-decision_tree_learner-number_of_records_to_store_for_view a dtbox:Parameter ;
+    rdfs:label "Number of records to store for view" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue 10000 ;
+    dtbox:has_position 1 .
+
+dabox:implementation-decision_tree_predictor-change_prediction a dtbox:Parameter ;
+    rdfs:label "Change Prediction" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 3 .
+
+dabox:implementation-decision_tree_predictor-class_probability_suffix a dtbox:Parameter ;
+    rdfs:label "Class Probability Suffix" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "" ;
+    dtbox:has_position 4 .
+
+dabox:implementation-decision_tree_predictor-prediction_column_name a dtbox:Parameter ;
+    rdfs:label "Prediction column name" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "Prediction ($$LABEL$$)" ;
+    dtbox:has_position 2 .
+
+dabox:implementation-decision_tree_predictor-show_distribution a dtbox:Parameter ;
+    rdfs:label "Show distribution" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue true ;
+    dtbox:has_position 1 .
+
+dabox:implementation-decision_tree_predictor-use_gain_ratio a dtbox:Parameter ;
+    rdfs:label "Use Gain Ratio" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue 20000 ;
+    dtbox:has_position 0 .
+
+dabox:implementation-partitioning-class_columns a dtbox:Parameter ;
+    rdfs:label "Class columns" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 5 .
+
+dabox:implementation-svm_predictor-add_probabilities a dtbox:Parameter ;
+    rdfs:label "Add probabilities" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 2 .
+
+dabox:implementation-svm_predictor-change_prediction a dtbox:Parameter ;
+    rdfs:label "Change prediction" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 1 .
+
+dabox:implementation-svm_predictor-class_probability_suffix a dtbox:Parameter ;
+    rdfs:label "Class probability suffix" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "" ;
+    dtbox:has_position 3 .
+
+dabox:implementation-svm_predictor-prediction_column_name a dtbox:Parameter ;
+    rdfs:label "Prediction column name" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "Prediction ($$LABEL$$)" ;
+    dtbox:has_position 0 .
+
+dabox:DataManagement a dtbox:Problem .
+
+dabox:DecisionTree a dtbox:Algorithm ;
+    dtbox:solves dabox:Classification .
+
+dabox:SVM a dtbox:Algorithm ;
+    dtbox:solves dabox:Classification .
+
+dabox:implementation-decision_tree_learner a dtbox:LearnerImplementation ;
+    rdfs:label "Decision Tree Learner" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasApplier dabox:implementation-decision_tree_predictor ;
+    dtbox:hasParameter dabox:implementation-decision_tree_learner-average_split_point,
+        dabox:implementation-decision_tree_learner-binary_nominal_splits,
+        dabox:implementation-decision_tree_learner-class_column,
+        dabox:implementation-decision_tree_learner-filter_invalid,
+        dabox:implementation-decision_tree_learner-force_root_split_columns,
+        dabox:implementation-decision_tree_learner-max_number_of_nominal_values,
+        dabox:implementation-decision_tree_learner-min_number_records_per_node,
+        dabox:implementation-decision_tree_learner-missing_value_strategy,
+        dabox:implementation-decision_tree_learner-no_true_child_strategy,
+        dabox:implementation-decision_tree_learner-number_of_records_to_store_for_view,
+        dabox:implementation-decision_tree_learner-number_of_threads,
+        dabox:implementation-decision_tree_learner-pruning_method,
+        dabox:implementation-decision_tree_learner-quality_measure,
+        dabox:implementation-decision_tree_learner-reduced_error_pruning,
+        dabox:implementation-decision_tree_learner-root_split_column,
+        dabox:implementation-decision_tree_learner-skip_nominal_columns_without_domain_information ;
     dtbox:implements dabox:DecisionTree ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:DecisionTreeModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
+            dtbox:has_position 0 ] .
+
+dabox:implementation-decision_tree_learner-average_split_point a dtbox:Parameter ;
+    rdfs:label "Average split point" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue true ;
+    dtbox:has_position 6 .
+
+dabox:implementation-decision_tree_learner-binary_nominal_splits a dtbox:Parameter ;
+    rdfs:label "Binary nominal splits" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 9 .
+
+dabox:implementation-decision_tree_learner-class_column a dtbox:Parameter ;
+    rdfs:label "Class column" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "$$LABEL$$" ;
+    dtbox:has_position 0 .
+
+dabox:implementation-decision_tree_learner-filter_invalid a dtbox:Parameter ;
+    rdfs:label "Filter invalid" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 10 .
+
+dabox:implementation-decision_tree_learner-force_root_split_columns a dtbox:Parameter ;
+    rdfs:label "Force root split columns" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 14 .
+
+dabox:implementation-decision_tree_learner-max_number_of_nominal_values a dtbox:Parameter ;
+    rdfs:label "Max number of nominal values" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue 10 ;
+    dtbox:has_position 8 .
+
+dabox:implementation-decision_tree_learner-min_number_records_per_node a dtbox:Parameter ;
+    rdfs:label "Min number records per node" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue 10 ;
+    dtbox:has_position 2 .
+
+dabox:implementation-decision_tree_learner-missing_value_strategy a dtbox:Parameter ;
+    rdfs:label "Missing value strategy" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "lastPrediction" ;
+    dtbox:has_position 13 .
+
+dabox:implementation-decision_tree_learner-no_true_child_strategy a dtbox:Parameter ;
+    rdfs:label "No true child strategy" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "returnNullPrediction" ;
+    dtbox:has_position 12 .
+
+dabox:implementation-decision_tree_learner-number_of_threads a dtbox:Parameter ;
+    rdfs:label "Number of threads" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 7 .
+
+dabox:implementation-decision_tree_learner-pruning_method a dtbox:Parameter ;
+    rdfs:label "Pruning method" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "No pruning" ;
+    dtbox:has_position 3 .
+
+dabox:implementation-decision_tree_learner-quality_measure a dtbox:Parameter ;
+    rdfs:label "Quality Measure" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "Gini index" ;
+    dtbox:has_position 5 .
+
+dabox:implementation-decision_tree_learner-reduced_error_pruning a dtbox:Parameter ;
+    rdfs:label "Reduced error pruning" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue true ;
+    dtbox:has_position 4 .
+
+dabox:implementation-decision_tree_learner-root_split_column a dtbox:Parameter ;
+    rdfs:label "Root split column" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 15 .
+
+dabox:implementation-decision_tree_learner-skip_nominal_columns_without_domain_information a dtbox:Parameter ;
+    rdfs:label "Skip nominal columns without domain information" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue false ;
+    dtbox:has_position 11 .
+
+dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
+    rdfs:label "Decision Tree Predictor" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasLearner dabox:implementation-decision_tree_learner ;
+    dtbox:hasParameter dabox:implementation-decision_tree_predictor-change_prediction,
+        dabox:implementation-decision_tree_predictor-class_probability_suffix,
+        dabox:implementation-decision_tree_predictor-prediction_column_name,
+        dabox:implementation-decision_tree_predictor-show_distribution,
+        dabox:implementation-decision_tree_predictor-use_gain_ratio ;
+    dtbox:implements dabox:DecisionTree ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ] ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:DecisionTreeModel ;
+            dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
 
-dabox:implementation-decision_tree_predictor-prediction_column a dtbox:Parameter ;
-    rdfs:label "Prediction column" ;
-    dtbox:hasDatatype xsd:string ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 0 .
-
-dabox:implementation-label_extraction-label_column a dtbox:Parameter ;
-    rdfs:label "Label Column" ;
-    dtbox:hasDatatype xsd:string ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 0 .
-
-dabox:implementation-min_max_scaling a dtbox:LearnerImplementation ;
-    rdfs:label "Min-Max Scaling" ;
-    dtbox:hasApplier dabox:implementation-min_max_scaling_applier ;
-    dtbox:hasParameter dabox:implementation-min_max_scaling-maximum,
-        dabox:implementation-min_max_scaling-minimum ;
-    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
-                dtbox:copy_input 1 ;
-                dtbox:copy_output 1 ;
-                dtbox:transformation_language "COPY" ;
-                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-DELETE {
-    ?column ?valueProperty ?value
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
-    ?column ?valueProperty ?value.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT {
-    ?column dmop:hasMinValue $parameter1;
-            dmop:hasMaxValue $parameter2.
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT DATA {
-    $output1 dmop:isNormalized true.
-}
-            """ ] ) ;
-    dtbox:implements dabox:MinMaxScaling ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ] .
-
-dabox:implementation-min_max_scaling-maximum a dtbox:Parameter ;
-    rdfs:label "Maximum" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 1 ;
-    dtbox:has_position 1 .
-
-dabox:implementation-min_max_scaling-minimum a dtbox:Parameter ;
-    rdfs:label "Minimum" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 0 ;
-    dtbox:has_position 0 .
-
-dabox:implementation-min_max_scaling_applier a dtbox:ApplierImplementation ;
-    rdfs:label "Min-Max Scaling Applier" ;
-    dtbox:hasLearner dabox:implementation-min_max_scaling ;
-    dtbox:hasParameter dabox:implementation-min_max_scaling_applier-maximum,
-        dabox:implementation-min_max_scaling_applier-minimum ;
-    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
-                dtbox:copy_input 1 ;
-                dtbox:copy_output 1 ;
-                dtbox:transformation_language "COPY" ;
-                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-DELETE {
-    ?column ?valueProperty ?value
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
-    ?column ?valueProperty ?value.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT {
-    ?column dmop:hasMinValue $parameter1;
-            dmop:hasMaxValue $parameter2.
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT DATA {
-    $output1 dmop:isNormalized true.
-}
-            """ ] ) ;
-    dtbox:implements dabox:MinMaxScaling ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:MinMaxScalerModel ;
-            dtbox:has_position 1 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ] .
-
-dabox:implementation-min_max_scaling_applier-maximum a dtbox:Parameter ;
-    rdfs:label "Maximum" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 1 ;
-    dtbox:has_position 1 .
-
-dabox:implementation-min_max_scaling_applier-minimum a dtbox:Parameter ;
-    rdfs:label "Minimum" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 0 ;
-    dtbox:has_position 0 .
-
-dabox:implementation-svm_learner a dtbox:LearnerImplementation ;
-    rdfs:label "SVM Learner" ;
-    dtbox:hasApplier dabox:implementation-svm_predictor ;
-    dtbox:hasParameter dabox:implementation-svm_learner-kernel,
-        dabox:implementation-svm_learner-overlapping_penalty ;
-    dtbox:hasTransformation [ rdf:rest () ] ;
-    dtbox:implements dabox:SVM ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag [ a sh:NodeShape,
-                        dtbox:DataTag ;
-                    sh:and ( dshapes:LabeledTabularDatasetShape dshapes:NormalizedTabularDatasetShape ) ] ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:SVMModel ;
-            dtbox:has_position 0 ] .
-
-dabox:implementation-svm_learner-kernel a dtbox:Parameter ;
-    rdfs:label "Kernel" ;
-    dtbox:hasDatatype xsd:string ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 1 .
-
-dabox:implementation-svm_learner-overlapping_penalty a dtbox:Parameter ;
-    rdfs:label "Overlapping Penalty" ;
+dabox:implementation-normalizer_\(pmml\)-new_maximum a dtbox:Parameter ;
+    rdfs:label "New maximum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 0 .
+    dtbox:has_position 2 .
+
+dabox:implementation-normalizer_\(pmml\)-new_minimum a dtbox:Parameter ;
+    rdfs:label "New minimum" ;
+    dtbox:hasDatatype xsd:float ;
+    dtbox:hasDefaultValue 0e+00 ;
+    dtbox:has_position 1 .
+
+dabox:implementation-svm_learner-bias a dtbox:Parameter ;
+    rdfs:label "Bias" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e+00 ;
+    dtbox:has_position 2 .
+
+dabox:implementation-svm_learner-delta a dtbox:Parameter ;
+    rdfs:label "Delta" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 5e-01 ;
+    dtbox:has_position 6 .
+
+dabox:implementation-svm_learner-gamma a dtbox:Parameter ;
+    rdfs:label "Gamma" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e+00 ;
+    dtbox:has_position 4 .
+
+dabox:implementation-svm_learner-kappa a dtbox:Parameter ;
+    rdfs:label "Kappa" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e-01 ;
+    dtbox:has_position 5 .
+
+dabox:implementation-svm_learner-power a dtbox:Parameter ;
+    rdfs:label "Power" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e+00 ;
+    dtbox:has_position 3 .
+
+dabox:implementation-svm_learner-sigma a dtbox:Parameter ;
+    rdfs:label "Sigma" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e-01 ;
+    dtbox:has_position 7 .
 
 dabox:implementation-svm_predictor a dtbox:ApplierImplementation ;
     rdfs:label "SVM Predictor" ;
+    dtbox:engine "KNIME" ;
     dtbox:hasLearner dabox:implementation-svm_learner ;
-    dtbox:hasParameter dabox:implementation-svm_predictor-prediction_column ;
+    dtbox:hasParameter dabox:implementation-svm_predictor-add_probabilities,
+        dabox:implementation-svm_predictor-change_prediction,
+        dabox:implementation-svm_predictor-class_probability_suffix,
+        dabox:implementation-svm_predictor-prediction_column_name ;
+    dtbox:implements dabox:SVM ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.mine.svm.predictor2.SVMPredictorNodeFactory" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:SVMModel ;
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
+            dtbox:has_position 0 ] .
+
+dabox:AnomalyDetection a dtbox:Problem ;
+    dtbox:subProblemOf dabox:Description .
+
+dabox:Clustering a dtbox:Problem ;
+    dtbox:subProblemOf dabox:Description .
+
+dabox:DataCleaning a dtbox:Problem .
+
+dabox:Description a dtbox:Problem .
+
+dabox:component-svm_predictor a dtbox:ApplierComponent ;
+    rdfs:label "SVM Predictor" ;
+    dtbox:hasImplementation dabox:implementation-svm_predictor ;
+    dtbox:hasLearner dabox:component-hypertangent_svm_learner,
+        dabox:component-polynomial_svm_learner,
+        dabox:component-rbf_svm_learner ;
     dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
                 dtbox:copy_input 2 ;
                 dtbox:copy_output 1 ;
@@ -414,166 +875,165 @@ INSERT DATA {
     _:labelColumn a dmop:Column ;
         dmop:isLabel true .
 }
-            """ ] ) ;
-    dtbox:implements dabox:SVM ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:SVMModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 1 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
-            dtbox:has_position 0 ] .
+            """ ] ) .
 
-dabox:implementation-svm_predictor-prediction_column a dtbox:Parameter ;
-    rdfs:label "Prediction column" ;
-    dtbox:hasDatatype xsd:string ;
-    dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 0 .
+dabox:implementation-partitioning-count_\(absolute_size\) a dtbox:Parameter ;
+    rdfs:label "Count (Absolute size)" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue 100 ;
+    dtbox:has_position 3 .
 
-dabox:implementation-train_test_split-random_sample a dtbox:Parameter ;
-    rdfs:label "Random Sample" ;
-    dtbox:hasDatatype xsd:boolean ;
-    dtbox:hasDefaultValue true ;
-    dtbox:has_position 1 .
-
-dabox:implementation-train_test_split-random_state a dtbox:Parameter ;
-    rdfs:label "Random State" ;
-    dtbox:hasDatatype xsd:integer ;
-    dtbox:hasDefaultValue "None" ;
+dabox:implementation-partitioning-fraction_\(relative_size\) a dtbox:Parameter ;
+    rdfs:label "Fraction (Relative size)" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 8e-01 ;
     dtbox:has_position 2 .
 
-dabox:implementation-train_test_split-test_size a dtbox:Parameter ;
-    rdfs:label "Test Size" ;
-    dtbox:hasDatatype xsd:float ;
-    dtbox:hasDefaultValue 2e-01 ;
-    dtbox:has_position 0 .
-
-dabox:implementation-z_score_scaling a dtbox:LearnerImplementation ;
-    rdfs:label "Z-Score Scaling" ;
-    dtbox:hasApplier dabox:implementation-z_score_scaling_applier ;
-    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
-                dtbox:copy_input 1 ;
-                dtbox:copy_output 1 ;
-                dtbox:transformation_language "COPY" ;
-                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-DELETE {
-    ?column ?valueProperty ?value
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
-    ?column ?valueProperty ?value.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT {
-    ?column dmop:hasMeanValue 0;
-            dmop:hasStandardDeviation 1.
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT DATA {
-    $output1 dmop:isNormalized true.
-}
-            """ ] ) ;
-    dtbox:implements dabox:ZScoreScaling ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:ZScoreScalerModel ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ] .
-
-dabox:implementation-z_score_scaling_applier a dtbox:ApplierImplementation ;
-    rdfs:label "Z-Score Scaling Applier" ;
-    dtbox:hasLearner dabox:implementation-z_score_scaling ;
-    dtbox:hasTransformation ( [ a dtbox:CopyTransformation ;
-                dtbox:copy_input 1 ;
-                dtbox:copy_output 1 ;
-                dtbox:transformation_language "COPY" ;
-                dtbox:transformation_query "COPY input 1 TO output 1" ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-DELETE {
-    ?column ?valueProperty ?value
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-    ?valuePropetry rdfs:subPropertyOf dmop:ColumnValueInfo.
-    ?column ?valueProperty ?value.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT {
-    ?column dmop:hasMeanValue 0;
-            dmop:hasStandardDeviation 1.
-}
-WHERE {
-    $output1 dmop:hasColumn ?column.
-}
-            """ ] [ a dtbox:Transformation ;
-                dtbox:transformation_language "SPARQL" ;
-                dtbox:transformation_query """
-INSERT DATA {
-    $output1 dmop:isNormalized true.
-}
-            """ ] ) ;
-    dtbox:implements dabox:ZScoreScaling ;
-    dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:ZScoreScalerModel ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 0 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
-            dtbox:has_position 0 ] .
-
-dabox:DataManagement a dtbox:Problem .
-
-dabox:DecisionTree a dtbox:Algorithm ;
-    dtbox:solves dabox:Classification .
-
-dabox:MinMaxScaling a dtbox:Algorithm ;
-    dtbox:solves dabox:Normalization .
-
-dabox:SVM a dtbox:Algorithm ;
-    dtbox:solves dabox:Classification .
-
-dabox:ZScoreScaling a dtbox:Algorithm ;
-    dtbox:solves dabox:Normalization .
-
-dabox:AnomalyDetection a dtbox:Problem ;
-    dtbox:subProblemOf dabox:Description .
-
-dabox:Clustering a dtbox:Problem ;
-    dtbox:subProblemOf dabox:Description .
-
-dabox:DataCleaning a dtbox:Problem .
-
-dabox:Description a dtbox:Problem .
-
-dabox:Normalization a dtbox:Problem ;
-    dtbox:subProblemOf dabox:DataCleaning .
+dabox:implementation-partitioning-random_seed a dtbox:Parameter ;
+    rdfs:label "Random seed" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 4 .
 
 ddata:Model rdfs:subClassOf dtbox:Data .
+
+dabox:implementation-normalizer_\(pmml\) a dtbox:LearnerImplementation ;
+    rdfs:label "Normalizer (PMML)" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasApplier dabox:implementation-normalizer_apply_\(pmml\) ;
+    dtbox:hasParameter dabox:implementation-normalizer_\(pmml\)-new_maximum,
+        dabox:implementation-normalizer_\(pmml\)-new_minimum,
+        dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
+    dtbox:implements dabox:Normalization ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLNodeFactory2" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizerModel ;
+            dtbox:has_position 1 ] .
+
+dabox:implementation-normalizer_\(pmml\)-normalization_mode a dtbox:Parameter ;
+    rdfs:label "Normalization mode" ;
+    dtbox:hasDatatype xsd:int ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 0 .
+
+dabox:implementation-normalizer_apply_\(pmml\) a dtbox:ApplierImplementation ;
+    rdfs:label "Normalizer Apply (PMML)" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasLearner dabox:implementation-normalizer_\(pmml\) ;
+    dtbox:implements dabox:Normalization ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLApplyNodeFactory" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizerModel ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 1 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizerModel ;
+            dtbox:has_position 0 ] .
+
+dabox:implementation-partitioning a dtbox:Implementation ;
+    rdfs:label "Partitioning" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasParameter dabox:implementation-partitioning-class_columns,
+        dabox:implementation-partitioning-count_\(absolute_size\),
+        dabox:implementation-partitioning-fraction_\(relative_size\),
+        dabox:implementation-partitioning-random_seed,
+        dabox:implementation-partitioning-sampling_method,
+        dabox:implementation-partitioning-size_of_first_partition ;
+    dtbox:implements dabox:Partitioning ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.preproc.partition.PartitionNodeFactory" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TestDataset ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TrainDataset ;
+            dtbox:has_position 0 ] .
+
+dabox:implementation-svm_learner a dtbox:LearnerImplementation ;
+    rdfs:label "SVM Learner" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasApplier dabox:implementation-svm_predictor ;
+    dtbox:hasParameter dabox:implementation-svm_learner-bias,
+        dabox:implementation-svm_learner-class_column,
+        dabox:implementation-svm_learner-delta,
+        dabox:implementation-svm_learner-gamma,
+        dabox:implementation-svm_learner-kappa,
+        dabox:implementation-svm_learner-kernel_type,
+        dabox:implementation-svm_learner-overlapping_penalty,
+        dabox:implementation-svm_learner-power,
+        dabox:implementation-svm_learner-sigma ;
+    dtbox:implements dabox:SVM ;
+    dtbox:knime_bundle_name "KNIME Base Bundle" ;
+    dtbox:knime_bundle_symbolic_name "org.knime.base" ;
+    dtbox:knime_bundle_vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime_node_factory "org.knime.base.node.mine.svm.learner.SVMLearnerNodeFactory2" ;
+    dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag [ a sh:NodeShape,
+                        dtbox:DataTag ;
+                    sh:and ( dshapes:LabeledTabularDatasetShape dshapes:NormalizedTabularDatasetShape ) ] ;
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:SVMModel ;
+            dtbox:has_position 0 ] .
+
+dabox:implementation-svm_learner-class_column a dtbox:Parameter ;
+    rdfs:label "Class column" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "$$LABEL$$" ;
+    dtbox:has_position 0 .
+
+dabox:implementation-svm_learner-kernel_type a dtbox:Parameter ;
+    rdfs:label "Kernel type" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_position 8 .
+
+dabox:implementation-svm_learner-overlapping_penalty a dtbox:Parameter ;
+    rdfs:label "Overlapping Penalty" ;
+    dtbox:hasDatatype xsd:double ;
+    dtbox:hasDefaultValue 1e+00 ;
+    dtbox:has_position 1 .
 
 dabox:Classification a dtbox:Problem ;
     dtbox:subProblemOf dabox:Description .
 
 dabox:MissingValueManagement a dtbox:Problem ;
     dtbox:subProblemOf dabox:DataCleaning .
+
+dabox:Normalization a dtbox:Problem ;
+    dtbox:subProblemOf dabox:DataCleaning .
+
+dabox:implementation-partitioning-sampling_method a dtbox:Parameter ;
+    rdfs:label "Sampling Method" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "Random" ;
+    dtbox:has_position 1 .
+
+dabox:implementation-partitioning-size_of_first_partition a dtbox:Parameter ;
+    rdfs:label "Size of First Partition" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "Relative" ;
+    dtbox:has_position 0 .
 

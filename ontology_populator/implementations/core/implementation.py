@@ -19,7 +19,7 @@ class Implementation:
         self.url_name = f'implementation-{self.name.replace(" ", "_").replace("-", "_").lower()}'
         self.uri_ref = dabox[self.url_name]
         self.algorithm = algorithm
-        self.parameters = parameters
+        self.parameters = {param.label: param for param in parameters}
         self.input = input or []
         self.output = output or []
         assert implementation_type in {dtbox.Implementation, dtbox.LearnerImplementation, dtbox.ApplierImplementation}
@@ -30,7 +30,7 @@ class Implementation:
             if self.counterpart.counterpart is None:
                 self.counterpart.counterpart = self
 
-        for parameter in self.parameters:
+        for parameter in self.parameters.values():
             parameter.uri_ref = dabox[f'{self.url_name}-{parameter.url_name}']
 
     def add_to_graph(self, g: Graph):
@@ -65,7 +65,7 @@ class Implementation:
             g.add((output_node, dtbox.has_position, Literal(i)))
 
         # Parameter triples
-        for i, parameter in enumerate(self.parameters):
+        for i, parameter in enumerate(self.parameters.values()):
             g.add((parameter.uri_ref, RDF.type, dtbox.Parameter))
             g.add((parameter.uri_ref, RDFS.label, Literal(parameter.label)))
             g.add((parameter.uri_ref, dtbox.hasDatatype, parameter.datatype))

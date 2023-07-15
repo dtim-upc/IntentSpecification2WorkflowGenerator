@@ -1,3 +1,4 @@
+from owlrl import DeductiveClosure, OWLRL_Semantics
 from rdflib import *
 
 dmop = Namespace('http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#')
@@ -19,3 +20,18 @@ def get_graph():
     g.bind('ddata', dd)
     g.bind('dworkflow', dw)
     return g
+
+
+def get_ontology_graph():
+    graph = get_graph()
+    ontologies = [
+        '../ontologies/tbox.ttl',
+        '../ontologies/abox.ttl',
+        '../ontologies/shapes_abox.ttl',
+        '../dataset_annotator/penguins_annotated.ttl',
+    ]
+    for o in ontologies:
+        graph.parse(o, format="turtle")
+
+    DeductiveClosure(OWLRL_Semantics).expand(graph)
+    return graph

@@ -13,15 +13,18 @@ LiteralValue = Union[str, bool, int, float, None]
 class Component:
 
     def __init__(self, name: str, implementation: Implementation, transformations: List[Transformation],
-                 overriden_parameters: List[Tuple[Parameter, Any]] = None, counterpart: 'Component' = None) -> None:
+                 exposed_parameters: List[str] = None,
+                 overriden_parameters: List[Tuple[str, Any]] = None,
+                 counterpart: Union['Component', List['Component']] = None) -> None:
         super().__init__()
         self.name = name
-        self.url_name = f'implementation-{self.name.replace(" ", "_").replace("-", "_").lower()}'
+        self.url_name = f'component-{self.name.replace(" ", "_").replace("-", "_").lower()}'
         self.uri_ref = dabox[self.url_name]
 
         self.implementation = implementation
         self.transformations = transformations
         self.overriden_parameters = overriden_parameters if overriden_parameters is not None else []
+        self.exposed_parameters = exposed_parameters if exposed_parameters is not None else []
         self.component_type = {
             dtbox.LearnerImplementation: dtbox.LearnerComponent,
             dtbox.ApplierImplementation: dtbox.ApplierComponent,
@@ -30,7 +33,11 @@ class Component:
         self.counterpart = counterpart
         if self.counterpart is not None:
             assert self.component_type in {dtbox.LearnerComponent, dtbox.ApplierComponent}
-            if self.counterpart.counterpart is None:
+            if isinstance(self.counterpart, list):
+                for c in self.counterpart:
+                    if c.counterpart is None:
+                        c.counterpart = self
+            elif self.counterpart.counterpart is None:
                 self.counterpart.counterpart = self
 
     def add_to_graph(self, g: Graph):
@@ -55,28 +62,34 @@ class Component:
         for parameter, value in self.overriden_parameters:
             parameter_value = BNode()
             g.add((parameter_value, RDF.type, dtbox.ParameterValue))
-            g.add((parameter_value, dtbox.forParameter, parameter.uri_ref))
+            g.add((parameter_value, dtbox.forParameter, self.implementation.parameters[parameter].uri_ref))
             g.add((parameter_value, dtbox.has_value, Literal(value)))
             g.add((self.uri_ref, dtbox.overridesParameter, parameter_value))
+
+        # Exposed parameters triples
+        for parameter in self.exposed_parameters:
+            g.add((self.uri_ref, dtbox.exposesParameter, self.implementation.parameters[parameter].uri_ref))
 
         return self.uri_ref
 
     def add_counterpart_relationship(self, g: Graph):
         if self.counterpart is None:
             return
-        counterpart_query = f'''
-        PREFIX dtbox: <{dtbox}>
-        SELECT ?self ?counterpart
-        WHERE {{
-            ?self a <{self.component_type}> ;
-                rdfs:label "{self.name}" .
-            ?counterpart a <{self.counterpart.component_type}> ;
-                rdfs:label "{self.counterpart.name}" .
-        }}
-        '''
-        result = g.query(counterpart_query).bindings
-        assert len(result) == 1
-        self_node = result[0][Variable('self')]
-        relationship = dtbox.hasApplier if self.component_type == dtbox.LearnerComponent else dtbox.hasLearner
-        counterpart_node = result[0][Variable('counterpart')]
-        g.add((self_node, relationship, counterpart_node))
+        counters = self.counterpart if isinstance(self.counterpart, list) else [self.counterpart]
+        for c in counters:
+            counterpart_query = f'''
+            PREFIX dtbox: <{dtbox}>
+            SELECT ?self ?counterpart
+            WHERE {{
+                ?self a <{self.component_type}> ;
+                    rdfs:label "{self.name}" .
+                ?counterpart a <{c.component_type}> ;
+                    rdfs:label "{c.name}" .
+            }}
+            '''
+            result = g.query(counterpart_query).bindings
+            assert len(result) == 1
+            self_node = result[0][Variable('self')]
+            relationship = dtbox.hasApplier if self.component_type == dtbox.LearnerComponent else dtbox.hasLearner
+            counterpart_node = result[0][Variable('counterpart')]
+            g.add((self_node, relationship, counterpart_node))

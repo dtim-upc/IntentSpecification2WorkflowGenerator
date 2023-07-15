@@ -89,7 +89,7 @@ ddata:penguins.csv a dmop:TabularDataset ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 0 ;
     dmop:isCategorical true ;
-    dmop:isFeature true ;
-    dmop:isLabel false ;
+    dmop:isFeature false ;
+    dmop:isLabel true ;
     dmop:isUnique false .
 
