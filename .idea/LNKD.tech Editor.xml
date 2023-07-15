@@ -20,7 +20,10 @@
         </entry>
         <entry key="SHACL_SHAPES">
           <value>
-            <Visibility />
+            <Visibility>
+              <option name="sameAsGeneral" value="false" />
+              <option name="scope" value="FILE" />
+            </Visibility>
           </value>
         </entry>
       </map>

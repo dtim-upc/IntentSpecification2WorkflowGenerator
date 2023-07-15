@@ -40,7 +40,20 @@ polynomial_svm_learner_component = Component(
         'Power',
         'Gamma',
     ],
-    transformations=[],
+    transformations=[
+        Transformation(
+            query='''
+INSERT {
+    $output1 da:setsClassColumnName "Prediction (?label)" .
+}
+WHERE {
+    $input1 dmop:hasColumn ?column .
+    ?column dmop:isLabel true ;
+            dmop:hasColumnName ?label .
+}
+            ''',
+        ),
+    ],
 )
 
 hypertangent_svm_learner_component = Component(
@@ -55,7 +68,15 @@ hypertangent_svm_learner_component = Component(
         'Kappa',
         'Delta',
     ],
-    transformations=[],
+    transformations=[
+        Transformation(
+            query='''
+INSERT DATA{
+    $output1 da:setsClassColumnName $parameter1 .
+}
+            ''',
+        ),
+    ],
 )
 
 rbf_svm_learner_component = Component(
@@ -69,7 +90,15 @@ rbf_svm_learner_component = Component(
         'Overlapping Penalty',
         'Sigma',
     ],
-    transformations=[],
+    transformations=[
+        Transformation(
+            query='''
+INSERT DATA{
+    $output1 da:setsClassColumnName $parameter1 .
+}
+            ''',
+        ),
+    ],
 )
 
 svm_predictor_implementation = KnimeImplementation(
@@ -101,11 +130,14 @@ svm_predictor_component = Component(
         CopyTransformation(2, 1),
         Transformation(
             query='''
-INSERT DATA {
+INSERT {
     $output1 dmop:hasColumn _:labelColumn .
     _:labelColumn a dmop:Column ;
         dmop:isLabel true;
       dmop:hasName $parameter1.
+}
+WHERE {
+    $input1 da:setsClassColumnName ?classColumnName .
 }
             ''',
         ),
