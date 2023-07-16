@@ -131,11 +131,11 @@ ddata:titanic.csv a dmop:TabularDataset ;
 <https://diviloper.dev/ontology/Data#titanic.csv/Survived> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Survived" ;
-    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 1 ;
     dmop:isCategorical true ;
-    dmop:isFeature true ;
-    dmop:isLabel false ;
+    dmop:isFeature false ;
+    dmop:isLabel true ;
     dmop:isUnique false .
 
 <https://diviloper.dev/ontology/Data#titanic.csv/Ticket> a dmop:Column ;

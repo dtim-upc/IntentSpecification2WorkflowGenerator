@@ -13,7 +13,7 @@ decision_tree_learner_implementation = KnimeImplementation(
         KnimeParameter("Reduced error pruning", XSD.boolean, True, 'enableReducedErrorPruning'),
         KnimeParameter("Quality Measure", XSD.string, "Gini index", 'splitQualityMeasure'),
         KnimeParameter("Average split point", XSD.boolean, True, 'splitAverage'),
-        KnimeParameter("Number of threads", XSD.int, None, 'numProcessors'),
+        KnimeParameter("Number of threads", XSD.int, 1, 'numProcessors'),
         KnimeParameter("Max number of nominal values", XSD.int, 10, 'maxNumNominalValues'),
         KnimeParameter("Binary nominal splits", XSD.boolean, False, 'binaryNominalSplit'),
         KnimeParameter("Filter invalid", XSD.boolean, False, 'FilterNominalValuesFromParent'),

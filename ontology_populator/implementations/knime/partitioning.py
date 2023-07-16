@@ -97,7 +97,7 @@ top_relative_train_test_split_component = Component(
     implementation=partitioning_implementation,
     overriden_parameters=[
         ("Size of First Partition", "Relative"),
-        ("Sampling Method", "Top"),
+        ("Sampling Method", "First"),
     ],
     exposed_parameters=[
         "Fraction (Relative size)",
@@ -130,7 +130,7 @@ top_absolute_train_test_split_component = Component(
     implementation=partitioning_implementation,
     overriden_parameters=[
         ("Size of First Partition", "Absolute"),
-        ("Sampling Method", "Top"),
+        ("Sampling Method", "First"),
     ],
     exposed_parameters=[
         "Count (Absolute size)",

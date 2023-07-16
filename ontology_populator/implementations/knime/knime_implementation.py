@@ -60,5 +60,5 @@ class KnimeBundle:
         self.version = version
 
 
-KnimeBaseBundle = KnimeBundle('KNIME Base Bundle', 'org.knime.base', 'KNIME AG, Zurich, Switzerland',
+KnimeBaseBundle = KnimeBundle('KNIME Base Nodes', 'org.knime.base', 'KNIME AG, Zurich, Switzerland',
                               "4.7.0.v202301251625")

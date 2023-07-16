@@ -8,10 +8,23 @@ missing_value_implementation = KnimeImplementation(
     parameters=[
         KnimeParameter('Integer', XSD.string, None, 'factoryID',
                        path='model/dataTypeSettings/org.knime.core.data.def.IntCell', condition='$$INTEGER_COLUMN$$'),
-        KnimeParameter('Float', XSD.string, None, 'factoryID',
-                       path='model/dataTypeSettings/org.knime.core.data.def.StringCell', condition='$$STRING_COLUMN$$'),
         KnimeParameter('String', XSD.string, None, 'factoryID',
+                       path='model/dataTypeSettings/org.knime.core.data.def.StringCell', condition='$$STRING_COLUMN$$'),
+        KnimeParameter('Float', XSD.string, None, 'factoryID',
                        path='model/dataTypeSettings/org.knime.core.data.def.DoubleCell', condition='$$FLOAT_COLUMN$$'),
+
+        KnimeParameter('Integer settings', XSD.string, None, '$$SKIP$$',
+                       path='model/dataTypeSettings/org.knime.core.data.def.IntCell/settings',
+                       condition='$$INTEGER_COLUMN$$'),
+        KnimeParameter('String settings', XSD.string, None, '$$SKIP$$',
+                       path='model/dataTypeSettings/org.knime.core.data.def.StringCell/settings',
+                       condition='$$STRING_COLUMN$$'),
+        KnimeParameter('Float settings', XSD.string, None, '$$SKIP$$',
+                       path='model/dataTypeSettings/org.knime.core.data.def.DoubleCell/settings',
+                       condition='$$FLOAT_COLUMN$$'),
+
+        KnimeParameter('Column settings', XSD.string, None, '$$SKIP$$', path='model/columnSettings'),
+
     ],
     input=[
         ds.TabularDataset,
