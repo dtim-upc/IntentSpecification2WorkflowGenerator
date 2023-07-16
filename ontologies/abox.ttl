@@ -71,6 +71,20 @@ dabox:TrainTestSplit a dtbox:Algorithm ;
 dabox:ZScoreScaling a dtbox:Algorithm ;
     dtbox:solves dabox:Normalization .
 
+dabox:component-csv_local_reader a dtbox:Component ;
+    rdfs:label "CSV Local reader" ;
+    dtbox:exposesParameter dabox:implementation-csv_reader-file ;
+    dtbox:hasImplementation dabox:implementation-csv_reader ;
+    dtbox:hasTransformation ( [ a dtbox:LoaderTransformation ;
+                dtbox:transformation_language "LOADER" ;
+                dtbox:transformation_query "Set dataset AS output " ] ) ;
+    dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-csv_reader-filesystem ;
+            dtbox:has_value "LOCAL" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-csv_reader-location_flag ;
+            dtbox:has_value true ] .
+
 dabox:component-random_absolute_train_test_split a dtbox:Component ;
     rdfs:label "Random Absolute Train-Test Split" ;
     dtbox:exposesParameter dabox:implementation-partitioning-count_\(absolute_size\),
@@ -175,11 +189,11 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Absolute" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Top" ] .
+            dtbox:has_value "Top" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ] .
 
 dabox:component-top_k_relative_train_test_split a dtbox:Component ;
     rdfs:label "Top K Relative Train-Test Split" ;
@@ -344,13 +358,13 @@ INSERT DATA {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-integer ;
-            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-float ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-string ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-missing_value-integer ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ] .
 
 dabox:component-hypertangent_svm_learner a dtbox:LearnerComponent ;
@@ -392,14 +406,14 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-missing_value-string ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
+        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-integer ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-float ;
-            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
-        [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-string ;
-            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ] .
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ] .
 
 dabox:component-min_max_scaling a dtbox:LearnerComponent ;
     rdfs:label "Min-Max Scaling" ;
@@ -534,41 +548,76 @@ INSERT DATA {
             dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
             dtbox:has_value 2 ] .
 
+dabox:implementation-csv_reader a dtbox:Implementation ;
+    rdfs:label "CSV Reader" ;
+    dtbox:engine "KNIME" ;
+    dtbox:hasParameter dabox:implementation-csv_reader-file,
+        dabox:implementation-csv_reader-filesystem,
+        dabox:implementation-csv_reader-location_flag ;
+    dtbox:implements dabox:DataLoading ;
+    dtbox:knime-factory "org.knime.base.node.io.filehandling.csv.reader.CSVTableReaderNodeFactory" ;
+    dtbox:knime-node-bundle-name "KNIME Base Bundle" ;
+    dtbox:knime-node-bundle-symbolic-name "org.knime.base" ;
+    dtbox:knime-node-bundle-vendor "KNIME AG, Zurich, Switzerland" ;
+    dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
+    dtbox:knime-node-name "CSV Reader" ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 0 ] .
+
 dabox:implementation-decision_tree_learner-number_of_records_to_store_for_view a dtbox:Parameter ;
     rdfs:label "Number of records to store for view" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue 10000 ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "numverRecordsToView" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor-change_prediction a dtbox:Parameter ;
     rdfs:label "Change Prediction" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 3 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "change prediction" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor-class_probability_suffix a dtbox:Parameter ;
     rdfs:label "Class Probability Suffix" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "" ;
-    dtbox:has_position 4 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 4 ;
+    dtbox:knime_key "class probability suffix" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor-prediction_column_name a dtbox:Parameter ;
     rdfs:label "Prediction column name" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "Prediction ($$LABEL$$)" ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "prediction column name" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor-show_distribution a dtbox:Parameter ;
     rdfs:label "Show distribution" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue true ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "ShowDistribution" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor-use_gain_ratio a dtbox:Parameter ;
     rdfs:label "Use Gain Ratio" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue 20000 ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "UseGainRatio" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-missing_value_\(applier\) a dtbox:ApplierImplementation ;
     rdfs:label "Missing Value (Applier)" ;
@@ -590,35 +639,59 @@ dabox:implementation-missing_value_\(applier\) a dtbox:ApplierImplementation ;
             dtbox:hasTag dshapes:NonNullTabularDatasetShape ;
             dtbox:has_position 0 ] .
 
+dabox:implementation-normalizer_\(pmml\)-columns_to_normalize a dtbox:Parameter ;
+    rdfs:label "Columns to normalize" ;
+    dtbox:hasDatatype rdf:List ;
+    dtbox:hasDefaultValue "$$NUMERIC_COLUMNS$$" ;
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "columns" ;
+    dtbox:knime_path "model" .
+
 dabox:implementation-partitioning-class_columns a dtbox:Parameter ;
     rdfs:label "Class columns" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 5 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 5 ;
+    dtbox:knime_key "class_column" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_predictor-add_probabilities a dtbox:Parameter ;
     rdfs:label "Add probabilities" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "add probabilities" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_predictor-change_prediction a dtbox:Parameter ;
     rdfs:label "Change prediction" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "change prediction" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_predictor-class_probability_suffix a dtbox:Parameter ;
     rdfs:label "Class probability suffix" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "" ;
-    dtbox:has_position 3 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "class probability suffix" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_predictor-prediction_column_name a dtbox:Parameter ;
     rdfs:label "Prediction column name" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "Prediction ($$LABEL$$)" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "prediction column name" ;
+    dtbox:knime_path "model" .
 
 dabox:DataManagement a dtbox:Problem .
 
@@ -648,6 +721,33 @@ WHERE {
     $output2 ?property ?value.
 }
 """ ] ) .
+
+dabox:implementation-csv_reader-file a dtbox:Parameter ;
+    rdfs:label "File" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "$$CSV_PATH$$" ;
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "path" ;
+    dtbox:knime_path "model/settings/fileSelection/path" .
+
+dabox:implementation-csv_reader-filesystem a dtbox:Parameter ;
+    rdfs:label "Filesystem" ;
+    dtbox:hasDatatype xsd:string ;
+    dtbox:hasDefaultValue "None" ;
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "file_system_type" ;
+    dtbox:knime_path "model/settings/fileSelection/path" .
+
+dabox:implementation-csv_reader-location_flag a dtbox:Parameter ;
+    rdfs:label "Location flag" ;
+    dtbox:hasDatatype xsd:boolean ;
+    dtbox:hasDefaultValue true ;
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "location_present" ;
+    dtbox:knime_path "model/settings/fileSelection/path" .
 
 dabox:implementation-decision_tree_learner a dtbox:LearnerImplementation ;
     rdfs:label "Decision Tree Learner" ;
@@ -687,91 +787,136 @@ dabox:implementation-decision_tree_learner-average_split_point a dtbox:Parameter
     rdfs:label "Average split point" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue true ;
-    dtbox:has_position 6 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 6 ;
+    dtbox:knime_key "splitAverage" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-binary_nominal_splits a dtbox:Parameter ;
     rdfs:label "Binary nominal splits" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 9 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 9 ;
+    dtbox:knime_key "binaryNominalSplit" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-class_column a dtbox:Parameter ;
     rdfs:label "Class column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "$$LABEL$$" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "classifyColumn" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-filter_invalid a dtbox:Parameter ;
     rdfs:label "Filter invalid" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 10 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 10 ;
+    dtbox:knime_key "FilterNominalValuesFromParent" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-force_root_split_columns a dtbox:Parameter ;
     rdfs:label "Force root split columns" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 14 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 14 ;
+    dtbox:knime_key "useFirstSplitColumn" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-max_number_of_nominal_values a dtbox:Parameter ;
     rdfs:label "Max number of nominal values" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue 10 ;
-    dtbox:has_position 8 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 8 ;
+    dtbox:knime_key "maxNumNominalValues" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-min_number_records_per_node a dtbox:Parameter ;
     rdfs:label "Min number records per node" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue 10 ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "minNumberRecordsPerNode" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-missing_value_strategy a dtbox:Parameter ;
     rdfs:label "Missing value strategy" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "lastPrediction" ;
-    dtbox:has_position 13 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 13 ;
+    dtbox:knime_key "CFG_MISSINGSTRATEGY" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-no_true_child_strategy a dtbox:Parameter ;
     rdfs:label "No true child strategy" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "returnNullPrediction" ;
-    dtbox:has_position 12 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 12 ;
+    dtbox:knime_key "CFG_NOTRUECHILD" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-number_of_threads a dtbox:Parameter ;
     rdfs:label "Number of threads" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 7 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 7 ;
+    dtbox:knime_key "numProcessors" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-pruning_method a dtbox:Parameter ;
     rdfs:label "Pruning method" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "No pruning" ;
-    dtbox:has_position 3 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "pruningMethod" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-quality_measure a dtbox:Parameter ;
     rdfs:label "Quality Measure" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "Gini index" ;
-    dtbox:has_position 5 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 5 ;
+    dtbox:knime_key "splitQualityMeasure" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-reduced_error_pruning a dtbox:Parameter ;
     rdfs:label "Reduced error pruning" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue true ;
-    dtbox:has_position 4 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 4 ;
+    dtbox:knime_key "enableReducedErrorPruning" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-root_split_column a dtbox:Parameter ;
     rdfs:label "Root split column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 15 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 15 ;
+    dtbox:knime_key "firstSplitColumn" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_learner-skip_nominal_columns_without_domain_information a dtbox:Parameter ;
     rdfs:label "Skip nominal columns without domain information" ;
     dtbox:hasDatatype xsd:boolean ;
     dtbox:hasDefaultValue false ;
-    dtbox:has_position 11 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 11 ;
+    dtbox:knime_key "skipColumnsWithoutDomain" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
     rdfs:label "Decision Tree Predictor" ;
@@ -826,13 +971,19 @@ dabox:implementation-normalizer_\(pmml\)-new_maximum a dtbox:Parameter ;
     rdfs:label "New maximum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "newmax" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-normalizer_\(pmml\)-new_minimum a dtbox:Parameter ;
     rdfs:label "New minimum" ;
     dtbox:hasDatatype xsd:float ;
     dtbox:hasDefaultValue 0e+00 ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "newmin" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-normalizer_apply_\(pmml\) a dtbox:ApplierImplementation ;
     rdfs:label "Normalizer Apply (PMML)" ;
@@ -846,11 +997,11 @@ dabox:implementation-normalizer_apply_\(pmml\) a dtbox:ApplierImplementation ;
     dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
     dtbox:knime-node-name "Normalizer Apply (PMML)" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizerModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
             dtbox:has_position 1 ],
@@ -862,37 +1013,55 @@ dabox:implementation-svm_learner-bias a dtbox:Parameter ;
     rdfs:label "Bias" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "kernel_param_Bias" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-delta a dtbox:Parameter ;
     rdfs:label "Delta" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 5e-01 ;
-    dtbox:has_position 6 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 6 ;
+    dtbox:knime_key "kernel_param_delta" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-gamma a dtbox:Parameter ;
     rdfs:label "Gamma" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 4 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 4 ;
+    dtbox:knime_key "kernel_param_Gamma" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-kappa a dtbox:Parameter ;
     rdfs:label "Kappa" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e-01 ;
-    dtbox:has_position 5 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 5 ;
+    dtbox:knime_key "kernel_param_kappa" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-power a dtbox:Parameter ;
     rdfs:label "Power" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 3 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "kernel_param_Power" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-sigma a dtbox:Parameter ;
     rdfs:label "Sigma" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e-01 ;
-    dtbox:has_position 7 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 7 ;
+    dtbox:knime_key "kernel_param_sigma" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_predictor a dtbox:ApplierImplementation ;
     rdfs:label "SVM Predictor" ;
@@ -910,13 +1079,13 @@ dabox:implementation-svm_predictor a dtbox:ApplierImplementation ;
     dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
     dtbox:knime-node-name "SVM Predictor" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:SVMModel ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
             dtbox:hasTag [ a sh:NodeShape,
                         dtbox:DataTag ;
                     sh:and ( dshapes:NormalizedTabularDatasetShape dshapes:NonNullTabularDatasetShape ) ] ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:SVMModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
@@ -1023,43 +1192,62 @@ dabox:implementation-missing_value-float a dtbox:Parameter ;
     rdfs:label "Float" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "$$STRING_COLUMN$$" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "factoryID" ;
+    dtbox:knime_path "model/dataTypeSettings/org.knime.core.data.def.StringCell" .
 
 dabox:implementation-missing_value-integer a dtbox:Parameter ;
     rdfs:label "Integer" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "$$INTEGER_COLUMN$$" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "factoryID" ;
+    dtbox:knime_path "model/dataTypeSettings/org.knime.core.data.def.IntCell" .
 
 dabox:implementation-missing_value-string a dtbox:Parameter ;
     rdfs:label "String" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "$$FLOAT_COLUMN$$" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "factoryID" ;
+    dtbox:knime_path "model/dataTypeSettings/org.knime.core.data.def.DoubleCell" .
 
 dabox:implementation-partitioning-count_\(absolute_size\) a dtbox:Parameter ;
     rdfs:label "Count (Absolute size)" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue 100 ;
-    dtbox:has_position 3 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 3 ;
+    dtbox:knime_key "count" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-partitioning-fraction_\(relative_size\) a dtbox:Parameter ;
     rdfs:label "Fraction (Relative size)" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 8e-01 ;
-    dtbox:has_position 2 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 2 ;
+    dtbox:knime_key "fraction" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-partitioning-random_seed a dtbox:Parameter ;
     rdfs:label "Random seed" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 4 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 4 ;
+    dtbox:knime_key "random_seed" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-normalizer_\(pmml\) a dtbox:LearnerImplementation ;
     rdfs:label "Normalizer (PMML)" ;
     dtbox:engine "KNIME" ;
     dtbox:hasApplier dabox:implementation-normalizer_apply_\(pmml\) ;
-    dtbox:hasParameter dabox:implementation-normalizer_\(pmml\)-new_maximum,
+    dtbox:hasParameter dabox:implementation-normalizer_\(pmml\)-columns_to_normalize,
+        dabox:implementation-normalizer_\(pmml\)-new_maximum,
         dabox:implementation-normalizer_\(pmml\)-new_minimum,
         dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
     dtbox:implements dabox:Normalization ;
@@ -1083,7 +1271,10 @@ dabox:implementation-normalizer_\(pmml\)-normalization_mode a dtbox:Parameter ;
     rdfs:label "Normalization mode" ;
     dtbox:hasDatatype xsd:int ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "mode" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-partitioning a dtbox:Implementation ;
     rdfs:label "Partitioning" ;
@@ -1144,19 +1335,28 @@ dabox:implementation-svm_learner-class_column a dtbox:Parameter ;
     rdfs:label "Class column" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "$$LABEL$$" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "classcol" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-kernel_type a dtbox:Parameter ;
     rdfs:label "Kernel type" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "None" ;
-    dtbox:has_position 8 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 8 ;
+    dtbox:knime_key "kernel_type" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-svm_learner-overlapping_penalty a dtbox:Parameter ;
     rdfs:label "Overlapping Penalty" ;
     dtbox:hasDatatype xsd:double ;
     dtbox:hasDefaultValue 1e+00 ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "c_parameter" ;
+    dtbox:knime_path "model" .
 
 ddata:Model rdfs:subClassOf dtbox:Data .
 
@@ -1170,13 +1370,19 @@ dabox:implementation-partitioning-sampling_method a dtbox:Parameter ;
     rdfs:label "Sampling Method" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "Random" ;
-    dtbox:has_position 1 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 1 ;
+    dtbox:knime_key "samplingMethod" ;
+    dtbox:knime_path "model" .
 
 dabox:implementation-partitioning-size_of_first_partition a dtbox:Parameter ;
     rdfs:label "Size of First Partition" ;
     dtbox:hasDatatype xsd:string ;
     dtbox:hasDefaultValue "Relative" ;
-    dtbox:has_position 0 .
+    dtbox:has_condition "" ;
+    dtbox:has_position 0 ;
+    dtbox:knime_key "method" ;
+    dtbox:knime_path "model" .
 
 dabox:MissingValueManagement a dtbox:Problem ;
     dtbox:subProblemOf dabox:DataCleaning .

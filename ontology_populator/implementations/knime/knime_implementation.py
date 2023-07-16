@@ -33,7 +33,7 @@ class KnimeImplementation(Implementation):
         g.add((self.uri_ref, dtbox.term('knime-node-bundle-version'), Literal(self.knime_bundle.version)))
 
         # Parameters
-        for parameter in self.parameters:
+        for parameter in self.parameters.values():
             if isinstance(parameter, KnimeParameter):
                 g.add((parameter.uri_ref, dtbox.knime_key, Literal(parameter.knime_key)))
                 g.add((parameter.uri_ref, dtbox.knime_path, Literal(parameter.path)))
@@ -44,8 +44,8 @@ class KnimeImplementation(Implementation):
 class KnimeParameter(Parameter):
 
     def __init__(self, label: str, datatype: URIRef, default_value: Union[URIRef, LiteralValue],
-                 knime_key: str, path: str = 'model') -> None:
-        super().__init__(label, datatype, default_value)
+                 knime_key: str, condition: str = '', path: str = 'model') -> None:
+        super().__init__(label, datatype, default_value, condition)
         self.knime_key = knime_key
         self.path = path
 

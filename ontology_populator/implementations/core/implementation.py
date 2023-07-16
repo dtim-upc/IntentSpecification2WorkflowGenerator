@@ -70,6 +70,7 @@ class Implementation:
             g.add((parameter.uri_ref, RDFS.label, Literal(parameter.label)))
             g.add((parameter.uri_ref, dtbox.hasDatatype, parameter.datatype))
             g.add((parameter.uri_ref, dtbox.has_position, Literal(i)))
+            g.add((parameter.uri_ref, dtbox.has_condition, Literal(parameter.condition)))
             if isinstance(parameter.default_value, URIRef):
                 g.add((parameter.uri_ref, dtbox.hasDefaultValue, parameter.default_value))
             else:

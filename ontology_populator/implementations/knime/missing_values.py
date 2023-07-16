@@ -7,11 +7,11 @@ missing_value_implementation = KnimeImplementation(
     algorithm=da.MissingValueManagement,
     parameters=[
         KnimeParameter('Integer', XSD.string, None, 'factoryID',
-                       path='model/dataTypeSettings/org.knime.core.data.def.IntCell'),
+                       path='model/dataTypeSettings/org.knime.core.data.def.IntCell', condition='$$INTEGER_COLUMN$$'),
         KnimeParameter('Float', XSD.string, None, 'factoryID',
-                       path='model/dataTypeSettings/org.knime.core.data.def.StringCell'),
+                       path='model/dataTypeSettings/org.knime.core.data.def.StringCell', condition='$$STRING_COLUMN$$'),
         KnimeParameter('String', XSD.string, None, 'factoryID',
-                       path='model/dataTypeSettings/org.knime.core.data.def.DoubleCell'),
+                       path='model/dataTypeSettings/org.knime.core.data.def.DoubleCell', condition='$$FLOAT_COLUMN$$'),
     ],
     input=[
         ds.TabularDataset,

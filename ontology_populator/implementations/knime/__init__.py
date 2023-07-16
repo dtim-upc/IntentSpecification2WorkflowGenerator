@@ -4,6 +4,7 @@ from .normalization import *
 from .decision_tree import *
 from .svm import *
 from .missing_values import *
+from .csv_reader import *
 
 implementations = [
     partitioning_implementation,
@@ -14,7 +15,8 @@ implementations = [
     svm_learner_implementation,
     svm_predictor_implementation,
     missing_value_implementation,
-    missing_value_applier_implementation
+    missing_value_applier_implementation,
+    csv_reader_implementation,
 ]
 
 components = [
@@ -35,4 +37,5 @@ components = [
     drop_rows_component,
     mean_imputation_component,
     missing_value_applier_component,
+    csv_reader_local_component,
 ]

@@ -53,9 +53,8 @@ dmop:quoteChar rdfs:subPropertyOf dmop:DatasetPhysicalProperty .
 
 dmop:skipInitialSpace rdfs:subPropertyOf dmop:DatasetPhysicalProperty .
 
-dtbox:LearnerComponent a owl:Class ;
-    rdfs:subClassOf dtbox:Component ;
-    owl:disjointWith dtbox:ApplierComponent .
+dtbox:LoaderTransformation a owl:Class ;
+    rdfs:subClassOf dtbox:Transformation .
 
 dtbox:applies a owl:ObjectProperty ;
     rdfs:domain dtbox:Workflow ;
@@ -73,6 +72,10 @@ dtbox:createdFor a owl:ObjectProperty ;
     rdfs:domain dtbox:Workflow ;
     rdfs:range dtbox:Intent .
 
+dtbox:exposesParameter a owl:ObjectProperty ;
+    rdfs:domain dtbox:Component ;
+    rdfs:range dtbox:Parameter .
+
 dtbox:followedBy a owl:ObjectProperty ;
     rdfs:domain dtbox:Step ;
     rdfs:range dtbox:Step .
@@ -82,8 +85,10 @@ dtbox:forParameter a owl:ObjectProperty ;
     rdfs:range dtbox:Parameter .
 
 dtbox:hasApplier a owl:ObjectProperty ;
-    rdfs:domain dtbox:LearnerImplementation ;
-    rdfs:range dtbox:ApplierImplementation .
+    rdfs:domain dtbox:LearnerComponent,
+        dtbox:LearnerImplementation ;
+    rdfs:range dtbox:ApplierComponent,
+        dtbox:ApplierImplementation .
 
 dtbox:hasData a owl:ObjectProperty ;
     rdfs:domain dtbox:IOSpec ;
@@ -104,8 +109,10 @@ dtbox:hasInput a owl:ObjectProperty ;
     rdfs:range dtbox:IO .
 
 dtbox:hasLearner a owl:ObjectProperty ;
-    rdfs:domain dtbox:ApplierImplementation ;
-    rdfs:range dtbox:LearnerImplementation .
+    rdfs:domain dtbox:ApplierComponent,
+        dtbox:ApplierImplementation ;
+    rdfs:range dtbox:LearnerComponent,
+        dtbox:LearnerImplementation .
 
 dtbox:hasOutput a owl:ObjectProperty ;
     rdfs:domain dtbox:Step ;
@@ -138,10 +145,6 @@ dtbox:has_position a owl:DatatypeProperty ;
 
 dtbox:has_value a rdf:Property ;
     rdfs:domain dtbox:ParameterValue .
-
-dtbox:implements a owl:ObjectProperty ;
-    rdfs:domain dtbox:Implementation ;
-    rdfs:range dtbox:Algorithm .
 
 dtbox:overData a owl:ObjectProperty ;
     rdfs:domain dtbox:Intent ;
@@ -188,9 +191,6 @@ dtbox:usingParameter a owl:ObjectProperty ;
     rdfs:domain dtbox:Intent ;
     rdfs:range [ owl:unionOf ( dtbox:Parameter dtbox:ParameterValue ) ] .
 
-dtbox:ApplierComponent a owl:Class ;
-    rdfs:subClassOf dtbox:Component .
-
 dtbox:DataTag a owl:Class .
 
 dtbox:CopyTransformation a owl:Class ;
@@ -198,34 +198,41 @@ dtbox:CopyTransformation a owl:Class ;
 
 dtbox:Data a owl:Class .
 
+dtbox:LearnerComponent a owl:Class ;
+    rdfs:subClassOf dtbox:Component ;
+    owl:disjointWith dtbox:ApplierComponent .
+
 dtbox:LearnerImplementation a owl:Class ;
     rdfs:subClassOf dtbox:Implementation ;
     owl:disjointWith dtbox:ApplierImplementation .
+
+dtbox:Algorithm a owl:Class .
+
+dtbox:ApplierComponent a owl:Class ;
+    rdfs:subClassOf dtbox:Component .
 
 dtbox:ApplierImplementation a owl:Class ;
     rdfs:subClassOf dtbox:Implementation .
 
 dtbox:IO a owl:Class .
 
-dtbox:Transformation a owl:Class .
-
-dtbox:Algorithm a owl:Class .
-
 dtbox:Intent a owl:Class .
 
 dtbox:Problem a owl:Class .
 
-dtbox:Component a owl:Class .
+dtbox:Transformation a owl:Class .
 
 dtbox:IOSpec a owl:Class .
 
 dtbox:ParameterValue a owl:Class .
 
+dtbox:Component a owl:Class .
+
 dtbox:Parameter a owl:Class .
+
+dtbox:Implementation a owl:Class .
 
 dtbox:Step a owl:Class .
 
 dtbox:Workflow a owl:Class .
-
-dtbox:Implementation a owl:Class .
 

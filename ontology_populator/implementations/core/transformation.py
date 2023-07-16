@@ -33,3 +33,10 @@ class CopyTransformation(Transformation):
             (dtbox.copy_input, Literal(self.input)),
             (dtbox.copy_output, Literal(self.output))
         ]
+
+
+class LoaderTransformation(Transformation):
+    owl_type = dtbox.LoaderTransformation
+
+    def __init__(self) -> None:
+        super().__init__(query=f'Set dataset AS output ', language='LOADER')

@@ -9,6 +9,7 @@ normalizer_implementation = KnimeImplementation(
         KnimeParameter('Normalization mode', XSD.int, None, 'mode'),
         KnimeParameter('New minimum', XSD.float, 0.0, 'newmin'),
         KnimeParameter('New maximum', XSD.float, 1.0, 'newmax'),
+        KnimeParameter('Columns to normalize', RDF.List, '$$NUMERIC_COLUMNS$$', 'columns')
     ],
     input=[
         ds.TabularDataset,
