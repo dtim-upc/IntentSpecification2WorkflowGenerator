@@ -25,11 +25,11 @@ def get_graph():
 def get_ontology_graph():
     graph = get_graph()
     ontologies = [
-        '../ontologies/tbox.ttl',
-        '../ontologies/abox.ttl',
-        '../ontologies/shapes_abox.ttl',
-        '../dataset_annotator/penguins_annotated.ttl',
-        '../dataset_annotator/titanic_annotated.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/ontologies/tbox.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/ontologies/abox.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/ontologies/shapes_abox.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/dataset_annotator/penguins_annotated.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/dataset_annotator/titanic_annotated.ttl',
     ]
     for o in ontologies:
         graph.parse(o, format="turtle")
