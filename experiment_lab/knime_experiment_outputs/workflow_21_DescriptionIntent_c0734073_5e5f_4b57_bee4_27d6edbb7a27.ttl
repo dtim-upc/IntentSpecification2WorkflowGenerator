@@ -1,0 +1,2139 @@
+@prefix dabox: <https://diviloper.dev/ontology/ABOX#> .
+@prefix ddata: <https://diviloper.dev/ontology/Data#> .
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
+@prefix dtbox: <https://diviloper.dev/ontology#> .
+@prefix dworkflow: <https://diviloper.dev/ontology/Workflow#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27 a dtbox:Workflow ;
+    dtbox:createdFor <https://diviloper.dev/intent#DescriptionIntent> ;
+    dtbox:hasStep dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_0_component_csv_local_reader,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor .
+
+<https://diviloper.dev/intent#DescriptionIntent> a dtbox:Intent .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_0_component_csv_local_reader a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-original_dataset ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-csv_reader-has_row_id ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-support_short_data_rows ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-fmi_enabledstatus ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-autodetect_buffer_size ;
+            dtbox:has_value 1048576 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-mountpoint ;
+            dtbox:has_value "LOCAL" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-files_name_filter_type ;
+            dtbox:has_value "WILDCARD" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-number_of_lines_to_skip ;
+            dtbox:has_value 1 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-filesystem ;
+            dtbox:has_value "LOCAL" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-maximum_number_of_columns ;
+            dtbox:has_value 8192 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-use_line_break_row_delimiter ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-quote_escape_char ;
+            dtbox:has_value "\"" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-connected_fs ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-quote_option ;
+            dtbox:has_value "REMOVE_QUOTES_AND_TRIM" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-limit_data_rows_scanned ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-spec_merge_mode_internals ;
+            dtbox:has_value "UNION" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-append_path_column_internals ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-skip_empty_data_rows ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-save_table_spec_config_internals ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-filter_files_extension ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-decimal_separator ;
+            dtbox:has_value "." ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-skip_data_rows ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-comment_char ;
+            dtbox:has_value "#" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-fail_on_differing_specs ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-include_hidden_files ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-files_name_case_sensitive ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-limit_memory_per_column ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-location_flag ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-charset ;
+            dtbox:has_value "None" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-include_special_files ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-filter_files_name ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-has_column_header ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-files_extension_case_sensitive ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-fmi_settingsmodelid ;
+            dtbox:has_value "SMID_FilterMode" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-replace_empty_quotes_with_missing ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-custom_url_timeout ;
+            dtbox:has_value 1000 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-thousands_separator ;
+            dtbox:has_value "%%00000" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-filter_folders_name ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-files_name_expression ;
+            dtbox:has_value "*" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-follow_links ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-spacename ;
+            dtbox:has_value "" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-column_delimiter ;
+            dtbox:has_value "," ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-include_hidden_folders ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-max_data_rows_scanned ;
+            dtbox:has_value 10000 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-spaceid ;
+            dtbox:has_value "" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-file ;
+            dtbox:has_value "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-files_extension_expression ;
+            dtbox:has_value "" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-include_subfolders ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-fsi_settingsmodelid ;
+            dtbox:has_value "SMID_ReaderFileChooser" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-convenience_fs_category ;
+            dtbox:has_value "LOCAL" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-relative_to ;
+            dtbox:has_value "knime.workflow" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-prepend_file_idx_to_row_id ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-filter_mode ;
+            dtbox:has_value "FILE" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-folders_name_case_sensitive ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-folders_name_filter_type ;
+            dtbox:has_value "WILDCARD" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-quote_char ;
+            dtbox:has_value "\"" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-fsi_enabledstatus ;
+            dtbox:has_value true ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-overwritten_by_variable ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-skip_lines ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-limit_data_rows ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-has_fs_port ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-number_of_rows_to_skip ;
+            dtbox:has_value 1 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-path_column_name_internals ;
+            dtbox:has_value "Path" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-max_rows ;
+            dtbox:has_value 50 ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-folders_name_expression ;
+            dtbox:has_value "*" ],
+        [ dtbox:forParameter dabox:implementation-csv_reader-row_delimiter ;
+            dtbox:has_value "%%00013%%00010" ] ;
+    dtbox:has_position 0 ;
+    dtbox:runs dabox:component-csv_local_reader .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier-output_0 a ddata:NormalizerModel ;
+    dabox:normalizationMode "ZScore" .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor-output_0 a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 10 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 4 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 11 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 5 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 3 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 2 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:hasName "Prediction (Survived)" ;
+            dmop:isLabel true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 6 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 7 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 8 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 9 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 0 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 100 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-original_dataset a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 0 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 4 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 11 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 9 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 5 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 8 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 7 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 3 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 2 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 10 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 6 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 891 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-original_dataset ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_train ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_test ;
+            dtbox:has_position 1 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ],
+        [ dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "First" ],
+        [ dtbox:forParameter dabox:implementation-partitioning-fraction_\(relative_size\) ;
+            dtbox:has_value 8e-01 ],
+        [ dtbox:forParameter dabox:implementation-partitioning-count_\(absolute_size\) ;
+            dtbox:has_value 100 ],
+        [ dtbox:forParameter dabox:implementation-partitioning-class_columns ;
+            dtbox:has_value "None" ],
+        [ dtbox:forParameter dabox:implementation-partitioning-random_seed ;
+            dtbox:has_value "None" ] ;
+    dtbox:has_position 1 ;
+    dtbox:runs dabox:component-top_k_absolute_train_test_split .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_test a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 4 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 3 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 0 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 9 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 6 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 7 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 2 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 10 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 8 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 5 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 11 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 100 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_train a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 7 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 0 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 9 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 11 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasPosition 5 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 3 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 8 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 6 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasPosition 2 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 4 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 10 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 791 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_train ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_1 ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-normalization_mode ;
+            dtbox:has_value 2 ],
+        [ dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-columns_to_normalize ;
+            dtbox:has_value "SibSp,Pclass,PassengerId,Parch,Fare,Age" ],
+        [ dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-new_maximum ;
+            dtbox:has_value 1e+00 ],
+        [ dtbox:forParameter dabox:implementation-normalizer_\(pmml\)-new_minimum ;
+            dtbox:has_value 0e+00 ] ;
+    dtbox:has_position 2 ;
+    dtbox:runs dabox:component-z_score_scaling .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_0 a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 8 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 5 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 7 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 6 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 2 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 0 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 10 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 11 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 3 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 4 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 9 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:isNormalized true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 791 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_1 a ddata:NormalizerModel ;
+    dabox:normalizationMode "ZScore" .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier-output_1 a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 5 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 11 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 10 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 7 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 9 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 3 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 4 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 8 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 2 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 6 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 0 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 100 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier,
+        dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_0 ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_1 ;
+            dtbox:has_position 1 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-missing_value-float ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-integer_settings ;
+            dtbox:has_value "None" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-string ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-float_settings ;
+            dtbox:has_value "None" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-column_settings ;
+            dtbox:has_value "None" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-integer ;
+            dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
+        [ dtbox:forParameter dabox:implementation-missing_value-string_settings ;
+            dtbox:has_value "None" ] ;
+    dtbox:has_position 4 ;
+    dtbox:runs dabox:component-mean_imputation .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_0 a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 11 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 0 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 8 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 4 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 10 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 3 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 7 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 5 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 2 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 6 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 9 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:isNormalized true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 791 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_1 a ddata:MissingValueModel .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier-output_0 a dmop:TabularDataset ;
+    dmop:DatasetInfoProperty 12,
+        891 ;
+    dmop:DatasetPhysicalProperty false,
+        true,
+        """\r
+""",
+        "\"",
+        ",",
+        "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv",
+        "cp1252",
+        "csv" ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                7,
+                "Parch" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Parch" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 7 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                8,
+                "Ticket" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Ticket" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 8 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                10,
+                "Cabin" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Cabin" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 10 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                1,
+                "Survived" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Survived" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasPosition 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature false ;
+            dmop:isLabel true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                9,
+                "Fare" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Fare" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 9 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                11,
+                "Embarked" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Embarked" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 11 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Float,
+                false,
+                true,
+                5,
+                "Age" ;
+            dmop:ColumnValueInfoProperty "True" ;
+            dmop:containsNulls "True" ;
+            dmop:hasColumnName "Age" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 5 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                2,
+                "Pclass" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Pclass" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 2 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                0,
+                "PassengerId" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "PassengerId" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 0 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                3,
+                "Name" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Name" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 3 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical false ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique true ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:String,
+                false,
+                true,
+                4,
+                "Sex" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "Sex" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:String ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 4 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ],
+        [ a dmop:Column ;
+            dmop:ColumnInfoProperty dmop:Integer,
+                false,
+                true,
+                6,
+                "SibSp" ;
+            dmop:ColumnValueInfoProperty "False" ;
+            dmop:containsNulls "False" ;
+            dmop:hasColumnName "SibSp" ;
+            dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+            dmop:hasMeanValue 0 ;
+            dmop:hasPosition 6 ;
+            dmop:hasStandardDeviation 1 ;
+            dmop:isCategorical true ;
+            dmop:isFeature true ;
+            dmop:isLabel false ;
+            dmop:isNormalized true ;
+            dmop:isUnique false ] ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 12 ;
+    dmop:numberOfRows 100 ;
+    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-svm_learner-overlapping_penalty ;
+            dtbox:has_value 1e+00 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-class_column ;
+            dtbox:has_value "Survived" ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-power ;
+            dtbox:has_value 1e+00 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-kernel_type ;
+            dtbox:has_value "HyperTangent" ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-bias ;
+            dtbox:has_value 1e+00 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-kappa ;
+            dtbox:has_value 1e-01 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-gamma ;
+            dtbox:has_value 1e+00 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-sigma ;
+            dtbox:has_value 1e-01 ],
+        [ dtbox:forParameter dabox:implementation-svm_learner-delta ;
+            dtbox:has_value 5e-01 ] ;
+    dtbox:has_position 6 ;
+    dtbox:runs dabox:component-hypertangent_svm_learner .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner-output_0 a ddata:SVMModel ;
+    dabox:setsClassColumnName "Survived" .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_2_component_z_score_scaling-output_1 ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_1_component_top_k_absolute_train_test_split-output_test ;
+            dtbox:has_position 1 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier-output_0 ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier-output_1 ;
+            dtbox:has_position 1 ] ;
+    dtbox:has_position 3 ;
+    dtbox:runs dabox:component-normalizer_applier .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier a dtbox:Step ;
+    dtbox:followedBy dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_4_component_mean_imputation-output_1 ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_3_component_normalizer_applier-output_1 ;
+            dtbox:has_position 1 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:has_position 5 ;
+    dtbox:runs dabox:component-missing_value_management_applier .
+
+dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor a dtbox:Step ;
+    dtbox:hasInput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_5_component_missing_value_management_applier-output_0 ;
+            dtbox:has_position 1 ],
+        [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_6_component_hypertangent_svm_learner-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasOutput [ a dtbox:IO ;
+            dtbox:hasData dworkflow:workflow_21_DescriptionIntent_c0734073_5e5f_4b57_bee4_27d6edbb7a27-step_7_component_svm_predictor-output_0 ;
+            dtbox:has_position 0 ] ;
+    dtbox:hasParameterValue [ dtbox:forParameter dabox:implementation-svm_predictor-class_probability_suffix ;
+            dtbox:has_value "" ],
+        [ dtbox:forParameter dabox:implementation-svm_predictor-add_probabilities ;
+            dtbox:has_value false ],
+        [ dtbox:forParameter dabox:implementation-svm_predictor-prediction_column_name ;
+            dtbox:has_value "Prediction (Survived)" ],
+        [ dtbox:forParameter dabox:implementation-svm_predictor-change_prediction ;
+            dtbox:has_value false ] ;
+    dtbox:has_position 7 ;
+    dtbox:runs dabox:component-svm_predictor .
+
