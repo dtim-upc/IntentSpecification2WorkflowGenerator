@@ -1,3 +1,4 @@
+import uuid
 from typing import List, Union
 
 from rdflib.collection import Collection
@@ -12,12 +13,14 @@ class Implementation:
     def __init__(self, name: str, algorithm: URIRef, parameters: List[Parameter],
                  input: List[Union[URIRef, List[URIRef]]] = None, output: List[URIRef] = None,
                  implementation_type=dtbox.Implementation,
-                 counterpart: 'Implementation' = None
+                 counterpart: 'Implementation' = None,
+                 namespace: Namespace = dabox,
                  ) -> None:
         super().__init__()
         self.name = name
         self.url_name = f'implementation-{self.name.replace(" ", "_").replace("-", "_").lower()}'
-        self.uri_ref = dabox[self.url_name]
+        self.namespace = namespace
+        self.uri_ref = self.namespace[self.url_name]
         self.algorithm = algorithm
         self.parameters = {param.label: param for param in parameters}
         self.input = input or []
@@ -31,7 +34,7 @@ class Implementation:
                 self.counterpart.counterpart = self
 
         for parameter in self.parameters.values():
-            parameter.uri_ref = dabox[f'{self.url_name}-{parameter.url_name}']
+            parameter.uri_ref = self.namespace[f'{self.url_name}-{parameter.url_name}']
 
     def add_to_graph(self, g: Graph):
         # Base triples
@@ -46,13 +49,16 @@ class Implementation:
             g.add((self.uri_ref, dtbox.specifiesInput, input_node))
             g.add((input_node, dtbox.has_position, Literal(i)))
             if isinstance(input_tag, list):
-                input_collection = BNode()
-                input_shape = BNode()
-                Collection(g, input_collection, input_tag)
-                g.add((input_shape, RDF.type, dtbox.DataTag))
-                g.add((input_shape, RDF.type, SH.NodeShape))
-                g.add((input_shape, SH['and'], input_collection))
-                g.add((input_node, dtbox.hasTag, input_shape))
+                if len(input_tag) > 1:
+                    input_collection = BNode()
+                    input_shape = self.namespace.term(f'Shape_{uuid.uuid4()}')
+                    Collection(g, input_collection, input_tag)
+                    g.add((input_shape, RDF.type, dtbox.DataTag))
+                    g.add((input_shape, RDF.type, SH.NodeShape))
+                    g.add((input_shape, SH['and'], input_collection))
+                    g.add((input_node, dtbox.hasTag, input_shape))
+                else:
+                    g.add((input_node, dtbox.hasTag, input_tag[0]))
             else:
                 g.add((input_node, dtbox.hasTag, input_tag))
 

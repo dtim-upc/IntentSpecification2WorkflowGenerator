@@ -4,7 +4,7 @@ from common import *
 
 missing_value_implementation = KnimeImplementation(
     name='Missing Value',
-    algorithm=da.MissingValueManagement,
+    algorithm=da.MissingValueRemoval,
     parameters=[
         KnimeParameter('Integer', XSD.string, None, 'factoryID',
                        path='model/dataTypeSettings/org.knime.core.data.def.IntCell', condition='$$INTEGER_COLUMN$$'),
@@ -105,7 +105,7 @@ INSERT DATA {
 
 missing_value_applier_implementation = KnimeImplementation(
     name='Missing Value (Applier)',
-    algorithm=da.MissingValueManagement,
+    algorithm=da.MissingValueRemoval,
     parameters=[
     ],
     input=[

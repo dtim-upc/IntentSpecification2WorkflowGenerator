@@ -1,5 +1,4 @@
 @prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
-@prefix dtbox: <https://diviloper.dev/ontology#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -53,186 +52,186 @@ dmop:quoteChar rdfs:subPropertyOf dmop:DatasetPhysicalProperty .
 
 dmop:skipInitialSpace rdfs:subPropertyOf dmop:DatasetPhysicalProperty .
 
-dtbox:LoaderTransformation a owl:Class ;
-    rdfs:subClassOf dtbox:Transformation .
+<https://diviloper.dev/ontology#LoaderTransformation> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Transformation> .
 
-dtbox:applies a owl:ObjectProperty ;
-    rdfs:domain dtbox:Workflow ;
-    rdfs:range dtbox:Algorithm .
+<https://diviloper.dev/ontology#applies> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Workflow> ;
+    rdfs:range <https://diviloper.dev/ontology#Algorithm> .
 
-dtbox:copy_input a owl:DatatypeProperty ;
-    rdfs:domain dtbox:CopyTransformation ;
+<https://diviloper.dev/ontology#copy_input> a owl:DatatypeProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#CopyTransformation> ;
     rdfs:range xsd:integer .
 
-dtbox:copy_output a owl:DatatypeProperty ;
-    rdfs:domain dtbox:CopyTransformation ;
+<https://diviloper.dev/ontology#copy_output> a owl:DatatypeProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#CopyTransformation> ;
     rdfs:range xsd:integer .
 
-dtbox:createdFor a owl:ObjectProperty ;
-    rdfs:domain dtbox:Workflow ;
-    rdfs:range dtbox:Intent .
+<https://diviloper.dev/ontology#createdFor> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Workflow> ;
+    rdfs:range <https://diviloper.dev/ontology#Intent> .
 
-dtbox:exposesParameter a owl:ObjectProperty ;
-    rdfs:domain dtbox:Component ;
-    rdfs:range dtbox:Parameter .
+<https://diviloper.dev/ontology#exposesParameter> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Component> ;
+    rdfs:range <https://diviloper.dev/ontology#Parameter> .
 
-dtbox:followedBy a owl:ObjectProperty ;
-    rdfs:domain dtbox:Step ;
-    rdfs:range dtbox:Step .
+<https://diviloper.dev/ontology#followedBy> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Step> ;
+    rdfs:range <https://diviloper.dev/ontology#Step> .
 
-dtbox:forParameter a owl:ObjectProperty ;
-    rdfs:domain dtbox:ParameterValue ;
-    rdfs:range dtbox:Parameter .
+<https://diviloper.dev/ontology#forParameter> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#ParameterValue> ;
+    rdfs:range <https://diviloper.dev/ontology#Parameter> .
 
-dtbox:hasApplier a owl:ObjectProperty ;
-    rdfs:domain dtbox:LearnerComponent,
-        dtbox:LearnerImplementation ;
-    rdfs:range dtbox:ApplierComponent,
-        dtbox:ApplierImplementation .
+<https://diviloper.dev/ontology#hasApplier> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#LearnerComponent>,
+        <https://diviloper.dev/ontology#LearnerImplementation> ;
+    rdfs:range <https://diviloper.dev/ontology#ApplierComponent>,
+        <https://diviloper.dev/ontology#ApplierImplementation> .
 
-dtbox:hasData a owl:ObjectProperty ;
-    rdfs:domain dtbox:IOSpec ;
-    rdfs:range dtbox:Data .
+<https://diviloper.dev/ontology#hasData> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#IOSpec> ;
+    rdfs:range <https://diviloper.dev/ontology#Data> .
 
-dtbox:hasDatatype a owl:ObjectProperty ;
-    rdfs:domain dtbox:Parameter .
+<https://diviloper.dev/ontology#hasDatatype> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Parameter> .
 
-dtbox:hasDefaultValue a owl:ObjectProperty ;
-    rdfs:domain dtbox:Parameter .
+<https://diviloper.dev/ontology#hasDefaultValue> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Parameter> .
 
-dtbox:hasImplementation a owl:ObjectProperty ;
-    rdfs:domain dtbox:Component ;
-    rdfs:range dtbox:Implementation .
+<https://diviloper.dev/ontology#hasImplementation> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Component> ;
+    rdfs:range <https://diviloper.dev/ontology#Implementation> .
 
-dtbox:hasInput a owl:ObjectProperty ;
-    rdfs:domain dtbox:Step ;
-    rdfs:range dtbox:IO .
+<https://diviloper.dev/ontology#hasInput> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Step> ;
+    rdfs:range <https://diviloper.dev/ontology#IO> .
 
-dtbox:hasLearner a owl:ObjectProperty ;
-    rdfs:domain dtbox:ApplierComponent,
-        dtbox:ApplierImplementation ;
-    rdfs:range dtbox:LearnerComponent,
-        dtbox:LearnerImplementation .
+<https://diviloper.dev/ontology#hasLearner> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#ApplierComponent>,
+        <https://diviloper.dev/ontology#ApplierImplementation> ;
+    rdfs:range <https://diviloper.dev/ontology#LearnerComponent>,
+        <https://diviloper.dev/ontology#LearnerImplementation> .
 
-dtbox:hasOutput a owl:ObjectProperty ;
-    rdfs:domain dtbox:Step ;
-    rdfs:range dtbox:IO .
+<https://diviloper.dev/ontology#hasOutput> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Step> ;
+    rdfs:range <https://diviloper.dev/ontology#IO> .
 
-dtbox:hasParameter a owl:ObjectProperty ;
-    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ],
-        dtbox:Implementation ;
-    rdfs:range dtbox:Parameter .
+<https://diviloper.dev/ontology#hasParameter> a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( <https://diviloper.dev/ontology#Workflow> <https://diviloper.dev/ontology#Implementation> ) ],
+        <https://diviloper.dev/ontology#Implementation> ;
+    rdfs:range <https://diviloper.dev/ontology#Parameter> .
 
-dtbox:hasParameterValue a owl:ObjectProperty ;
-    rdfs:domain dtbox:Step ;
-    rdfs:range dtbox:ParameterValue .
+<https://diviloper.dev/ontology#hasParameterValue> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Step> ;
+    rdfs:range <https://diviloper.dev/ontology#ParameterValue> .
 
-dtbox:hasStep a owl:ObjectProperty ;
-    rdfs:domain dtbox:Workflow ;
-    rdfs:range dtbox:Step .
+<https://diviloper.dev/ontology#hasStep> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Workflow> ;
+    rdfs:range <https://diviloper.dev/ontology#Step> .
 
-dtbox:hasTag a owl:ObjectProperty ;
-    rdfs:domain dtbox:IOSpec ;
-    rdfs:range dtbox:DataTag .
+<https://diviloper.dev/ontology#hasTag> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#IOSpec> ;
+    rdfs:range <https://diviloper.dev/ontology#DataTag> .
 
-dtbox:hasTransformation a owl:ObjectProperty ;
-    rdfs:domain dtbox:Component ;
+<https://diviloper.dev/ontology#hasTransformation> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Component> ;
     rdfs:range rdf:List .
 
-dtbox:has_position a owl:DatatypeProperty ;
-    rdfs:domain [ owl:unionOf ( dtbox:IO dtbox:IOSpec dtbox:Step dtbox:Parameter ) ] ;
+<https://diviloper.dev/ontology#has_position> a owl:DatatypeProperty ;
+    rdfs:domain [ owl:unionOf ( <https://diviloper.dev/ontology#IO> <https://diviloper.dev/ontology#IOSpec> <https://diviloper.dev/ontology#Step> <https://diviloper.dev/ontology#Parameter> ) ] ;
     rdfs:range xsd:integer .
 
-dtbox:has_value a rdf:Property ;
-    rdfs:domain dtbox:ParameterValue .
+<https://diviloper.dev/ontology#has_value> a rdf:Property ;
+    rdfs:domain <https://diviloper.dev/ontology#ParameterValue> .
 
-dtbox:overData a owl:ObjectProperty ;
-    rdfs:domain dtbox:Intent ;
-    rdfs:range dtbox:Data .
+<https://diviloper.dev/ontology#overData> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Intent> ;
+    rdfs:range <https://diviloper.dev/ontology#Data> .
 
-dtbox:overridesParameter a owl:ObjectProperty ;
-    rdfs:domain dtbox:Component ;
-    rdfs:range dtbox:ParameterValue .
+<https://diviloper.dev/ontology#overridesParameter> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Component> ;
+    rdfs:range <https://diviloper.dev/ontology#ParameterValue> .
 
-dtbox:runs a owl:ObjectProperty ;
-    rdfs:domain dtbox:Step ;
-    rdfs:range [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] .
+<https://diviloper.dev/ontology#runs> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Step> ;
+    rdfs:range [ owl:unionOf ( <https://diviloper.dev/ontology#Workflow> <https://diviloper.dev/ontology#Implementation> ) ] .
 
-dtbox:solves a owl:ObjectProperty ;
-    rdfs:domain [ owl:unionOf ( dtbox:Algorithm dtbox:Workflow ) ] ;
-    rdfs:range dtbox:Problem .
+<https://diviloper.dev/ontology#solves> a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( <https://diviloper.dev/ontology#Algorithm> <https://diviloper.dev/ontology#Workflow> ) ] ;
+    rdfs:range <https://diviloper.dev/ontology#Problem> .
 
-dtbox:specifiesInput a owl:ObjectProperty ;
-    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] ;
-    rdfs:range dtbox:IOSpec .
+<https://diviloper.dev/ontology#specifiesInput> a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( <https://diviloper.dev/ontology#Workflow> <https://diviloper.dev/ontology#Implementation> ) ] ;
+    rdfs:range <https://diviloper.dev/ontology#IOSpec> .
 
-dtbox:specifiesOutput a owl:ObjectProperty ;
-    rdfs:domain [ owl:unionOf ( dtbox:Workflow dtbox:Implementation ) ] ;
-    rdfs:range dtbox:IOSpec .
+<https://diviloper.dev/ontology#specifiesOutput> a owl:ObjectProperty ;
+    rdfs:domain [ owl:unionOf ( <https://diviloper.dev/ontology#Workflow> <https://diviloper.dev/ontology#Implementation> ) ] ;
+    rdfs:range <https://diviloper.dev/ontology#IOSpec> .
 
-dtbox:subProblemOf a owl:ObjectProperty,
+<https://diviloper.dev/ontology#subProblemOf> a owl:ObjectProperty,
         owl:TransitiveProperty ;
-    rdfs:domain dtbox:Problem ;
-    rdfs:range dtbox:Problem .
+    rdfs:domain <https://diviloper.dev/ontology#Problem> ;
+    rdfs:range <https://diviloper.dev/ontology#Problem> .
 
-dtbox:tackles a owl:ObjectProperty ;
-    rdfs:domain dtbox:Intent ;
-    rdfs:range [ owl:unionOf ( dtbox:Problem dtbox:Algorithm ) ] .
+<https://diviloper.dev/ontology#tackles> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Intent> ;
+    rdfs:range [ owl:unionOf ( <https://diviloper.dev/ontology#Problem> <https://diviloper.dev/ontology#Algorithm> ) ] .
 
-dtbox:transformation_language a owl:DatatypeProperty ;
-    rdfs:domain dtbox:Transformation ;
+<https://diviloper.dev/ontology#transformation_language> a owl:DatatypeProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Transformation> ;
     rdfs:range xsd:string .
 
-dtbox:transformation_query a owl:DatatypeProperty ;
-    rdfs:domain dtbox:Transformation ;
+<https://diviloper.dev/ontology#transformation_query> a owl:DatatypeProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Transformation> ;
     rdfs:range xsd:string .
 
-dtbox:usingParameter a owl:ObjectProperty ;
-    rdfs:domain dtbox:Intent ;
-    rdfs:range [ owl:unionOf ( dtbox:Parameter dtbox:ParameterValue ) ] .
+<https://diviloper.dev/ontology#usingParameter> a owl:ObjectProperty ;
+    rdfs:domain <https://diviloper.dev/ontology#Intent> ;
+    rdfs:range [ owl:unionOf ( <https://diviloper.dev/ontology#Parameter> <https://diviloper.dev/ontology#ParameterValue> ) ] .
 
-dtbox:DataTag a owl:Class .
+<https://diviloper.dev/ontology#DataTag> a owl:Class .
 
-dtbox:CopyTransformation a owl:Class ;
-    rdfs:subClassOf dtbox:Transformation .
+<https://diviloper.dev/ontology#CopyTransformation> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Transformation> .
 
-dtbox:Data a owl:Class .
+<https://diviloper.dev/ontology#Data> a owl:Class .
 
-dtbox:LearnerComponent a owl:Class ;
-    rdfs:subClassOf dtbox:Component ;
-    owl:disjointWith dtbox:ApplierComponent .
+<https://diviloper.dev/ontology#LearnerComponent> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Component> ;
+    owl:disjointWith <https://diviloper.dev/ontology#ApplierComponent> .
 
-dtbox:LearnerImplementation a owl:Class ;
-    rdfs:subClassOf dtbox:Implementation ;
-    owl:disjointWith dtbox:ApplierImplementation .
+<https://diviloper.dev/ontology#LearnerImplementation> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Implementation> ;
+    owl:disjointWith <https://diviloper.dev/ontology#ApplierImplementation> .
 
-dtbox:Algorithm a owl:Class .
+<https://diviloper.dev/ontology#Algorithm> a owl:Class .
 
-dtbox:ApplierComponent a owl:Class ;
-    rdfs:subClassOf dtbox:Component .
+<https://diviloper.dev/ontology#ApplierComponent> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Component> .
 
-dtbox:ApplierImplementation a owl:Class ;
-    rdfs:subClassOf dtbox:Implementation .
+<https://diviloper.dev/ontology#ApplierImplementation> a owl:Class ;
+    rdfs:subClassOf <https://diviloper.dev/ontology#Implementation> .
 
-dtbox:IO a owl:Class .
+<https://diviloper.dev/ontology#IO> a owl:Class .
 
-dtbox:Intent a owl:Class .
+<https://diviloper.dev/ontology#Intent> a owl:Class .
 
-dtbox:Problem a owl:Class .
+<https://diviloper.dev/ontology#Problem> a owl:Class .
 
-dtbox:Transformation a owl:Class .
+<https://diviloper.dev/ontology#Transformation> a owl:Class .
 
-dtbox:IOSpec a owl:Class .
+<https://diviloper.dev/ontology#IOSpec> a owl:Class .
 
-dtbox:ParameterValue a owl:Class .
+<https://diviloper.dev/ontology#ParameterValue> a owl:Class .
 
-dtbox:Component a owl:Class .
+<https://diviloper.dev/ontology#Component> a owl:Class .
 
-dtbox:Parameter a owl:Class .
+<https://diviloper.dev/ontology#Parameter> a owl:Class .
 
-dtbox:Implementation a owl:Class .
+<https://diviloper.dev/ontology#Implementation> a owl:Class .
 
-dtbox:Step a owl:Class .
+<https://diviloper.dev/ontology#Step> a owl:Class .
 
-dtbox:Workflow a owl:Class .
+<https://diviloper.dev/ontology#Workflow> a owl:Class .
 

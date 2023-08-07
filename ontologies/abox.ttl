@@ -45,9 +45,6 @@ dabox:MedianImputation a dtbox:Algorithm ;
 dabox:MinMaxScaling a dtbox:Algorithm ;
     dtbox:solves dabox:Normalization .
 
-dabox:MissingValueRemoval a dtbox:Algorithm ;
-    dtbox:solves dabox:MissingValueManagement .
-
 dabox:ModeImputation a dtbox:Algorithm ;
     dtbox:solves dabox:MissingValueManagement .
 
@@ -116,11 +113,11 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Absolute" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Random" ] .
+            dtbox:has_value "Random" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
+            dtbox:has_value "Absolute" ] .
 
 dabox:component-random_relative_train_test_split a dtbox:Component ;
     rdfs:label "Random Relative Train-Test Split" ;
@@ -153,11 +150,11 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "Random" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Relative" ] .
+            dtbox:has_value "Relative" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "Random" ] .
 
 dabox:component-top_k_absolute_train_test_split a dtbox:Component ;
     rdfs:label "Top K Absolute Train-Test Split" ;
@@ -225,11 +222,11 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
-            dtbox:has_value "First" ],
-        [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-partitioning-size_of_first_partition ;
-            dtbox:has_value "Relative" ] .
+            dtbox:has_value "Relative" ],
+        [ a dtbox:ParameterValue ;
+            dtbox:forParameter dabox:implementation-partitioning-sampling_method ;
+            dtbox:has_value "First" ] .
 
 ddata:DecisionTreeModel rdfs:subClassOf ddata:Model .
 
@@ -361,10 +358,10 @@ INSERT DATA {
             dtbox:forParameter dabox:implementation-missing_value-integer ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-float ;
+            dtbox:forParameter dabox:implementation-missing_value-string ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-string ;
+            dtbox:forParameter dabox:implementation-missing_value-float ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ] .
 
 dabox:component-hypertangent_svm_learner a dtbox:LearnerComponent ;
@@ -406,10 +403,10 @@ WHERE {
 }
 """ ] ) ;
     dtbox:overridesParameter [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-float ;
+            dtbox:forParameter dabox:implementation-missing_value-integer ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
-            dtbox:forParameter dabox:implementation-missing_value-integer ;
+            dtbox:forParameter dabox:implementation-missing_value-float ;
             dtbox:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a dtbox:ParameterValue ;
             dtbox:forParameter dabox:implementation-missing_value-string ;
@@ -1278,7 +1275,7 @@ dabox:implementation-missing_value-string_settings a dtbox:Parameter ;
 dabox:implementation-missing_value_\(applier\) a dtbox:ApplierImplementation ;
     rdfs:label "Missing Value (Applier)" ;
     dtbox:engine "KNIME" ;
-    dtbox:implements dabox:MissingValueManagement ;
+    dtbox:implements dabox:MissingValueRemoval ;
     dtbox:knime-factory "org.knime.base.node.preproc.pmml.missingval.apply.MissingValueApplyNodeFactory" ;
     dtbox:knime-node-bundle-name "KNIME Base Nodes" ;
     dtbox:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1286,11 +1283,11 @@ dabox:implementation-missing_value_\(applier\) a dtbox:ApplierImplementation ;
     dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
     dtbox:knime-node-name "Missing Value (Applier)" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:MissingValueModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NonNullTabularDatasetShape ;
             dtbox:has_position 0 ] .
@@ -1353,6 +1350,9 @@ dabox:DataManagement a dtbox:Problem .
 
 dabox:DecisionTree a dtbox:Algorithm ;
     dtbox:solves dabox:Classification .
+
+dabox:MissingValueRemoval a dtbox:Algorithm ;
+    dtbox:solves dabox:MissingValueManagement .
 
 dabox:SVM a dtbox:Algorithm ;
     dtbox:solves dabox:Classification .
@@ -1591,11 +1591,11 @@ dabox:implementation-decision_tree_predictor a dtbox:ApplierImplementation ;
     dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
     dtbox:knime-node-name "Decision Tree Predictor" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:DecisionTreeModel ;
-            dtbox:has_position 0 ] ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:TabularDataset ;
+            dtbox:has_position 1 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:LabeledTabularDatasetShape ;
             dtbox:has_position 0 ] .
@@ -1610,7 +1610,7 @@ dabox:implementation-missing_value a dtbox:LearnerImplementation ;
         dabox:implementation-missing_value-integer_settings,
         dabox:implementation-missing_value-string,
         dabox:implementation-missing_value-string_settings ;
-    dtbox:implements dabox:MissingValueManagement ;
+    dtbox:implements dabox:MissingValueRemoval ;
     dtbox:knime-factory "org.knime.base.node.preproc.pmml.missingval.compute.MissingValueHandlerNodeFactory" ;
     dtbox:knime-node-bundle-name "KNIME Base Nodes" ;
     dtbox:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1621,11 +1621,11 @@ dabox:implementation-missing_value a dtbox:LearnerImplementation ;
             dtbox:hasTag dshapes:TabularDataset ;
             dtbox:has_position 0 ] ;
     dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NonNullTabularDatasetShape ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:MissingValueModel ;
-            dtbox:has_position 1 ] .
+            dtbox:has_position 1 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NonNullTabularDatasetShape ;
+            dtbox:has_position 0 ] .
 
 dabox:implementation-normalizer_\(pmml\)-new_maximum a dtbox:Parameter ;
     rdfs:label "New maximum" ;
@@ -1657,17 +1657,17 @@ dabox:implementation-normalizer_apply_\(pmml\) a dtbox:ApplierImplementation ;
     dtbox:knime-node-bundle-version "4.7.0.v202301251625" ;
     dtbox:knime-node-name "Normalizer Apply (PMML)" ;
     dtbox:specifiesInput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizerModel ;
-            dtbox:has_position 0 ],
-        [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:TabularDataset ;
-            dtbox:has_position 1 ] ;
-    dtbox:specifiesOutput [ a dtbox:IOSpec ;
-            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
             dtbox:has_position 1 ],
         [ a dtbox:IOSpec ;
             dtbox:hasTag dshapes:NormalizerModel ;
-            dtbox:has_position 0 ] .
+            dtbox:has_position 0 ] ;
+    dtbox:specifiesOutput [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizerModel ;
+            dtbox:has_position 0 ],
+        [ a dtbox:IOSpec ;
+            dtbox:hasTag dshapes:NormalizedTabularDatasetShape ;
+            dtbox:has_position 1 ] .
 
 dabox:implementation-svm_learner-bias a dtbox:Parameter ;
     rdfs:label "Bias" ;
@@ -2023,6 +2023,9 @@ ddata:Model rdfs:subClassOf dtbox:Data .
 dabox:Classification a dtbox:Problem ;
     dtbox:subProblemOf dabox:Description .
 
+dabox:MissingValueManagement a dtbox:Problem ;
+    dtbox:subProblemOf dabox:DataCleaning .
+
 dabox:Normalization a dtbox:Problem ;
     dtbox:subProblemOf dabox:DataCleaning .
 
@@ -2043,7 +2046,4 @@ dabox:implementation-partitioning-size_of_first_partition a dtbox:Parameter ;
     dtbox:has_position 0 ;
     dtbox:knime_key "method" ;
     dtbox:knime_path "model" .
-
-dabox:MissingValueManagement a dtbox:Problem ;
-    dtbox:subProblemOf dabox:DataCleaning .
 

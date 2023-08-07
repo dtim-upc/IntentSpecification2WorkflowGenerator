@@ -15,11 +15,12 @@ class Component:
     def __init__(self, name: str, implementation: Implementation, transformations: List[Transformation],
                  exposed_parameters: List[str] = None,
                  overriden_parameters: List[Tuple[str, Any]] = None,
-                 counterpart: Union['Component', List['Component']] = None) -> None:
+                 counterpart: Union['Component', List['Component']] = None,
+                 namespace: Namespace = dabox) -> None:
         super().__init__()
         self.name = name
         self.url_name = f'component-{self.name.replace(" ", "_").replace("-", "_").lower()}'
-        self.uri_ref = dabox[self.url_name]
+        self.uri_ref = namespace[self.url_name]
 
         self.implementation = implementation
         self.transformations = transformations

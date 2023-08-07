@@ -10,6 +10,22 @@ dabox = da
 dd = Namespace('https://diviloper.dev/ontology/Data#')
 dw = Namespace('https://diviloper.dev/ontology/Workflow#')
 
+tb = Namespace('https://extremexp.eu/ontology/tbox#')
+do = tb
+dtbox = tb
+cb = Namespace('https://extremexp.eu/ontology/cbox#')
+ab = Namespace('https://extremexp.eu/ontology/abox#')
+dabox = ab
+
+
+def get_graph_xp():
+    g = Graph()
+    g.bind('tb', tb)
+    g.bind('cb', cb)
+    g.bind('ab', ab)
+    g.bind('dmop', dmop)
+    return g
+
 
 def get_graph():
     g = Graph()

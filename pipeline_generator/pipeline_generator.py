@@ -1,6 +1,7 @@
 import itertools
 import os
 import sys
+import time
 import uuid
 from datetime import datetime
 from typing import Tuple, Any, List, Dict, Optional, Union, Set, Type
@@ -45,7 +46,7 @@ def get_intent_params(intent_graph: Graph, intent_iri: URIRef) -> List[Dict[str,
     PREFIX dtbox: <{dtbox}>
     SELECT ?param ?value
     WHERE {{
-        {intent_iri.n3()} a dtbox:UserIntent .
+        {intent_iri.n3()} a dtbox:Intent .
         {intent_iri.n3()} dtbox:usingParameter ?param_value .
         ?param_value dtbox:forParameter ?param .
         ?param_value dtbox:has_value ?value .
@@ -66,7 +67,7 @@ def get_intent_info(intent_graph: Graph, intent_iri: Optional[URIRef] = None) ->
     return dataset, problem, params, intent_iri
 
 
-def get_implementation_input_specs(ontology: Graph, implementation: URIRef) -> List[URIRef]:
+def get_implementation_input_specs(ontology: Graph, implementation: URIRef) -> List[List[URIRef]]:
     input_spec_query = f"""
         PREFIX dtbox: <{dtbox}>
         SELECT ?shape
@@ -84,7 +85,7 @@ def get_implementation_input_specs(ontology: Graph, implementation: URIRef) -> L
     return shapes
 
 
-def get_implementation_output_specs(ontology: Graph, implementation: URIRef) -> List[URIRef]:
+def get_implementation_output_specs(ontology: Graph, implementation: URIRef) -> List[List[URIRef]]:
     output_spec_query = f"""
         PREFIX dtbox: <{dtbox}>
         SELECT ?shape
@@ -511,13 +512,13 @@ PREFIX dmop: <{dmop}>
             workflow_graph.update(query)
 
 
-def step_name(workflow_name: Graph, task_order: int, implementation: URIRef) -> str:
+def get_step_name(workflow_name: str, task_order: int, implementation: URIRef) -> str:
     return f'{workflow_name}-step_{task_order}_{implementation.fragment.replace("-", "_")}'
 
 
 def add_loader_step(ontology: Graph, workflow_graph: Graph, workflow: URIRef, dataset_node: URIRef) -> URIRef:
     loader_component = dabox.term('component-csv_local_reader')
-    loader_step_name = step_name(workflow.fragment, 0, loader_component)
+    loader_step_name = get_step_name(workflow.fragment, 0, loader_component)
     loader_parameters = get_component_parameters(ontology, loader_component)
     loader_parameters = perform_param_substitution(workflow_graph, loader_parameters, [dataset_node])
     return add_step(workflow_graph, workflow, loader_step_name, loader_component, loader_parameters, 0, None, None,
@@ -538,7 +539,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
     loader_step = add_loader_step(ontology, workflow_graph, workflow, dataset_node)
     task_order += 1
 
-    split_step_name = step_name(workflow_name, task_order, split_component)
+    split_step_name = get_step_name(workflow_name, task_order, split_component)
     split_outputs = [dw[f'{split_step_name}-output_train'], dw[f'{split_step_name}-output_test']]
     split_parameters = get_component_parameters(ontology, split_component)
     split_step = add_step(workflow_graph, workflow,
@@ -565,8 +566,8 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
         test_component = next(ontology.objects(train_component, dtbox.hasApplier, True), train_component)
         same = train_component == test_component
 
-        train_step_name = step_name(workflow_name, task_order, train_component)
-        test_step_name = step_name(workflow_name, task_order + 1, test_component)
+        train_step_name = get_step_name(workflow_name, task_order, train_component)
+        test_step_name = get_step_name(workflow_name, task_order + 1, test_component)
 
         train_input_specs = get_implementation_input_specs(ontology,
                                                            get_component_implementation(ontology, train_component))
@@ -647,10 +648,10 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
         tqdm.write(f'Intent params: {intent_params}')
         tqdm.write('-------------------------------------------------')
 
-    comps = get_potential_implementations(ontology, problem, [x['param'] for x in intent_params])
+    impls = get_potential_implementations(ontology, problem, [x['param'] for x in intent_params])
     components = [
         (c, impl, inputs)
-        for impl, inputs in comps
+        for impl, inputs in impls
         for c in get_implementation_components(ontology, impl)
     ]
     if log:
@@ -687,8 +688,8 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
 
         if log:
             tqdm.write(f'\tUnsatisfied shapes: ')
-            for shape, comps in available_transformations.items():
-                tqdm.write(f'\t\t{shape.fragment}: {[x.fragment for x in comps]}')
+            for shape, transformations in available_transformations.items():
+                tqdm.write(f'\t\t{shape.fragment}: {[x.fragment for x in transformations]}')
 
         transformation_combinations = list(
             enumerate(itertools.product(split_components, *available_transformations.values())))
@@ -738,8 +739,11 @@ def interactive():
         tqdm.write('Directory does not exist, creating it')
         os.makedirs(folder)
 
+    t = time.time()
     build_workflows(ontology, intent_graph, folder, log=True)
+    t = time.time() - t
 
+    print(f'Workflows built in {t} seconds')
     print(f'Workflows saved in {folder}')
 
 
