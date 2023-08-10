@@ -17,10 +17,10 @@ svm_learner_implementation = KnimeImplementation(
         KnimeParameter("Kernel type", XSD.string, None, 'kernel_type'),
     ],
     input=[
-        [ds.LabeledTabularDatasetShape, ds.NormalizedTabularDatasetShape, ds.NonNullTabularDatasetShape],
+        [cb.LabeledTabularDatasetShape, cb.NormalizedTabularDatasetShape, cb.NonNullTabularDatasetShape],
     ],
     output=[
-        ds.SVMModel,
+        cb.SVMModel,
     ],
     implementation_type=do.LearnerImplementation,
     knime_node_factory='org.knime.base.node.mine.svm.learner.SVMLearnerNodeFactory2',
@@ -111,11 +111,11 @@ svm_predictor_implementation = KnimeImplementation(
         KnimeParameter("Class probability suffix", XSD.string, "", 'class probability suffix'),
     ],
     input=[
-        ds.SVMModel,
-        [ds.NormalizedTabularDatasetShape, ds.NonNullTabularDatasetShape]
+        cb.SVMModel,
+        [cb.NormalizedTabularDatasetShape, cb.NonNullTabularDatasetShape]
     ],
     output=[
-        ds.LabeledTabularDatasetShape,
+        cb.LabeledTabularDatasetShape,
     ],
     implementation_type=do.ApplierImplementation,
     counterpart=svm_learner_implementation,

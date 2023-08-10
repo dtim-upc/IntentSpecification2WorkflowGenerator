@@ -12,11 +12,11 @@ normalizer_implementation = KnimeImplementation(
         KnimeParameter('Columns to normalize', RDF.List, '$$NUMERIC_COLUMNS$$', 'columns')
     ],
     input=[
-        ds.TabularDataset,
+        cb.TabularDataset,
     ],
     output=[
-        ds.NormalizedTabularDatasetShape,
-        ds.NormalizerModel,
+        cb.NormalizedTabularDatasetShape,
+        cb.NormalizerModel,
     ],
     implementation_type=do.LearnerImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLNodeFactory2',
@@ -165,12 +165,12 @@ normalizer_applier_implementation = KnimeImplementation(
     parameters=[
     ],
     input=[
-        ds.NormalizerModel,
-        ds.TabularDataset,
+        cb.NormalizerModel,
+        cb.TabularDataset,
     ],
     output=[
-        ds.NormalizerModel,
-        ds.NormalizedTabularDatasetShape,
+        cb.NormalizerModel,
+        cb.NormalizedTabularDatasetShape,
     ],
     implementation_type=do.ApplierImplementation,
     counterpart=normalizer_implementation,

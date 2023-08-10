@@ -14,7 +14,7 @@ class Implementation:
                  input: List[Union[URIRef, List[URIRef]]] = None, output: List[URIRef] = None,
                  implementation_type=dtbox.Implementation,
                  counterpart: 'Implementation' = None,
-                 namespace: Namespace = dabox,
+                 namespace: Namespace = cb,
                  ) -> None:
         super().__init__()
         self.name = name

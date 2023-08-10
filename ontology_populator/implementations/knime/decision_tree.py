@@ -25,10 +25,10 @@ decision_tree_learner_implementation = KnimeImplementation(
         KnimeParameter("Root split column", XSD.string, None, 'firstSplitColumn'),
     ],
     input=[
-        ds.LabeledTabularDatasetShape,
+        cb.LabeledTabularDatasetShape,
     ],
     output=[
-        ds.DecisionTreeModel,
+        cb.DecisionTreeModel,
     ],
     implementation_type=do.LearnerImplementation,
     knime_node_factory='org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3',
@@ -70,11 +70,11 @@ decision_tree_predictor_implementation = KnimeImplementation(
         KnimeParameter("Class Probability Suffix", XSD.string, "", "class probability suffix"),
     ],
     input=[
-        ds.DecisionTreeModel,
-        ds.TabularDataset,
+        cb.DecisionTreeModel,
+        cb.TabularDataset,
     ],
     output=[
-        ds.LabeledTabularDatasetShape,
+        cb.LabeledTabularDatasetShape,
     ],
     implementation_type=do.ApplierImplementation,
     counterpart=decision_tree_learner_implementation,

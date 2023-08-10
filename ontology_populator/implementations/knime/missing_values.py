@@ -27,11 +27,11 @@ missing_value_implementation = KnimeImplementation(
 
     ],
     input=[
-        ds.TabularDataset,
+        cb.TabularDataset,
     ],
     output=[
-        ds.NonNullTabularDatasetShape,
-        ds.MissingValueModel,
+        cb.NonNullTabularDatasetShape,
+        cb.MissingValueModel,
     ],
     implementation_type=do.LearnerImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.missingval.compute.MissingValueHandlerNodeFactory',
@@ -109,11 +109,11 @@ missing_value_applier_implementation = KnimeImplementation(
     parameters=[
     ],
     input=[
-        ds.MissingValueModel,
-        ds.TabularDataset,
+        cb.MissingValueModel,
+        cb.TabularDataset,
     ],
     output=[
-        ds.NonNullTabularDatasetShape,
+        cb.NonNullTabularDatasetShape,
     ],
     implementation_type=do.ApplierImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.missingval.apply.MissingValueApplyNodeFactory',

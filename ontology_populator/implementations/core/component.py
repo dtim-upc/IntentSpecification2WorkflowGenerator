@@ -16,7 +16,7 @@ class Component:
                  exposed_parameters: List[str] = None,
                  overriden_parameters: List[Tuple[str, Any]] = None,
                  counterpart: Union['Component', List['Component']] = None,
-                 namespace: Namespace = dabox) -> None:
+                 namespace: Namespace = cb) -> None:
         super().__init__()
         self.name = name
         self.url_name = f'component-{self.name.replace(" ", "_").replace("-", "_").lower()}'

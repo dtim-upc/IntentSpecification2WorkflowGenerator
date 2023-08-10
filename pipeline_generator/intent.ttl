@@ -1,0 +1,7 @@
+@prefix ab: <https://extremexp.eu/ontology/abox#> .
+@prefix tb: <https://extremexp.eu/ontology/tbox#> .
+
+ab:DescriptionIntent a tb:Intent ;
+    tb:overData ab:titanic.csv ;
+    tb:tackles ab:Description .
+

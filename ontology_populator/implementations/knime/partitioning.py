@@ -14,11 +14,11 @@ partitioning_implementation = KnimeImplementation(
         KnimeParameter("Class columns", XSD.string, None, "class_column"),
     ],
     input=[
-        ds.TabularDataset,
+        cb.TabularDataset,
     ],
     output=[
-        ds.TrainDataset,
-        ds.TestDataset,
+        cb.TrainDataset,
+        cb.TestDataset,
     ],
     knime_node_factory='org.knime.base.node.preproc.partition.PartitionNodeFactory',
     knime_bundle=KnimeBaseBundle,

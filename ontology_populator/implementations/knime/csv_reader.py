@@ -131,7 +131,7 @@ csv_reader_implementation = KnimeImplementation(
     ],
     input=[],
     output=[
-        ds.TabularDataset,
+        cb.TabularDataset,
     ],
     knime_node_factory='org.knime.base.node.io.filehandling.csv.reader.CSVTableReaderNodeFactory',
     knime_bundle=KnimeBaseBundle,
