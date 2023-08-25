@@ -10,7 +10,7 @@ class KnimeImplementation(Implementation):
     def __init__(self, name: str, algorithm: URIRef, parameters: List[Parameter],
                  knime_node_factory: str, knime_bundle: 'KnimeBundle',
                  input: List[Union[URIRef, List[URIRef]]] = None, output: List[URIRef] = None,
-                 implementation_type=dtbox.Implementation, counterpart: 'Implementation' = None,
+                 implementation_type=tb.Implementation, counterpart: 'Implementation' = None,
                  ) -> None:
         super().__init__(name, algorithm, parameters, input, output, implementation_type, counterpart)
         self.knime_node_factory = knime_node_factory
@@ -19,24 +19,24 @@ class KnimeImplementation(Implementation):
     def add_to_graph(self, g: Graph):
         super().add_to_graph(g)
 
-        g.add((self.uri_ref, dtbox.engine, Literal('KNIME')))
+        g.add((self.uri_ref, tb.engine, Literal('KNIME')))
 
-        g.add((self.uri_ref, dtbox.term('knime-node-name'), Literal(self.name)))
+        g.add((self.uri_ref, tb.term('knime-node-name'), Literal(self.name)))
 
         # Node Factory
-        g.add((self.uri_ref, dtbox.term('knime-factory'), Literal(self.knime_node_factory)))
+        g.add((self.uri_ref, tb.term('knime-factory'), Literal(self.knime_node_factory)))
 
         # Bundle
-        g.add((self.uri_ref, dtbox.term('knime-node-bundle-name'), Literal(self.knime_bundle.name)))
-        g.add((self.uri_ref, dtbox.term('knime-node-bundle-symbolic-name'), Literal(self.knime_bundle.symbolic_name)))
-        g.add((self.uri_ref, dtbox.term('knime-node-bundle-vendor'), Literal(self.knime_bundle.vendor)))
-        g.add((self.uri_ref, dtbox.term('knime-node-bundle-version'), Literal(self.knime_bundle.version)))
+        g.add((self.uri_ref, tb.term('knime-node-bundle-name'), Literal(self.knime_bundle.name)))
+        g.add((self.uri_ref, tb.term('knime-node-bundle-symbolic-name'), Literal(self.knime_bundle.symbolic_name)))
+        g.add((self.uri_ref, tb.term('knime-node-bundle-vendor'), Literal(self.knime_bundle.vendor)))
+        g.add((self.uri_ref, tb.term('knime-node-bundle-version'), Literal(self.knime_bundle.version)))
 
         # Parameters
         for parameter in self.parameters.values():
             if isinstance(parameter, KnimeParameter):
-                g.add((parameter.uri_ref, dtbox.knime_key, Literal(parameter.knime_key)))
-                g.add((parameter.uri_ref, dtbox.knime_path, Literal(parameter.path)))
+                g.add((parameter.uri_ref, tb.knime_key, Literal(parameter.knime_key)))
+                g.add((parameter.uri_ref, tb.knime_path, Literal(parameter.path)))
 
         return self.uri_ref
 

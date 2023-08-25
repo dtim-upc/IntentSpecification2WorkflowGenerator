@@ -2,20 +2,9 @@ from owlrl import DeductiveClosure, OWLRL_Semantics
 from rdflib import *
 
 dmop = Namespace('http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#')
-do = Namespace('https://diviloper.dev/ontology#')
-dtbox = do
-ds = Namespace('https://diviloper.dev/ontology/shapes#')
-da = Namespace('https://diviloper.dev/ontology/ABOX#')
-dabox = da
-dd = Namespace('https://diviloper.dev/ontology/Data#')
-dw = Namespace('https://diviloper.dev/ontology/Workflow#')
-
 tb = Namespace('https://extremexp.eu/ontology/tbox#')
-do = tb
-dtbox = tb
 cb = Namespace('https://extremexp.eu/ontology/cbox#')
 ab = Namespace('https://extremexp.eu/ontology/abox#')
-dabox = ab
 
 
 def get_graph_xp():
@@ -39,11 +28,11 @@ def get_graph():
 
 
 def get_ontology_graph():
-    graph = get_graph()
+    graph = get_graph_xp()
     ontologies = [
         'C:/Users/Victor/Development/thesis/Ontology/ontologies/tbox.ttl',
+        'C:/Users/Victor/Development/thesis/Ontology/ontologies/cbox.ttl',
         'C:/Users/Victor/Development/thesis/Ontology/ontologies/abox.ttl',
-        'C:/Users/Victor/Development/thesis/Ontology/ontologies/shapes_abox.ttl',
         'C:/Users/Victor/Development/thesis/Ontology/dataset_annotator/penguins_annotated.ttl',
         'C:/Users/Victor/Development/thesis/Ontology/dataset_annotator/titanic_annotated.ttl',
     ]

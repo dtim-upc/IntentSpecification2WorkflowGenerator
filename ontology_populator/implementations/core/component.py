@@ -27,13 +27,13 @@ class Component:
         self.overriden_parameters = overriden_parameters if overriden_parameters is not None else []
         self.exposed_parameters = exposed_parameters if exposed_parameters is not None else []
         self.component_type = {
-            dtbox.LearnerImplementation: dtbox.LearnerComponent,
-            dtbox.ApplierImplementation: dtbox.ApplierComponent,
-            dtbox.Implementation: dtbox.Component,
+            tb.LearnerImplementation: tb.LearnerComponent,
+            tb.ApplierImplementation: tb.ApplierComponent,
+            tb.Implementation: tb.Component,
         }[self.implementation.implementation_type]
         self.counterpart = counterpart
         if self.counterpart is not None:
-            assert self.component_type in {dtbox.LearnerComponent, dtbox.ApplierComponent}
+            assert self.component_type in {tb.LearnerComponent, tb.ApplierComponent}
             if isinstance(self.counterpart, list):
                 for c in self.counterpart:
                     if c.counterpart is None:
@@ -46,7 +46,7 @@ class Component:
         # Base triples
         g.add((self.uri_ref, RDF.type, self.component_type))
         g.add((self.uri_ref, RDFS.label, Literal(self.name)))
-        g.add((self.uri_ref, dtbox.hasImplementation, self.implementation.uri_ref))
+        g.add((self.uri_ref, tb.hasImplementation, self.implementation.uri_ref))
 
         # Transformation triples
         transformation_nodes = []
@@ -57,19 +57,19 @@ class Component:
                 g.add((trans_ref, p, o))
             transformation_nodes.append(trans_ref)
 
-        g.add((self.uri_ref, dtbox.hasTransformation, Collection(g, uri=BNode(), seq=transformation_nodes).uri))
+        g.add((self.uri_ref, tb.hasTransformation, Collection(g, uri=BNode(), seq=transformation_nodes).uri))
 
         # Overriden parameters triples
         for parameter, value in self.overriden_parameters:
             parameter_value = BNode()
-            g.add((parameter_value, RDF.type, dtbox.ParameterValue))
-            g.add((parameter_value, dtbox.forParameter, self.implementation.parameters[parameter].uri_ref))
-            g.add((parameter_value, dtbox.has_value, Literal(value)))
-            g.add((self.uri_ref, dtbox.overridesParameter, parameter_value))
+            g.add((parameter_value, RDF.type, tb.ParameterValue))
+            g.add((parameter_value, tb.forParameter, self.implementation.parameters[parameter].uri_ref))
+            g.add((parameter_value, tb.has_value, Literal(value)))
+            g.add((self.uri_ref, tb.overridesParameter, parameter_value))
 
         # Exposed parameters triples
         for parameter in self.exposed_parameters:
-            g.add((self.uri_ref, dtbox.exposesParameter, self.implementation.parameters[parameter].uri_ref))
+            g.add((self.uri_ref, tb.exposesParameter, self.implementation.parameters[parameter].uri_ref))
 
         return self.uri_ref
 
@@ -79,7 +79,7 @@ class Component:
         counters = self.counterpart if isinstance(self.counterpart, list) else [self.counterpart]
         for c in counters:
             counterpart_query = f'''
-            PREFIX dtbox: <{dtbox}>
+            PREFIX tb: <{tb}>
             SELECT ?self ?counterpart
             WHERE {{
                 ?self a <{self.component_type}> ;
@@ -91,6 +91,6 @@ class Component:
             result = g.query(counterpart_query).bindings
             assert len(result) == 1
             self_node = result[0][Variable('self')]
-            relationship = dtbox.hasApplier if self.component_type == dtbox.LearnerComponent else dtbox.hasLearner
+            relationship = tb.hasApplier if self.component_type == tb.LearnerComponent else tb.hasLearner
             counterpart_node = result[0][Variable('counterpart')]
             g.add((self_node, relationship, counterpart_node))

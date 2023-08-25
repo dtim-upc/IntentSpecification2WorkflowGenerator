@@ -12,7 +12,7 @@ LiteralValue = Union[str, bool, int, float, None]
 class Implementation:
     def __init__(self, name: str, algorithm: URIRef, parameters: List[Parameter],
                  input: List[Union[URIRef, List[URIRef]]] = None, output: List[URIRef] = None,
-                 implementation_type=dtbox.Implementation,
+                 implementation_type=tb.Implementation,
                  counterpart: 'Implementation' = None,
                  namespace: Namespace = cb,
                  ) -> None:
@@ -25,11 +25,11 @@ class Implementation:
         self.parameters = {param.label: param for param in parameters}
         self.input = input or []
         self.output = output or []
-        assert implementation_type in {dtbox.Implementation, dtbox.LearnerImplementation, dtbox.ApplierImplementation}
+        assert implementation_type in {tb.Implementation, tb.LearnerImplementation, tb.ApplierImplementation}
         self.implementation_type = implementation_type
         self.counterpart = counterpart
         if self.counterpart is not None:
-            assert implementation_type in {dtbox.LearnerImplementation, dtbox.ApplierImplementation}
+            assert implementation_type in {tb.LearnerImplementation, tb.ApplierImplementation}
             if self.counterpart.counterpart is None:
                 self.counterpart.counterpart = self
 
@@ -40,48 +40,48 @@ class Implementation:
         # Base triples
         g.add((self.uri_ref, RDF.type, self.implementation_type))
         g.add((self.uri_ref, RDFS.label, Literal(self.name)))
-        g.add((self.uri_ref, dtbox.implements, self.algorithm))
+        g.add((self.uri_ref, tb.implements, self.algorithm))
 
         # Input triples
         for i, input_tag in enumerate(self.input):
             input_node = BNode()
-            g.add((input_node, RDF.type, dtbox.IOSpec))
-            g.add((self.uri_ref, dtbox.specifiesInput, input_node))
-            g.add((input_node, dtbox.has_position, Literal(i)))
+            g.add((input_node, RDF.type, tb.IOSpec))
+            g.add((self.uri_ref, tb.specifiesInput, input_node))
+            g.add((input_node, tb.has_position, Literal(i)))
             if isinstance(input_tag, list):
                 if len(input_tag) > 1:
                     input_collection = BNode()
                     input_shape = self.namespace.term(f'Shape_{uuid.uuid4()}')
                     Collection(g, input_collection, input_tag)
-                    g.add((input_shape, RDF.type, dtbox.DataTag))
+                    g.add((input_shape, RDF.type, tb.DataTag))
                     g.add((input_shape, RDF.type, SH.NodeShape))
                     g.add((input_shape, SH['and'], input_collection))
-                    g.add((input_node, dtbox.hasTag, input_shape))
+                    g.add((input_node, tb.hasTag, input_shape))
                 else:
-                    g.add((input_node, dtbox.hasTag, input_tag[0]))
+                    g.add((input_node, tb.hasTag, input_tag[0]))
             else:
-                g.add((input_node, dtbox.hasTag, input_tag))
+                g.add((input_node, tb.hasTag, input_tag))
 
         # Output triples
         for i, output_tag in enumerate(self.output):
             output_node = BNode()
-            g.add((output_node, RDF.type, dtbox.IOSpec))
-            g.add((self.uri_ref, dtbox.specifiesOutput, output_node))
-            g.add((output_node, dtbox.hasTag, output_tag))
-            g.add((output_node, dtbox.has_position, Literal(i)))
+            g.add((output_node, RDF.type, tb.IOSpec))
+            g.add((self.uri_ref, tb.specifiesOutput, output_node))
+            g.add((output_node, tb.hasTag, output_tag))
+            g.add((output_node, tb.has_position, Literal(i)))
 
         # Parameter triples
         for i, parameter in enumerate(self.parameters.values()):
-            g.add((parameter.uri_ref, RDF.type, dtbox.Parameter))
+            g.add((parameter.uri_ref, RDF.type, tb.Parameter))
             g.add((parameter.uri_ref, RDFS.label, Literal(parameter.label)))
-            g.add((parameter.uri_ref, dtbox.hasDatatype, parameter.datatype))
-            g.add((parameter.uri_ref, dtbox.has_position, Literal(i)))
-            g.add((parameter.uri_ref, dtbox.has_condition, Literal(parameter.condition)))
+            g.add((parameter.uri_ref, tb.hasDatatype, parameter.datatype))
+            g.add((parameter.uri_ref, tb.has_position, Literal(i)))
+            g.add((parameter.uri_ref, tb.has_condition, Literal(parameter.condition)))
             if isinstance(parameter.default_value, URIRef):
-                g.add((parameter.uri_ref, dtbox.hasDefaultValue, parameter.default_value))
+                g.add((parameter.uri_ref, tb.hasDefaultValue, parameter.default_value))
             else:
-                g.add((parameter.uri_ref, dtbox.hasDefaultValue, Literal(parameter.default_value)))
-            g.add((self.uri_ref, dtbox.hasParameter, parameter.uri_ref))
+                g.add((parameter.uri_ref, tb.hasDefaultValue, Literal(parameter.default_value)))
+            g.add((self.uri_ref, tb.hasParameter, parameter.uri_ref))
 
         return self.uri_ref
 
@@ -89,7 +89,7 @@ class Implementation:
         if self.counterpart is None:
             return
         counterpart_query = f'''
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?self ?counterpart
         WHERE {{
             ?self a <{self.implementation_type}> ;
@@ -101,6 +101,6 @@ class Implementation:
         result = g.query(counterpart_query).bindings
         assert len(result) == 1
         self_node = result[0][Variable('self')]
-        relationship = dtbox.hasApplier if self.implementation_type == dtbox.LearnerImplementation else dtbox.hasLearner
+        relationship = tb.hasApplier if self.implementation_type == tb.LearnerImplementation else tb.hasLearner
         counterpart_node = result[0][Variable('counterpart')]
         g.add((self_node, relationship, counterpart_node))

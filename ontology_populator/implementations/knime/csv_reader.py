@@ -5,7 +5,7 @@ from ontology_populator.implementations.knime import KnimeImplementation, KnimeP
 
 csv_reader_implementation = KnimeImplementation(
     name='CSV Reader',
-    algorithm=da.DataLoading,
+    algorithm=cb.DataLoading,
     parameters=[
         KnimeParameter("File", XSD.string, '$$CSV_PATH$$', 'path', path='model/settings/file_selection/path'),
         KnimeParameter("Location flag", XSD.boolean, True, 'location_present',

@@ -4,7 +4,7 @@ from ontology_populator.implementations.knime import KnimeImplementation, KnimeP
 
 decision_tree_learner_implementation = KnimeImplementation(
     name='Decision Tree Learner',
-    algorithm=da.DecisionTree,
+    algorithm=cb.DecisionTree,
     parameters=[
         KnimeParameter("Class column", XSD.string, '$$LABEL$$', 'classifyColumn'),
         KnimeParameter("Number of records to store for view", XSD.int, 10000, 'numverRecordsToView'),
@@ -30,7 +30,7 @@ decision_tree_learner_implementation = KnimeImplementation(
     output=[
         cb.DecisionTreeModel,
     ],
-    implementation_type=do.LearnerImplementation,
+    implementation_type=tb.LearnerImplementation,
     knime_node_factory='org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3',
     knime_bundle=KnimeBaseBundle,
 )
@@ -61,7 +61,7 @@ decision_tree_learner_component = Component(
 
 decision_tree_predictor_implementation = KnimeImplementation(
     name='Decision Tree Predictor',
-    algorithm=da.DecisionTree,
+    algorithm=cb.DecisionTree,
     parameters=[
         KnimeParameter("Use Gain Ratio", XSD.int, 20000, "UseGainRatio"),
         KnimeParameter("Show distribution", XSD.boolean, True, "ShowDistribution"),
@@ -76,7 +76,7 @@ decision_tree_predictor_implementation = KnimeImplementation(
     output=[
         cb.LabeledTabularDatasetShape,
     ],
-    implementation_type=do.ApplierImplementation,
+    implementation_type=tb.ApplierImplementation,
     counterpart=decision_tree_learner_implementation,
     knime_node_factory='org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory',
     knime_bundle=KnimeBaseBundle,

@@ -7,7 +7,7 @@ from common import *
 
 
 def add_dataset_info(dataset_path, graph):
-    dataset_node = dd.term(path.basename(dataset_path))
+    dataset_node = ab.term(path.basename(dataset_path))
     graph.add((dataset_node, RDF.type, dmop.TabularDataset))
     dataset = pd.read_csv(dataset_path)
     add_csv_info(dataset_path, dataset, dataset_node, graph)
@@ -77,7 +77,7 @@ def add_column_info(dataset_path, dataset, dataset_node, graph):
     print('\tAdding column info:')
     for col in dataset.columns:
         col_type = dataset[col].dtype.name
-        col_node = dd.term(f'{path.basename(dataset_path)}/{col}')
+        col_node = ab.term(f'{path.basename(dataset_path)}/{col}')
         graph.add((dataset_node, dmop.hasColumn, col_node))
         graph.add((col_node, RDF.type, dmop.Column))
         graph.add((col_node, dmop.hasColumnName, Literal(col)))
@@ -108,7 +108,7 @@ def read_graph(urls):
 def main(source_path, output_path):
     print(f'Annotating {source_path}')
 
-    dataset_graph = get_graph()
+    dataset_graph = get_graph_xp()
 
     add_dataset_info(source_path, dataset_graph)
     dataset_graph.serialize(destination=output_path)

@@ -4,7 +4,7 @@ from common import *
 
 missing_value_implementation = KnimeImplementation(
     name='Missing Value',
-    algorithm=da.MissingValueRemoval,
+    algorithm=cb.MissingValueRemoval,
     parameters=[
         KnimeParameter('Integer', XSD.string, None, 'factoryID',
                        path='model/dataTypeSettings/org.knime.core.data.def.IntCell', condition='$$INTEGER_COLUMN$$'),
@@ -33,7 +33,7 @@ missing_value_implementation = KnimeImplementation(
         cb.NonNullTabularDatasetShape,
         cb.MissingValueModel,
     ],
-    implementation_type=do.LearnerImplementation,
+    implementation_type=tb.LearnerImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.missingval.compute.MissingValueHandlerNodeFactory',
     knime_bundle=KnimeBaseBundle,
 )
@@ -96,7 +96,7 @@ WHERE {
         Transformation(
             query='''
 INSERT DATA {
-    $output2 da:removesProperty dmop:numberOfRows.
+    $output2 cb:removesProperty dmop:numberOfRows.
 }
 ''',
         ),
@@ -105,7 +105,7 @@ INSERT DATA {
 
 missing_value_applier_implementation = KnimeImplementation(
     name='Missing Value (Applier)',
-    algorithm=da.MissingValueRemoval,
+    algorithm=cb.MissingValueRemoval,
     parameters=[
     ],
     input=[
@@ -115,7 +115,7 @@ missing_value_applier_implementation = KnimeImplementation(
     output=[
         cb.NonNullTabularDatasetShape,
     ],
-    implementation_type=do.ApplierImplementation,
+    implementation_type=tb.ApplierImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.missingval.apply.MissingValueApplyNodeFactory',
     knime_bundle=KnimeBaseBundle,
 )
@@ -133,7 +133,7 @@ DELETE {
     $output2 ?property ?value.
 }
 WHERE {
-    $output1 da:removesProperty ?property.
+    $output1 cb:removesProperty ?property.
     $output2 ?property ?value.
 }
 ''',

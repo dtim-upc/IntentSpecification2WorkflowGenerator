@@ -4,3 +4,6 @@ ontology_populator/sources/sources
 
 workflows/
 workflows_knime/
+
+fake_cboxes/
+results/

@@ -4,7 +4,7 @@ from ..core import *
 
 svm_learner_implementation = KnimeImplementation(
     name='SVM Learner',
-    algorithm=da.SVM,
+    algorithm=cb.SVM,
     parameters=[
         KnimeParameter("Class column", XSD.string, "$$LABEL$$", 'classcol'),
         KnimeParameter("Overlapping Penalty", XSD.double, 1.0, 'c_parameter'),
@@ -22,7 +22,7 @@ svm_learner_implementation = KnimeImplementation(
     output=[
         cb.SVMModel,
     ],
-    implementation_type=do.LearnerImplementation,
+    implementation_type=tb.LearnerImplementation,
     knime_node_factory='org.knime.base.node.mine.svm.learner.SVMLearnerNodeFactory2',
     knime_bundle=KnimeBaseBundle,
 )
@@ -103,7 +103,7 @@ INSERT DATA{
 
 svm_predictor_implementation = KnimeImplementation(
     name='SVM Predictor',
-    algorithm=da.SVM,
+    algorithm=cb.SVM,
     parameters=[
         KnimeParameter("Prediction column name", XSD.string, "Prediction ($$LABEL$$)", 'prediction column name'),
         KnimeParameter("Change prediction", XSD.boolean, False, 'change prediction'),
@@ -117,7 +117,7 @@ svm_predictor_implementation = KnimeImplementation(
     output=[
         cb.LabeledTabularDatasetShape,
     ],
-    implementation_type=do.ApplierImplementation,
+    implementation_type=tb.ApplierImplementation,
     counterpart=svm_learner_implementation,
     knime_node_factory='org.knime.base.node.mine.svm.predictor2.SVMPredictorNodeFactory',
     knime_bundle=KnimeBaseBundle,

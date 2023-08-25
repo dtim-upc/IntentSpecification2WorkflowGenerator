@@ -16,10 +16,10 @@ from common import *
 
 def get_intent_iri(intent_graph: Graph) -> URIRef:
     intent_iri_query = f"""
-PREFIX dtbox: <{dtbox}>
+PREFIX tb: <{tb}>
 SELECT ?iri
 WHERE {{
-    ?iri a dtbox:Intent .
+    ?iri a tb:Intent .
 }}
 """
     result = intent_graph.query(intent_iri_query).bindings
@@ -29,12 +29,12 @@ WHERE {{
 
 def get_intent_dataset_problem(intent_graph: Graph, intent_iri: URIRef) -> Tuple[URIRef, URIRef]:
     dataset_problem_query = f"""
-    PREFIX dtbox: <{dtbox}>
+    PREFIX tb: <{tb}>
     SELECT ?dataset ?problem
     WHERE {{
-        {intent_iri.n3()} a dtbox:Intent .
-        {intent_iri.n3()} dtbox:overData ?dataset .
-        {intent_iri.n3()} dtbox:tackles ?problem .
+        {intent_iri.n3()} a tb:Intent .
+        {intent_iri.n3()} tb:overData ?dataset .
+        {intent_iri.n3()} tb:tackles ?problem .
     }}
 """
     result = intent_graph.query(dataset_problem_query).bindings[0]
@@ -43,13 +43,13 @@ def get_intent_dataset_problem(intent_graph: Graph, intent_iri: URIRef) -> Tuple
 
 def get_intent_params(intent_graph: Graph, intent_iri: URIRef) -> List[Dict[str, Any]]:
     params_query = f"""
-    PREFIX dtbox: <{dtbox}>
+    PREFIX tb: <{tb}>
     SELECT ?param ?value
     WHERE {{
-        {intent_iri.n3()} a dtbox:Intent .
-        {intent_iri.n3()} dtbox:usingParameter ?param_value .
-        ?param_value dtbox:forParameter ?param .
-        ?param_value dtbox:has_value ?value .
+        {intent_iri.n3()} a tb:Intent .
+        {intent_iri.n3()} tb:usingParameter ?param_value .
+        ?param_value tb:forParameter ?param .
+        ?param_value tb:has_value ?value .
     }}
 """
     result = intent_graph.query(params_query).bindings
@@ -69,14 +69,14 @@ def get_intent_info(intent_graph: Graph, intent_iri: Optional[URIRef] = None) ->
 
 def get_implementation_input_specs(ontology: Graph, implementation: URIRef) -> List[List[URIRef]]:
     input_spec_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?shape
         WHERE {{
-            {implementation.n3()} dtbox:specifiesInput ?spec .
-            ?spec a dtbox:IOSpec ;
-                dtbox:hasTag ?shape ;
-                dtbox:has_position ?position .
-            ?shape a dtbox:DataTag .
+            {implementation.n3()} tb:specifiesInput ?spec .
+            ?spec a tb:IOSpec ;
+                tb:hasTag ?shape ;
+                tb:has_position ?position .
+            ?shape a tb:DataTag .
         }}
         ORDER BY ?position
     """
@@ -87,14 +87,14 @@ def get_implementation_input_specs(ontology: Graph, implementation: URIRef) -> L
 
 def get_implementation_output_specs(ontology: Graph, implementation: URIRef) -> List[List[URIRef]]:
     output_spec_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?shape
         WHERE {{
-            {implementation.n3()} dtbox:specifiesOutput ?spec .
-            ?spec a dtbox:IOSpec ;
-                dtbox:hasTag ?shape ;
-                dtbox:has_position ?position .
-            ?shape a dtbox:DataTag .
+            {implementation.n3()} tb:specifiesOutput ?spec .
+            ?spec a tb:IOSpec ;
+                tb:hasTag ?shape ;
+                tb:has_position ?position .
+            ?shape a tb:DataTag .
         }}
         ORDER BY ?position
     """
@@ -126,20 +126,20 @@ def get_potential_implementations(ontology: Graph, problem_iri: URIRef, intent_p
         List[Tuple[URIRef, List[URIRef]]]:
     if intent_parameters is None:
         intent_parameters = []
-    intent_params_match = [f'dtbox:hasParameter {param.n3()} ;' for param in intent_parameters]
+    intent_params_match = [f'tb:hasParameter {param.n3()} ;' for param in intent_parameters]
     intent_params_separator = '            \n'
     main_implementation_query = f"""
-    PREFIX dtbox: <{dtbox}>
+    PREFIX tb: <{tb}>
     SELECT ?implementation
     WHERE {{
-        ?implementation a dtbox:Implementation ;
+        ?implementation a tb:Implementation ;
             {intent_params_separator.join(intent_params_match)}
-            dtbox:implements ?algorithm .
-        ?algorithm a dtbox:Algorithm ;
-            dtbox:solves ?problem .
-        ?problem dtbox:subProblemOf* {problem_iri.n3()} .
+            tb:implements ?algorithm .
+        ?algorithm a tb:Algorithm ;
+            tb:solves ?problem .
+        ?problem tb:subProblemOf* {problem_iri.n3()} .
         FILTER NOT EXISTS{{
-            ?implementation a dtbox:ApplierImplementation.
+            ?implementation a tb:ApplierImplementation.
         }}
     }}
 """
@@ -155,10 +155,10 @@ def get_potential_implementations(ontology: Graph, problem_iri: URIRef, intent_p
 
 def get_component_implementation(ontology: Graph, component: URIRef) -> URIRef:
     implementation_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?implementation
         WHERE {{
-            {component.n3()} dtbox:hasImplementation ?implementation .
+            {component.n3()} tb:hasImplementation ?implementation .
         }}
     """
     result = ontology.query(implementation_query).bindings
@@ -168,10 +168,10 @@ def get_component_implementation(ontology: Graph, component: URIRef) -> URIRef:
 
 def get_implementation_components(ontology: Graph, implementation: URIRef) -> List[URIRef]:
     components_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?component
         WHERE {{
-            ?component dtbox:hasImplementation {implementation.n3()} .
+            ?component tb:hasImplementation {implementation.n3()} .
         }}
     """
     results = ontology.query(components_query).bindings
@@ -180,12 +180,12 @@ def get_implementation_components(ontology: Graph, implementation: URIRef) -> Li
 
 def find_components_to_satisfy_shape(ontology: Graph, shape: URIRef, only_learners: bool = True) -> List[URIRef]:
     implementation_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?implementation
         WHERE {{
-            ?implementation a dtbox:{'Learner' if only_learners else ''}Implementation ;
-                dtbox:specifiesOutput ?spec .
-            ?spec dtbox:hasTag {shape.n3()} .
+            ?implementation a tb:{'Learner' if only_learners else ''}Implementation ;
+                tb:specifiesOutput ?spec .
+            ?spec tb:hasTag {shape.n3()} .
         }}
     """
     result = ontology.query(implementation_query).bindings
@@ -209,7 +209,7 @@ def identify_model_io(ontology: Graph, ios: List[List[URIRef]], return_index: bo
             query = f'''
     PREFIX sh: <{SH}>
     PREFIX rdfs: <{RDFS}>
-    PREFIX ddata: <{dd}>
+    PREFIX cb: <{cb}>
 
     ASK {{
       {{
@@ -244,13 +244,13 @@ def get_shape_target_class(ontology: Graph, shape: URIRef) -> URIRef:
 def get_implementation_parameters(ontology: Graph, implementation: URIRef) -> Dict[
     URIRef, Tuple[Literal, Literal, Literal]]:
     parameters_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?parameter ?value ?order ?condition
         WHERE {{
-            <{implementation}> dtbox:hasParameter ?parameter .
-            ?parameter dtbox:hasDefaultValue ?value ;
-                       dtbox:has_condition ?condition ;
-                       dtbox:has_position ?order .
+            <{implementation}> tb:hasParameter ?parameter .
+            ?parameter tb:hasDefaultValue ?value ;
+                       tb:has_condition ?condition ;
+                       tb:has_position ?order .
         }}
         ORDER BY ?order
     """
@@ -261,14 +261,14 @@ def get_implementation_parameters(ontology: Graph, implementation: URIRef) -> Di
 def get_component_overriden_parameters(ontology: Graph, component: URIRef) -> Dict[
     URIRef, Tuple[Literal, Literal, Literal]]:
     parameters_query = f"""
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?parameter ?value ?position ?condition
         WHERE {{
-            {component.n3()} dtbox:overridesParameter ?parameterValue .
-            ?parameterValue dtbox:forParameter ?parameter ;
-                       dtbox:has_value ?value .
-            ?parameter dtbox:has_position ?position ;
-                       dtbox:has_condition ?condition .
+            {component.n3()} tb:overridesParameter ?parameterValue .
+            ?parameterValue tb:forParameter ?parameter ;
+                       tb:has_value ?value .
+            ?parameter tb:has_position ?position ;
+                       tb:has_condition ?condition .
         }}
     """
     results = ontology.query(parameters_query).bindings
@@ -320,43 +320,43 @@ def add_step(graph: Graph, pipeline: URIRef, task_name: str, component: URIRef,
         outputs = []
     if inputs is None:
         inputs = []
-    step = dw.term(task_name)
-    graph.add((pipeline, dtbox.hasStep, step))
-    graph.add((step, RDF.type, dtbox.Step))
-    graph.add((step, dtbox.runs, component))
-    graph.add((step, dtbox.has_position, Literal(order)))
+    step = ab.term(task_name)
+    graph.add((pipeline, tb.hasStep, step))
+    graph.add((step, RDF.type, tb.Step))
+    graph.add((step, tb.runs, component))
+    graph.add((step, tb.has_position, Literal(order)))
     for i, input in enumerate(inputs):
         in_node = BNode()
-        graph.add((in_node, RDF.type, dtbox.IO))
-        graph.add((in_node, dtbox.hasData, input))
-        graph.add((in_node, dtbox.has_position, Literal(i)))
-        graph.add((step, dtbox.hasInput, in_node))
+        graph.add((in_node, RDF.type, tb.IO))
+        graph.add((in_node, tb.hasData, input))
+        graph.add((in_node, tb.has_position, Literal(i)))
+        graph.add((step, tb.hasInput, in_node))
     for o, output in enumerate(outputs):
         out_node = BNode()
-        graph.add((out_node, RDF.type, dtbox.IO))
-        graph.add((out_node, dtbox.hasData, output))
-        graph.add((out_node, dtbox.has_position, Literal(o)))
-        graph.add((step, dtbox.hasOutput, out_node))
+        graph.add((out_node, RDF.type, tb.IO))
+        graph.add((out_node, tb.hasData, output))
+        graph.add((out_node, tb.has_position, Literal(o)))
+        graph.add((step, tb.hasOutput, out_node))
     for parameter, (value, _, _) in parameters.items():
         param_value = BNode()
-        graph.add((step, dtbox.hasParameterValue, param_value))
-        graph.add((param_value, dtbox.forParameter, parameter))
-        graph.add((param_value, dtbox.has_value, value))
+        graph.add((step, tb.hasParameterValue, param_value))
+        graph.add((param_value, tb.forParameter, parameter))
+        graph.add((param_value, tb.has_value, value))
     if previous_task:
         if isinstance(previous_task, list):
             for previous in previous_task:
-                graph.add((previous, dtbox.followedBy, step))
+                graph.add((previous, tb.followedBy, step))
         else:
-            graph.add((previous_task, dtbox.followedBy, step))
+            graph.add((previous_task, tb.followedBy, step))
     return step
 
 
 def get_component_transformations(ontology: Graph, component: URIRef) -> List[URIRef]:
     transformation_query = f'''
-        PREFIX dtbox: <{dtbox}>
+        PREFIX tb: <{tb}>
         SELECT ?transformation
         WHERE {{
-            <{component}> dtbox:hasTransformation ?transformation_list .
+            <{component}> tb:hasTransformation ?transformation_list .
             ?transformation_list rdf:rest*/rdf:first ?transformation .
         }}
     '''
@@ -473,8 +473,8 @@ def annotate_ios_with_specs(ontology: Graph, workflow_graph: Graph, io: List[URI
 
 def run_copy_transformation(ontology: Graph, workflow_graph: Graph, transformation: URIRef, inputs: List[URIRef],
                             outputs: List[URIRef]):
-    input_index = next(ontology.objects(transformation, dtbox.copy_input, True)).value
-    output_index = next(ontology.objects(transformation, dtbox.copy_output, True)).value
+    input_index = next(ontology.objects(transformation, tb.copy_input, True)).value
+    output_index = next(ontology.objects(transformation, tb.copy_output, True)).value
     input = inputs[input_index - 1]
     output = outputs[output_index - 1]
 
@@ -486,13 +486,13 @@ def run_component_transformation(ontology: Graph, workflow_graph: Graph, compone
                                  parameters: Dict[URIRef, Tuple[Literal, Literal, Literal]]) -> None:
     transformations = get_component_transformations(ontology, component)
     for transformation in transformations:
-        if (transformation, RDF.type, dtbox.CopyTransformation) in ontology:
+        if (transformation, RDF.type, tb.CopyTransformation) in ontology:
             run_copy_transformation(ontology, workflow_graph, transformation, inputs, outputs)
-        elif (transformation, RDF.type, dtbox.LoaderTransformation) in ontology:
+        elif (transformation, RDF.type, tb.LoaderTransformation) in ontology:
             continue
         else:
             prefixes = f'''
-PREFIX dtbox: <{dtbox}>
+PREFIX tb: <{tb}>
 PREFIX da: <{da}>
 PREFIX rdf: <{RDF}>
 PREFIX rdfs: <{RDFS}>
@@ -500,7 +500,7 @@ PREFIX owl: <{OWL}>
 PREFIX xsd: <{XSD}>
 PREFIX dmop: <{dmop}>
 '''
-            query = next(ontology.objects(transformation, dtbox.transformation_query, True)).value
+            query = next(ontology.objects(transformation, tb.transformation_query, True)).value
             query = prefixes + query
             for i in range(len(inputs)):
                 query = query.replace(f'$input{i + 1}', f'{inputs[i].n3()}')
@@ -517,7 +517,7 @@ def get_step_name(workflow_name: str, task_order: int, implementation: URIRef) -
 
 
 def add_loader_step(ontology: Graph, workflow_graph: Graph, workflow: URIRef, dataset_node: URIRef) -> URIRef:
-    loader_component = dabox.term('component-csv_local_reader')
+    loader_component = ab.term('component-csv_local_reader')
     loader_step_name = get_step_name(workflow.fragment, 0, loader_component)
     loader_parameters = get_component_parameters(ontology, loader_component)
     loader_parameters = perform_param_substitution(workflow_graph, loader_parameters, [dataset_node])
@@ -527,12 +527,12 @@ def add_loader_step(ontology: Graph, workflow_graph: Graph, workflow: URIRef, da
 
 def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIRef, main_component: URIRef,
                               split_component: URIRef, transformations: List[URIRef]) -> Tuple[Graph, URIRef]:
-    workflow_graph = get_graph()
-    workflow = dw.term(workflow_name)
-    workflow_graph.add((workflow, RDF.type, dtbox.Workflow))
+    workflow_graph = get_graph_xp()
+    workflow = ab.term(workflow_name)
+    workflow_graph.add((workflow, RDF.type, tb.Workflow))
     task_order = 0
 
-    dataset_node = dw.term(f'{workflow_name}-original_dataset')
+    dataset_node = ab.term(f'{workflow_name}-original_dataset')
 
     copy_subgraph(ontology, dataset, workflow_graph, dataset_node)
 
@@ -540,7 +540,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
     task_order += 1
 
     split_step_name = get_step_name(workflow_name, task_order, split_component)
-    split_outputs = [dw[f'{split_step_name}-output_train'], dw[f'{split_step_name}-output_test']]
+    split_outputs = [ab[f'{split_step_name}-output_train'], ab[f'{split_step_name}-output_test']]
     split_parameters = get_component_parameters(ontology, split_component)
     split_step = add_step(workflow_graph, workflow,
                           split_step_name,
@@ -563,7 +563,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
     previous_test_step = split_step
 
     for train_component in [*transformations, main_component]:
-        test_component = next(ontology.objects(train_component, dtbox.hasApplier, True), train_component)
+        test_component = next(ontology.objects(train_component, tb.hasApplier, True), train_component)
         same = train_component == test_component
 
         train_step_name = get_step_name(workflow_name, task_order, train_component)
@@ -572,7 +572,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
         train_input_specs = get_implementation_input_specs(ontology,
                                                            get_component_implementation(ontology, train_component))
         train_input_data_index = identify_data_io(ontology, train_input_specs, return_index=True)
-        train_transformation_inputs = [dw[f'{train_step_name}-input_{i}'] for i in range(len(train_input_specs))]
+        train_transformation_inputs = [ab[f'{train_step_name}-input_{i}'] for i in range(len(train_input_specs))]
         train_transformation_inputs[train_input_data_index] = train_dataset_node
         annotate_ios_with_specs(ontology, workflow_graph, train_transformation_inputs,
                                 train_input_specs)
@@ -581,7 +581,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
                                                              get_component_implementation(ontology, train_component))
         train_output_model_index = identify_model_io(ontology, train_output_specs, return_index=True)
         train_output_data_index = identify_data_io(ontology, train_output_specs, return_index=True)
-        train_transformation_outputs = [dw[f'{train_step_name}-output_{i}'] for i in range(len(train_output_specs))]
+        train_transformation_outputs = [ab[f'{train_step_name}-output_{i}'] for i in range(len(train_output_specs))]
         annotate_ios_with_specs(ontology, workflow_graph, train_transformation_outputs,
                                 train_output_specs)
 
@@ -607,7 +607,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
                                                           get_component_implementation(ontology, test_component))
         test_input_data_index = identify_data_io(ontology, test_input_specs, return_index=True)
         test_input_model_index = identify_model_io(ontology, test_input_specs, return_index=True)
-        test_transformation_inputs = [dw[f'{test_step_name}-input_{i}'] for i in range(len(test_input_specs))]
+        test_transformation_inputs = [ab[f'{test_step_name}-input_{i}'] for i in range(len(test_input_specs))]
         test_transformation_inputs[test_input_data_index] = test_dataset_node
         test_transformation_inputs[test_input_model_index] = train_transformation_outputs[train_output_model_index]
         annotate_ios_with_specs(ontology, workflow_graph, test_transformation_inputs,
@@ -616,7 +616,7 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
         test_output_specs = get_implementation_output_specs(ontology,
                                                             get_component_implementation(ontology, test_component))
         test_output_data_index = identify_data_io(ontology, test_output_specs, return_index=True)
-        test_transformation_outputs = [dw[f'{test_step_name}-output_{i}'] for i in range(len(test_output_specs))]
+        test_transformation_outputs = [ab[f'{test_step_name}-output_{i}'] for i in range(len(test_output_specs))]
         annotate_ios_with_specs(ontology, workflow_graph, test_transformation_outputs,
                                 test_output_specs)
 
@@ -664,10 +664,10 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
     workflow_order = 0
 
     split_components = [
-        dabox.term('component-random_absolute_train_test_split'),
-        dabox.term('component-random_relative_train_test_split'),
-        dabox.term('component-top_k_absolute_train_test_split'),
-        dabox.term('component-top_k_relative_train_test_split'),
+        ab.term('component-random_absolute_train_test_split'),
+        ab.term('component-random_relative_train_test_split'),
+        ab.term('component-top_k_absolute_train_test_split'),
+        ab.term('component-top_k_relative_train_test_split'),
     ]
 
     for component, implementation, inputs in tqdm(components, desc='Components', position=1):
@@ -709,8 +709,8 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
                                               transformation_combination[0],
                                               transformation_combination[1:])
 
-            wg.add((w, dtbox.createdFor, intent_iri))
-            wg.add((intent_iri, RDF.type, dtbox.Intent))
+            wg.add((w, tb.createdFor, intent_iri))
+            wg.add((intent_iri, RDF.type, tb.Intent))
 
             if log:
                 tqdm.write(f'\t\tWorkflow {workflow_order}: {w.fragment}')
@@ -725,9 +725,9 @@ def interactive():
     data = input('Introduce the data name [titanic.csv]: ') or 'titanic.csv'
     problem = input('Introduce the problem name [Description]: ') or 'Description'
 
-    intent_graph.add((ins.term(intent), RDF.type, dtbox.Intent))
-    intent_graph.add((ins.term(intent), dtbox.overData, dd.term(data)))
-    intent_graph.add((ins.term(intent), dtbox.tackles, dabox.term(problem)))
+    intent_graph.add((ins.term(intent), RDF.type, tb.Intent))
+    intent_graph.add((ins.term(intent), tb.overData, dd.term(data)))
+    intent_graph.add((ins.term(intent), tb.tackles, ab.term(problem)))
 
     ontology = get_ontology_graph()
 

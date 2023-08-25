@@ -4,7 +4,7 @@ from common import *
 
 normalizer_implementation = KnimeImplementation(
     name='Normalizer (PMML)',
-    algorithm=da.Normalization,
+    algorithm=cb.Normalization,
     parameters=[
         KnimeParameter('Normalization mode', XSD.int, None, 'mode'),
         KnimeParameter('New minimum', XSD.float, 0.0, 'newmin'),
@@ -18,7 +18,7 @@ normalizer_implementation = KnimeImplementation(
         cb.NormalizedTabularDatasetShape,
         cb.NormalizerModel,
     ],
-    implementation_type=do.LearnerImplementation,
+    implementation_type=tb.LearnerImplementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLNodeFactory2',
     knime_bundle=KnimeBaseBundle,
 )
@@ -64,9 +64,9 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "MinMax";
-             da:newMin $parameter2;
-             da:newMax $parameter3.
+    $output2 cb:normalizationMode "MinMax";
+             cb:newMin $parameter2;
+             cb:newMax $parameter3.
 }
             ''',
         ),
@@ -110,7 +110,7 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "ZScore".
+    $output2 cb:normalizationMode "ZScore".
 }
             ''',
         ),
@@ -152,7 +152,7 @@ WHERE {
             query='''
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "Decimal".
+    $output2 cb:normalizationMode "Decimal".
 }
             ''',
         ),
@@ -161,7 +161,7 @@ INSERT DATA {
 
 normalizer_applier_implementation = KnimeImplementation(
     name='Normalizer Apply (PMML)',
-    algorithm=da.Normalization,
+    algorithm=cb.Normalization,
     parameters=[
     ],
     input=[
@@ -172,7 +172,7 @@ normalizer_applier_implementation = KnimeImplementation(
         cb.NormalizerModel,
         cb.NormalizedTabularDatasetShape,
     ],
-    implementation_type=do.ApplierImplementation,
+    implementation_type=tb.ApplierImplementation,
     counterpart=normalizer_implementation,
     knime_node_factory='org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLApplyNodeFactory',
     knime_bundle=KnimeBaseBundle,
@@ -206,7 +206,7 @@ INSERT {
 WHERE {
     $output2 dmop:hasColumn ?column.
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "MinMax".
+    $input1 cb:normalizationMode "MinMax".
 }
             ''',
         ),
@@ -220,7 +220,7 @@ INSERT {
 WHERE {
     $output2 dmop:hasColumn ?column .
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "ZScore".
+    $input1 cb:normalizationMode "ZScore".
 }
             ''',
         ),
@@ -232,7 +232,7 @@ INSERT {
 WHERE {
     $output1 dmop:hasColumn ?column.
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "Decimal".
+    $input1 cb:normalizationMode "Decimal".
 }
             ''',
         ),
@@ -272,8 +272,8 @@ INSERT {
 }
 WHERE {
     $output2 dmop:hasColumn ?column.
-    $input1 da:minValue ?newMin;
-            da:maxValue ?newMax.
+    $input1 cb:minValue ?newMin;
+            cb:maxValue ?newMax.
     ?column dmop:isFeature true ;
 }
             ''',

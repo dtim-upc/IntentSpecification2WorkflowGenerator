@@ -13,8 +13,9 @@ cb: a owl:Ontology ;
 cb:DBSCAN a tb:Algorithm ;
     tb:solves cb:Clustering .
 
-cb:DecisionTree a tb:Algorithm ;
-    tb:solves cb:Classification .
+cb:DecisionTreeModelShape a sh:NodeShape,
+        tb:DataTag ;
+    sh:targetClass cb:DecisionTreeModel .
 
 cb:DuplicateRemoval a tb:Algorithm ;
     tb:solves cb:DuplicationRemoval .
@@ -55,8 +56,9 @@ cb:MedianImputation a tb:Algorithm ;
 cb:MinMaxScaling a tb:Algorithm ;
     tb:solves cb:Normalization .
 
-cb:MissingValueRemoval a tb:Algorithm ;
-    tb:solves cb:MissingValueManagement .
+cb:MissingValueModelShape a sh:NodeShape,
+        tb:DataTag ;
+    sh:targetClass cb:MissingValueModel .
 
 cb:ModeImputation a tb:Algorithm ;
     tb:solves cb:MissingValueManagement .
@@ -68,6 +70,10 @@ cb:NonNullNumericFeatureTabularDatasetShape a sh:NodeShape ;
     sh:property [ sh:node cb:NonNullNumericFeatureColumnShape ;
             sh:path dmop:hasColumn ] ;
     sh:targetClass dmop:TabularDataset .
+
+cb:NormalizerModelShape a sh:NodeShape,
+        tb:DataTag ;
+    sh:targetClass cb:NormalizerModel .
 
 cb:NumericTabularDatasetShape a sh:NodeShape ;
     sh:property [ sh:node cb:NumericColumnShape ;
@@ -85,8 +91,9 @@ cb:RandomForest a tb:Algorithm ;
 cb:RobustNormalization a tb:Algorithm ;
     tb:solves cb:Normalization .
 
-cb:SVM a tb:Algorithm ;
-    tb:solves cb:Classification .
+cb:SVMModelShape a sh:NodeShape,
+        tb:DataTag ;
+    sh:targetClass cb:SVMModel .
 
 cb:TrainTestSplit a tb:Algorithm ;
     tb:solves cb:DataManagement .
@@ -139,11 +146,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "Random" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Absolute" ] .
+            tb:has_value "Absolute" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-sampling_method ;
+            tb:has_value "Random" ] .
 
 cb:component-random_relative_train_test_split a tb:Component ;
     rdfs:label "Random Relative Train-Test Split" ;
@@ -176,11 +183,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "Random" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Relative" ] .
+            tb:has_value "Relative" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-sampling_method ;
+            tb:has_value "Random" ] .
 
 cb:component-top_k_absolute_train_test_split a tb:Component ;
     rdfs:label "Top K Absolute Train-Test Split" ;
@@ -259,7 +266,7 @@ cb:DuplicationRemoval a tb:Problem ;
 
 cb:FeatureColumnProperty sh:datatype xsd:boolean ;
     sh:hasValue true ;
-    sh:path tb:isFeature .
+    sh:path dmop:isFeature .
 
 cb:FeatureColumnShape a sh:NodeShape ;
     sh:property cb:FeatureColumnProperty ;
@@ -282,13 +289,13 @@ cb:NumericColumnShape a sh:NodeShape ;
     sh:property cb:NumericColumnProperty ;
     sh:targetClass dmop:Column .
 
-cb:Shape_6178ccd8-283c-4210-990b-55f612a8025b a sh:NodeShape,
-        tb:DataTag ;
-    sh:and ( cb:LabeledTabularDatasetShape cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
-
-cb:Shape_ad82a140-0623-409f-a007-90ef2cf86f7a a sh:NodeShape,
+cb:Shape_36ce5a5c-56bd-42f5-9ec2-e5bef04118d3 a sh:NodeShape,
         tb:DataTag ;
     sh:and ( cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
+
+cb:Shape_56bac116-1cb9-4cda-8dc3-c5f28b6d5219 a sh:NodeShape,
+        tb:DataTag ;
+    sh:and ( cb:LabeledTabularDatasetShape cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
 
 cb:component-decimal_scaling a tb:LearnerComponent ;
     rdfs:label "Decimal Scaling" ;
@@ -324,7 +331,7 @@ WHERE {
                 tb:transformation_query """
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "Decimal".
+    $output2 cb:normalizationMode "Decimal".
 }
             """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
@@ -402,17 +409,17 @@ WHERE {
                 tb:transformation_language "SPARQL" ;
                 tb:transformation_query """
 INSERT DATA {
-    $output2 da:removesProperty dmop:numberOfRows.
+    $output2 cb:removesProperty dmop:numberOfRows.
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-string ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-float ;
+            tb:forParameter cb:implementation-missing_value-integer ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-integer ;
+            tb:forParameter cb:implementation-missing_value-float ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ] .
 
 cb:component-hypertangent_svm_learner a tb:LearnerComponent ;
@@ -454,14 +461,14 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-missing_value-string ;
+            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
+        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-integer ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-float ;
-            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
-        [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-string ;
-            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ] .
+            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ] .
 
 cb:component-min_max_scaling a tb:LearnerComponent ;
     rdfs:label "Min-Max Scaling" ;
@@ -501,9 +508,9 @@ WHERE {
                 tb:transformation_query """
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "MinMax";
-             da:newMin $parameter2;
-             da:newMax $parameter3.
+    $output2 cb:normalizationMode "MinMax";
+             cb:newMin $parameter2;
+             cb:newMax $parameter3.
 }
             """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
@@ -589,7 +596,7 @@ WHERE {
                 tb:transformation_query """
 INSERT DATA {
     $output1 dmop:isNormalized true.
-    $output2 da:normalizationMode "ZScore".
+    $output2 cb:normalizationMode "ZScore".
 }
             """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
@@ -664,7 +671,7 @@ cb:implementation-csv_reader a tb:Implementation ;
         cb:implementation-csv_reader-support_short_data_rows,
         cb:implementation-csv_reader-thousands_separator,
         cb:implementation-csv_reader-use_line_break_row_delimiter ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#DataLoading> ;
+    tb:implements cb:DataLoading ;
     tb:knime-factory "org.knime.base.node.io.filehandling.csv.reader.CSVTableReaderNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1326,7 +1333,7 @@ cb:implementation-missing_value-string_settings a tb:Parameter ;
 cb:implementation-missing_value_\(applier\) a tb:ApplierImplementation ;
     rdfs:label "Missing Value (Applier)" ;
     tb:engine "KNIME" ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#MissingValueRemoval> ;
+    tb:implements cb:MissingValueRemoval ;
     tb:knime-factory "org.knime.base.node.preproc.pmml.missingval.apply.MissingValueApplyNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1404,27 +1411,21 @@ cb:isNormalizedConstraint a sh:PropertyConstraintComponent ;
 
 cb:DataManagement a tb:Problem .
 
-cb:DecisionTreeModel a sh:NodeShape,
-        tb:DataTag ;
-    rdfs:subClassOf cb:Model ;
-    sh:targetClass <https://diviloper.dev/ontology/Data#DecisionTreeModel> .
+cb:DecisionTree a tb:Algorithm ;
+    tb:solves cb:Classification .
 
-cb:MissingValueModel a sh:NodeShape,
-        tb:DataTag ;
-    rdfs:subClassOf cb:Model ;
-    sh:targetClass <https://diviloper.dev/ontology/Data#MissingValueModel> .
+cb:MissingValueRemoval a tb:Algorithm ;
+    tb:solves cb:MissingValueManagement .
 
 cb:NonNullColumnProperty sh:datatype xsd:boolean ;
     sh:hasValue false ;
-    sh:path tb:containsNulls .
+    sh:path dmop:containsNulls .
 
 cb:NumericColumnProperty sh:in ( dmop:Integer dmop:Float ) ;
     sh:path dmop:hasDataPrimitiveTypeColumn .
 
-cb:SVMModel a sh:NodeShape,
-        tb:DataTag ;
-    rdfs:subClassOf cb:Model ;
-    sh:targetClass <https://diviloper.dev/ontology/Data#SVMModel> .
+cb:SVM a tb:Algorithm ;
+    tb:solves cb:Classification .
 
 cb:component-missing_value_management_applier a tb:ApplierComponent ;
     rdfs:label "Missing Value Management Applier" ;
@@ -1442,7 +1443,7 @@ DELETE {
     $output2 ?property ?value.
 }
 WHERE {
-    $output1 da:removesProperty ?property.
+    $output1 cb:removesProperty ?property.
     $output2 ?property ?value.
 }
 """ ] ) .
@@ -1494,7 +1495,7 @@ cb:implementation-decision_tree_learner a tb:LearnerImplementation ;
         cb:implementation-decision_tree_learner-reduced_error_pruning,
         cb:implementation-decision_tree_learner-root_split_column,
         cb:implementation-decision_tree_learner-skip_nominal_columns_without_domain_information ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#DecisionTree> ;
+    tb:implements cb:DecisionTree ;
     tb:knime-factory "org.knime.base.node.mine.decisiontree2.learner2.DecisionTreeLearnerNodeFactory3" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1652,7 +1653,7 @@ cb:implementation-decision_tree_predictor a tb:ApplierImplementation ;
         cb:implementation-decision_tree_predictor-prediction_column_name,
         cb:implementation-decision_tree_predictor-show_distribution,
         cb:implementation-decision_tree_predictor-use_gain_ratio ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#DecisionTree> ;
+    tb:implements cb:DecisionTree ;
     tb:knime-factory "org.knime.base.node.mine.decisiontree2.predictor2.DecTreePredictorNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1679,7 +1680,7 @@ cb:implementation-missing_value a tb:LearnerImplementation ;
         cb:implementation-missing_value-integer_settings,
         cb:implementation-missing_value-string,
         cb:implementation-missing_value-string_settings ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#MissingValueRemoval> ;
+    tb:implements cb:MissingValueRemoval ;
     tb:knime-factory "org.knime.base.node.preproc.pmml.missingval.compute.MissingValueHandlerNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1690,11 +1691,11 @@ cb:implementation-missing_value a tb:LearnerImplementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:NonNullTabularDatasetShape ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:MissingValueModel ;
-            tb:has_position 1 ] .
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:NonNullTabularDatasetShape ;
+            tb:has_position 0 ] .
 
 cb:implementation-normalizer_\(pmml\)-new_maximum a tb:Parameter ;
     rdfs:label "New maximum" ;
@@ -1718,7 +1719,7 @@ cb:implementation-normalizer_apply_\(pmml\) a tb:ApplierImplementation ;
     rdfs:label "Normalizer Apply (PMML)" ;
     tb:engine "KNIME" ;
     tb:hasLearner cb:implementation-normalizer_\(pmml\) ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#Normalization> ;
+    tb:implements cb:Normalization ;
     tb:knime-factory "org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLApplyNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1726,11 +1727,11 @@ cb:implementation-normalizer_apply_\(pmml\) a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "Normalizer Apply (PMML)" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:NormalizerModel ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:TabularDataset ;
-            tb:has_position 1 ] ;
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:NormalizerModel ;
+            tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:NormalizerModel ;
             tb:has_position 0 ],
@@ -1800,7 +1801,7 @@ cb:implementation-svm_predictor a tb:ApplierImplementation ;
         cb:implementation-svm_predictor-change_prediction,
         cb:implementation-svm_predictor-class_probability_suffix,
         cb:implementation-svm_predictor-prediction_column_name ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#SVM> ;
+    tb:implements cb:SVM ;
     tb:knime-factory "org.knime.base.node.mine.svm.predictor2.SVMPredictorNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -1808,7 +1809,7 @@ cb:implementation-svm_predictor a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "SVM Predictor" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_ad82a140-0623-409f-a007-90ef2cf86f7a ;
+            tb:hasTag cb:Shape_36ce5a5c-56bd-42f5-9ec2-e5bef04118d3 ;
             tb:has_position 1 ],
         [ a tb:IOSpec ;
             tb:hasTag cb:SVMModel ;
@@ -1825,15 +1826,13 @@ cb:Clustering a tb:Problem ;
 
 cb:DataCleaning a tb:Problem .
 
+cb:DecisionTreeModel rdfs:subClassOf cb:Model .
+
 cb:Description a tb:Problem .
 
-cb:Normalization a tb:Problem ;
-    tb:subProblemOf cb:DataCleaning .
+cb:MissingValueModel rdfs:subClassOf cb:Model .
 
-cb:NormalizerModel a sh:NodeShape,
-        tb:DataTag ;
-    rdfs:subClassOf cb:Model ;
-    sh:targetClass <https://diviloper.dev/ontology/Data#NormalizerModel> .
+cb:SVMModel rdfs:subClassOf cb:Model .
 
 cb:component-normalizer_applier a tb:ApplierComponent ;
     rdfs:label "Normalizer Applier" ;
@@ -1871,7 +1870,7 @@ INSERT {
 WHERE {
     $output2 dmop:hasColumn ?column.
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "MinMax".
+    $input1 cb:normalizationMode "MinMax".
 }
             """ ] [ a tb:Transformation ;
                 tb:transformation_language "SPARQL" ;
@@ -1884,7 +1883,7 @@ INSERT {
 WHERE {
     $output2 dmop:hasColumn ?column .
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "ZScore".
+    $input1 cb:normalizationMode "ZScore".
 }
             """ ] [ a tb:Transformation ;
                 tb:transformation_language "SPARQL" ;
@@ -1895,7 +1894,7 @@ INSERT {
 WHERE {
     $output1 dmop:hasColumn ?column.
     ?column dmop:isFeature true .
-    $input1 da:normalizationMode "Decimal".
+    $input1 cb:normalizationMode "Decimal".
 }
             """ ] ) .
 
@@ -1997,6 +1996,8 @@ cb:NormalizedTabularDatasetShape a sh:NodeShape,
     sh:property cb:isNormalizedConstraint ;
     sh:targetClass dmop:TabularDataset .
 
+cb:NormalizerModel rdfs:subClassOf cb:Model .
+
 cb:implementation-normalizer_\(pmml\) a tb:LearnerImplementation ;
     rdfs:label "Normalizer (PMML)" ;
     tb:engine "KNIME" ;
@@ -2005,7 +2006,7 @@ cb:implementation-normalizer_\(pmml\) a tb:LearnerImplementation ;
         cb:implementation-normalizer_\(pmml\)-new_maximum,
         cb:implementation-normalizer_\(pmml\)-new_minimum,
         cb:implementation-normalizer_\(pmml\)-normalization_mode ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#Normalization> ;
+    tb:implements cb:Normalization ;
     tb:knime-factory "org.knime.base.node.preproc.pmml.normalize.NormalizerPMMLNodeFactory2" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -2016,11 +2017,11 @@ cb:implementation-normalizer_\(pmml\) a tb:LearnerImplementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:NormalizerModel ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:NormalizedTabularDatasetShape ;
-            tb:has_position 0 ] .
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:NormalizerModel ;
+            tb:has_position 1 ] .
 
 cb:implementation-normalizer_\(pmml\)-normalization_mode a tb:Parameter ;
     rdfs:label "Normalization mode" ;
@@ -2040,7 +2041,7 @@ cb:implementation-partitioning a tb:Implementation ;
         cb:implementation-partitioning-random_seed,
         cb:implementation-partitioning-sampling_method,
         cb:implementation-partitioning-size_of_first_partition ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#Partitioning> ;
+    tb:implements cb:Partitioning ;
     tb:knime-factory "org.knime.base.node.preproc.partition.PartitionNodeFactory" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -2051,11 +2052,11 @@ cb:implementation-partitioning a tb:Implementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:TrainDataset ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:TestDataset ;
-            tb:has_position 1 ] .
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:TrainDataset ;
+            tb:has_position 0 ] .
 
 cb:implementation-svm_learner a tb:LearnerImplementation ;
     rdfs:label "SVM Learner" ;
@@ -2070,7 +2071,7 @@ cb:implementation-svm_learner a tb:LearnerImplementation ;
         cb:implementation-svm_learner-overlapping_penalty,
         cb:implementation-svm_learner-power,
         cb:implementation-svm_learner-sigma ;
-    tb:implements <https://diviloper.dev/ontology/ABOX#SVM> ;
+    tb:implements cb:SVM ;
     tb:knime-factory "org.knime.base.node.mine.svm.learner.SVMLearnerNodeFactory2" ;
     tb:knime-node-bundle-name "KNIME Base Nodes" ;
     tb:knime-node-bundle-symbolic-name "org.knime.base" ;
@@ -2078,7 +2079,7 @@ cb:implementation-svm_learner a tb:LearnerImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "SVM Learner" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_6178ccd8-283c-4210-990b-55f612a8025b ;
+            tb:hasTag cb:Shape_56bac116-1cb9-4cda-8dc3-c5f28b6d5219 ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:SVMModel ;
@@ -2115,6 +2116,9 @@ cb:Classification a tb:Problem ;
     tb:subProblemOf cb:Description .
 
 cb:MissingValueManagement a tb:Problem ;
+    tb:subProblemOf cb:DataCleaning .
+
+cb:Normalization a tb:Problem ;
     tb:subProblemOf cb:DataCleaning .
 
 cb:implementation-partitioning-sampling_method a tb:Parameter ;

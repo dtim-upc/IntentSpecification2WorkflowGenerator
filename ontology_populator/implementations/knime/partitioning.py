@@ -4,7 +4,7 @@ from ..core import *
 
 partitioning_implementation = KnimeImplementation(
     name='Partitioning',
-    algorithm=da.Partitioning,
+    algorithm=cb.Partitioning,
     parameters=[
         KnimeParameter("Size of First Partition", XSD.string, "Relative", "method"),
         KnimeParameter("Sampling Method", XSD.string, "Random", "samplingMethod"),

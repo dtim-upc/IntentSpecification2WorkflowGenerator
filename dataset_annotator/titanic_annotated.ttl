@@ -1,24 +1,24 @@
-@prefix ddata: <https://diviloper.dev/ontology/Data#> .
+@prefix ab: <https://extremexp.eu/ontology/abox#> .
 @prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-ddata:titanic.csv a dmop:TabularDataset ;
+ab:titanic.csv a dmop:TabularDataset ;
     dmop:delimiter "," ;
     dmop:doubleQuote false ;
     dmop:encoding "cp1252" ;
     dmop:fileFormat "csv" ;
-    dmop:hasColumn <https://diviloper.dev/ontology/Data#titanic.csv/Age>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Cabin>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Embarked>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Fare>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Name>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Parch>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/PassengerId>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Pclass>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Sex>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/SibSp>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Survived>,
-        <https://diviloper.dev/ontology/Data#titanic.csv/Ticket> ;
+    dmop:hasColumn <https://extremexp.eu/ontology/abox#titanic.csv/Age>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Cabin>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Embarked>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Fare>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Name>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Parch>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/PassengerId>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Pclass>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Sex>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/SibSp>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Survived>,
+        <https://extremexp.eu/ontology/abox#titanic.csv/Ticket> ;
     dmop:hasHeader true ;
     dmop:lineDelimiter """\r
 """ ;
@@ -28,7 +28,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:quoteChar "\"" ;
     dmop:skipInitialSpace false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Age> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Age> a dmop:Column ;
     dmop:containsNulls "True" ;
     dmop:hasColumnName "Age" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
@@ -38,7 +38,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Cabin> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Cabin> a dmop:Column ;
     dmop:containsNulls "True" ;
     dmop:hasColumnName "Cabin" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
@@ -48,7 +48,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Embarked> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Embarked> a dmop:Column ;
     dmop:containsNulls "True" ;
     dmop:hasColumnName "Embarked" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
@@ -58,7 +58,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Fare> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Fare> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Fare" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
@@ -68,7 +68,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Name> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Name> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Name" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
@@ -78,7 +78,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique true .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Parch> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Parch> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Parch" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
@@ -88,7 +88,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/PassengerId> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/PassengerId> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "PassengerId" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
@@ -98,7 +98,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique true .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Pclass> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Pclass> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Pclass" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
@@ -108,7 +108,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Sex> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Sex> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Sex" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
@@ -118,7 +118,7 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/SibSp> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/SibSp> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "SibSp" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
@@ -128,17 +128,17 @@ ddata:titanic.csv a dmop:TabularDataset ;
     dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Survived> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Survived> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Survived" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 1 ;
     dmop:isCategorical true ;
-    dmop:isFeature false ;
-    dmop:isLabel true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
     dmop:isUnique false .
 
-<https://diviloper.dev/ontology/Data#titanic.csv/Ticket> a dmop:Column ;
+<https://extremexp.eu/ontology/abox#titanic.csv/Ticket> a dmop:Column ;
     dmop:containsNulls "False" ;
     dmop:hasColumnName "Ticket" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
