@@ -18,6 +18,7 @@ algorithm_implementations = {}
 logical_plans = {}
 logical_to_workflows = {}
 workflow_plans = {}
+selected_plans = []
 
 
 @app.get('/datasets')
@@ -73,6 +74,9 @@ def run_logical_planner():
 def run_workflow_planner():
     plan_ids = request.json
 
+    global selected_plans
+    selected_plans = plan_ids
+
     return plan_ids
 
 
@@ -83,9 +87,11 @@ def download_all_rdf():
         shutil.rmtree(folder)
     os.mkdir(folder)
 
-    global logical_to_workflows
+    global logical_to_workflows, selected_plans
 
     for plan_id, workflow in logical_to_workflows.items():
+        if plan_id not in selected_plans:
+            continue
         file_path = os.path.join(folder, f'{plan_id}.ttl')
         workflow.serialize(file_path, format='turtle')
     compress(folder, folder + '.zip')
@@ -113,9 +119,11 @@ def download_all_knime():
     os.mkdir(folder)
     os.mkdir(knime_folder)
 
-    global logical_to_workflows
+    global logical_to_workflows, selected_plans
 
     for plan_id, workflow in logical_to_workflows.items():
+        if plan_id not in selected_plans:
+            continue
         file_path = os.path.join(folder, f'{plan_id}.ttl')
         workflow.serialize(file_path, format='turtle')
 
