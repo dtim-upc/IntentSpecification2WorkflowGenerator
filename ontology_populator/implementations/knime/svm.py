@@ -44,7 +44,7 @@ polynomial_svm_learner_component = Component(
         Transformation(
             query='''
 INSERT {
-    $output1 da:setsClassColumnName "Prediction (?label)" .
+    $output1 cb:setsClassColumnName "Prediction (?label)" .
 }
 WHERE {
     $input1 dmop:hasColumn ?column .
@@ -72,7 +72,7 @@ hypertangent_svm_learner_component = Component(
         Transformation(
             query='''
 INSERT DATA{
-    $output1 da:setsClassColumnName $parameter1 .
+    $output1 cb:setsClassColumnName $parameter1 .
 }
             ''',
         ),
@@ -94,7 +94,7 @@ rbf_svm_learner_component = Component(
         Transformation(
             query='''
 INSERT DATA{
-    $output1 da:setsClassColumnName $parameter1 .
+    $output1 cb:setsClassColumnName $parameter1 .
 }
             ''',
         ),
@@ -137,7 +137,7 @@ INSERT {
       dmop:hasName $parameter1.
 }
 WHERE {
-    $input1 da:setsClassColumnName ?classColumnName .
+    $input1 cb:setsClassColumnName ?classColumnName .
 }
             ''',
         ),

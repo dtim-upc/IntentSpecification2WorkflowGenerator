@@ -20,13 +20,13 @@ except ImportError:
 
 
 def load_workflow(path: str) -> Graph:
-    graph = get_graph()
+    graph = get_graph_xp()
     graph.parse(path, format='turtle')
     return graph
 
 
 def get_workflow_steps(graph: Graph) -> List[URIRef]:
-    steps = list(graph.subjects(RDF.type, dtbox.Step))
+    steps = list(graph.subjects(RDF.type, tb.Step))
     return steps
 
 
@@ -55,8 +55,8 @@ def get_base_node_config():
 
 
 def get_step_component_implementation(ontology: Graph, workflow_graph: Graph, step: URIRef) -> Tuple[URIRef, URIRef]:
-    component = next(workflow_graph.objects(step, dtbox.runs, True))
-    implementation = next(ontology.objects(component, dtbox.hasImplementation, True))
+    component = next(workflow_graph.objects(step, tb.runs, True))
+    implementation = next(ontology.objects(component, tb.hasImplementation, True))
     return component, implementation
 
 
@@ -70,16 +70,16 @@ def get_knime_properties(ontology: Graph, implementation: URIRef) -> Dict[str, s
 
 def get_number_of_output_ports(ontology: Graph, workflow_graph: Graph, step: URIRef) -> int:
     _, implementation = get_step_component_implementation(ontology, workflow_graph, step)
-    return sum(1 for _ in ontology.objects(implementation, dtbox.specifiesOutput))
+    return sum(1 for _ in ontology.objects(implementation, tb.specifiesOutput))
 
 
 def get_step_parameters(ontology: Graph, workflow_graph: Graph, step: URIRef) -> List[Tuple[str, str, str, URIRef]]:
-    param_values = list(workflow_graph.objects(step, dtbox.hasParameterValue))
-    parameters = [next(workflow_graph.objects(pv, dtbox.forParameter, True)) for pv in param_values]
-    values = [next(workflow_graph.objects(pv, dtbox.has_value, True)).value for pv in param_values]
-    keys = [next(ontology.objects(p, dtbox.knime_key, True)).value for p in parameters]
-    paths = [next(ontology.objects(p, dtbox.knime_path, True)).value for p in parameters]
-    types = [next(ontology.objects(p, dtbox.hasDatatype, True)) for p in parameters]
+    param_values = list(workflow_graph.objects(step, tb.hasParameterValue))
+    parameters = [next(workflow_graph.objects(pv, tb.forParameter, True)) for pv in param_values]
+    values = [next(workflow_graph.objects(pv, tb.has_value, True)).value for pv in param_values]
+    keys = [next(ontology.objects(p, tb.knime_key, True)).value for p in parameters]
+    paths = [next(ontology.objects(p, tb.knime_path, True)).value for p in parameters]
+    types = [next(ontology.objects(p, tb.hasDatatype, True)) for p in parameters]
     return list(zip(keys, values, paths, types))
 
 
@@ -172,17 +172,17 @@ def create_step_file(ontology: Graph, workflow_graph: Graph, step: URIRef, folde
 
 
 def get_workflow_intent_name(workflow_graph: Graph) -> str:
-    return next(workflow_graph.subjects(RDF.type, dtbox.Intent, True)).fragment
+    return next(workflow_graph.subjects(RDF.type, tb.Intent, True)).fragment
 
 
 def get_workflow_intent_number(workflow_graph: Graph) -> int:
-    return int(next(workflow_graph.subjects(RDF.type, dtbox.Workflow, True)).fragment.split('_')[1])
+    return int(next(workflow_graph.subjects(RDF.type, tb.Workflow, True)).fragment.split('_')[1])
 
 
 def create_workflow_metadata_file(workflow_graph: Graph, folder: str) -> None:
     author = 'Diviloper'
     date = datetime.today().strftime('%d/%m/%Y')
-    workflow_name = next(workflow_graph.subjects(RDF.type, dtbox.Workflow, True)).fragment
+    workflow_name = next(workflow_graph.subjects(RDF.type, tb.Workflow, True)).fragment
     title = f'{get_workflow_intent_name(workflow_graph)} (Workflow {get_workflow_intent_number(workflow_graph)})'
     description = f'This workflow was automatically created from the logical workflow {workflow_name}.'
     url = 'ExtremeXP https://extremexp.eu/'
@@ -230,18 +230,18 @@ def get_nodes_config(step_paths: List[str]) -> ET.Element:
 
 def get_workflow_connections(workflow_graph: Graph) -> List[Tuple[URIRef, URIRef, URIRef, URIRef]]:
     query = f'''
-    PREFIX dtbox: <{dtbox}>
+    PREFIX tb: <{tb}>
     SELECT ?source ?destination ?sourcePort ?destinationPort
     WHERE {{
-        ?source a dtbox:Step ;
-                dtbox:followedBy ?destination ;
-                dtbox:hasOutput ?output .
-        ?output dtbox:has_position ?sourcePort ;
-                dtbox:hasData ?link .
-        ?destination a dtbox:Step ;
-                    dtbox:hasInput ?input .
-        ?input dtbox:has_position ?destinationPort ;
-                dtbox:hasData ?link .
+        ?source a tb:Step ;
+                tb:followedBy ?destination ;
+                tb:hasOutput ?output .
+        ?output tb:has_position ?sourcePort ;
+                tb:hasData ?link .
+        ?destination a tb:Step ;
+                    tb:hasInput ?input .
+        ?input tb:has_position ?destinationPort ;
+                tb:hasData ?link .
     }}
     '''
     results = workflow_graph.query(query).bindings
@@ -324,7 +324,7 @@ def translate_graph(ontology: Graph, source_path: str, destination_path: str, ke
 
     tqdm.write('\tLoading workflow:', end=' ')
     graph = load_workflow(source_path)
-    tqdm.write(next(graph.subjects(RDF.type, dtbox.Workflow, True)).fragment)
+    tqdm.write(next(graph.subjects(RDF.type, tb.Workflow, True)).fragment)
 
     tqdm.write('\tCreating workflow metadata file')
     create_workflow_metadata_file(graph, temp_folder)

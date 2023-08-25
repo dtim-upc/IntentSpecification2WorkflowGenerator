@@ -1,9 +1,8 @@
 import dearpygui.dearpygui as dpg
-from typing import List
 from dearpygui_ext.themes import create_theme_imgui_light
 
 from common import *
-from demo_gui.functions import abstract_planner
+from demo.demo_api.functions import abstract_planner
 
 ontology = get_ontology_graph()
 datasets = {n.fragment: n for n in ontology.subjects(RDF.type, dmop.TabularDataset)}

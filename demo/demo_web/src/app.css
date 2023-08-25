@@ -1,0 +1,19 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.demo-list {
+    max-height: 30vh;
+    overflow-y: auto;
+}

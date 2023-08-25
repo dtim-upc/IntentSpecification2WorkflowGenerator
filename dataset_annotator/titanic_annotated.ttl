@@ -134,8 +134,8 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 1 ;
     dmop:isCategorical true ;
-    dmop:isFeature true ;
-    dmop:isLabel false ;
+    dmop:isFeature false ;
+    dmop:isLabel true ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Ticket> a dmop:Column ;

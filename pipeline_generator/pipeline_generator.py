@@ -156,6 +156,7 @@ def get_potential_implementations(ontology: Graph, problem_iri: URIRef, intent_p
 def get_component_implementation(ontology: Graph, component: URIRef) -> URIRef:
     implementation_query = f"""
         PREFIX tb: <{tb}>
+        PREFIX cb: <{cb}>
         SELECT ?implementation
         WHERE {{
             {component.n3()} tb:hasImplementation ?implementation .
@@ -214,11 +215,11 @@ def identify_model_io(ontology: Graph, ios: List[List[URIRef]], return_index: bo
     ASK {{
       {{
         {io_shape.n3()} sh:targetClass ?targetClass .
-        ?targetClass rdfs:subClassOf* ddata:Model .
+        ?targetClass rdfs:subClassOf* cb:Model .
       }}
       UNION
       {{
-        {io_shape.n3()} rdfs:subClassOf* ddata:Model .
+        {io_shape.n3()} rdfs:subClassOf* cb:Model .
       }}
     }}
 '''
@@ -493,7 +494,7 @@ def run_component_transformation(ontology: Graph, workflow_graph: Graph, compone
         else:
             prefixes = f'''
 PREFIX tb: <{tb}>
-PREFIX da: <{da}>
+PREFIX ab: <{ab}>
 PREFIX rdf: <{RDF}>
 PREFIX rdfs: <{RDFS}>
 PREFIX owl: <{OWL}>
@@ -517,7 +518,7 @@ def get_step_name(workflow_name: str, task_order: int, implementation: URIRef) -
 
 
 def add_loader_step(ontology: Graph, workflow_graph: Graph, workflow: URIRef, dataset_node: URIRef) -> URIRef:
-    loader_component = ab.term('component-csv_local_reader')
+    loader_component = cb.term('component-csv_local_reader')
     loader_step_name = get_step_name(workflow.fragment, 0, loader_component)
     loader_parameters = get_component_parameters(ontology, loader_component)
     loader_parameters = perform_param_substitution(workflow_graph, loader_parameters, [dataset_node])
@@ -664,10 +665,10 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
     workflow_order = 0
 
     split_components = [
-        ab.term('component-random_absolute_train_test_split'),
-        ab.term('component-random_relative_train_test_split'),
-        ab.term('component-top_k_absolute_train_test_split'),
-        ab.term('component-top_k_relative_train_test_split'),
+        cb.term('component-random_absolute_train_test_split'),
+        cb.term('component-random_relative_train_test_split'),
+        cb.term('component-top_k_absolute_train_test_split'),
+        cb.term('component-top_k_relative_train_test_split'),
     ]
 
     for component, implementation, inputs in tqdm(components, desc='Components', position=1):
@@ -719,15 +720,14 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
 
 
 def interactive():
-    intent_graph = get_graph()
-    ins = Namespace('https://diviloper.dev/intent#')
+    intent_graph = get_graph_xp()
     intent = input('Introduce the intent name [DescriptionIntent]: ') or 'DescriptionIntent'
     data = input('Introduce the data name [titanic.csv]: ') or 'titanic.csv'
     problem = input('Introduce the problem name [Description]: ') or 'Description'
 
-    intent_graph.add((ins.term(intent), RDF.type, tb.Intent))
-    intent_graph.add((ins.term(intent), tb.overData, dd.term(data)))
-    intent_graph.add((ins.term(intent), tb.tackles, ab.term(problem)))
+    intent_graph.add((ab.term(intent), RDF.type, tb.Intent))
+    intent_graph.add((ab.term(intent), tb.overData, ab.term(data)))
+    intent_graph.add((ab.term(intent), tb.tackles, cb.term(problem)))
 
     ontology = get_ontology_graph()
 

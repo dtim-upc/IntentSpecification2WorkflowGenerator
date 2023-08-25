@@ -183,11 +183,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Relative" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "Random" ] .
+            tb:has_value "Random" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
+            tb:has_value "Relative" ] .
 
 cb:component-top_k_absolute_train_test_split a tb:Component ;
     rdfs:label "Top K Absolute Train-Test Split" ;
@@ -219,11 +219,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "First" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Absolute" ] .
+            tb:has_value "Absolute" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-sampling_method ;
+            tb:has_value "First" ] .
 
 cb:component-top_k_relative_train_test_split a tb:Component ;
     rdfs:label "Top K Relative Train-Test Split" ;
@@ -289,11 +289,11 @@ cb:NumericColumnShape a sh:NodeShape ;
     sh:property cb:NumericColumnProperty ;
     sh:targetClass dmop:Column .
 
-cb:Shape_36ce5a5c-56bd-42f5-9ec2-e5bef04118d3 a sh:NodeShape,
+cb:Shape_3b4b13e3-7f11-480b-8816-be4203eeee06 a sh:NodeShape,
         tb:DataTag ;
     sh:and ( cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
 
-cb:Shape_56bac116-1cb9-4cda-8dc3-c5f28b6d5219 a sh:NodeShape,
+cb:Shape_d3766214-f284-4683-a51b-2786921c93f4 a sh:NodeShape,
         tb:DataTag ;
     sh:and ( cb:LabeledTabularDatasetShape cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
 
@@ -349,6 +349,7 @@ cb:component-decision_tree_learner a tb:LearnerComponent ;
         cb:implementation-decision_tree_learner-min_number_records_per_node,
         cb:implementation-decision_tree_learner-missing_value_strategy,
         cb:implementation-decision_tree_learner-no_true_child_strategy,
+        cb:implementation-decision_tree_learner-number_of_records_to_store_for_view,
         cb:implementation-decision_tree_learner-number_of_threads,
         cb:implementation-decision_tree_learner-pruning_method,
         cb:implementation-decision_tree_learner-quality_measure,
@@ -413,10 +414,10 @@ INSERT DATA {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-string ;
+            tb:forParameter cb:implementation-missing_value-integer ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-integer ;
+            tb:forParameter cb:implementation-missing_value-string ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-float ;
@@ -434,7 +435,7 @@ cb:component-hypertangent_svm_learner a tb:LearnerComponent ;
                 tb:transformation_language "SPARQL" ;
                 tb:transformation_query """
 INSERT DATA{
-    $output1 da:setsClassColumnName $parameter1 .
+    $output1 cb:setsClassColumnName $parameter1 .
 }
             """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
@@ -464,10 +465,10 @@ WHERE {
             tb:forParameter cb:implementation-missing_value-string ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-integer ;
+            tb:forParameter cb:implementation-missing_value-float ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-float ;
+            tb:forParameter cb:implementation-missing_value-integer ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ] .
 
 cb:component-min_max_scaling a tb:LearnerComponent ;
@@ -530,7 +531,7 @@ cb:component-polynomial_svm_learner a tb:LearnerComponent ;
                 tb:transformation_language "SPARQL" ;
                 tb:transformation_query """
 INSERT {
-    $output1 da:setsClassColumnName "Prediction (?label)" .
+    $output1 cb:setsClassColumnName "Prediction (?label)" .
 }
 WHERE {
     $input1 dmop:hasColumn ?column .
@@ -553,7 +554,7 @@ cb:component-rbf_svm_learner a tb:LearnerComponent ;
                 tb:transformation_language "SPARQL" ;
                 tb:transformation_query """
 INSERT DATA{
-    $output1 da:setsClassColumnName $parameter1 .
+    $output1 cb:setsClassColumnName $parameter1 .
 }
             """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
@@ -1240,15 +1241,6 @@ cb:implementation-csv_reader-use_line_break_row_delimiter a tb:Parameter ;
     tb:knime_key "use_line_break_row_delimiter" ;
     tb:knime_path "model/settings" .
 
-cb:implementation-decision_tree_learner-number_of_records_to_store_for_view a tb:Parameter ;
-    rdfs:label "Number of records to store for view" ;
-    tb:hasDatatype xsd:int ;
-    tb:hasDefaultValue 10000 ;
-    tb:has_condition "" ;
-    tb:has_position 1 ;
-    tb:knime_key "numverRecordsToView" ;
-    tb:knime_path "model" .
-
 cb:implementation-decision_tree_predictor-change_prediction a tb:Parameter ;
     rdfs:label "Change Prediction" ;
     tb:hasDatatype xsd:boolean ;
@@ -1590,6 +1582,15 @@ cb:implementation-decision_tree_learner-no_true_child_strategy a tb:Parameter ;
     tb:knime_key "CFG_NOTRUECHILD" ;
     tb:knime_path "model" .
 
+cb:implementation-decision_tree_learner-number_of_records_to_store_for_view a tb:Parameter ;
+    rdfs:label "Number of records to store for view" ;
+    tb:hasDatatype xsd:int ;
+    tb:hasDefaultValue 10000 ;
+    tb:has_condition "" ;
+    tb:has_position 1 ;
+    tb:knime_key "numverRecordsToView" ;
+    tb:knime_path "model" .
+
 cb:implementation-decision_tree_learner-number_of_threads a tb:Parameter ;
     rdfs:label "Number of threads" ;
     tb:hasDatatype xsd:int ;
@@ -1661,11 +1662,11 @@ cb:implementation-decision_tree_predictor a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "Decision Tree Predictor" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:TabularDataset ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:DecisionTreeModel ;
-            tb:has_position 0 ] ;
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:TabularDataset ;
+            tb:has_position 1 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:LabeledTabularDatasetShape ;
             tb:has_position 0 ] .
@@ -1691,11 +1692,11 @@ cb:implementation-missing_value a tb:LearnerImplementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:MissingValueModel ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:NonNullTabularDatasetShape ;
-            tb:has_position 0 ] .
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:MissingValueModel ;
+            tb:has_position 1 ] .
 
 cb:implementation-normalizer_\(pmml\)-new_maximum a tb:Parameter ;
     rdfs:label "New maximum" ;
@@ -1809,11 +1810,11 @@ cb:implementation-svm_predictor a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "SVM Predictor" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_36ce5a5c-56bd-42f5-9ec2-e5bef04118d3 ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:SVMModel ;
-            tb:has_position 0 ] ;
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:Shape_3b4b13e3-7f11-480b-8816-be4203eeee06 ;
+            tb:has_position 1 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:LabeledTabularDatasetShape ;
             tb:has_position 0 ] .
@@ -1918,7 +1919,7 @@ INSERT {
       dmop:hasName $parameter1.
 }
 WHERE {
-    $input1 da:setsClassColumnName ?classColumnName .
+    $input1 cb:setsClassColumnName ?classColumnName .
 }
             """ ] ) .
 
@@ -2017,11 +2018,11 @@ cb:implementation-normalizer_\(pmml\) a tb:LearnerImplementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:NormalizedTabularDatasetShape ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:NormalizerModel ;
-            tb:has_position 1 ] .
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:NormalizedTabularDatasetShape ;
+            tb:has_position 0 ] .
 
 cb:implementation-normalizer_\(pmml\)-normalization_mode a tb:Parameter ;
     rdfs:label "Normalization mode" ;
@@ -2079,7 +2080,7 @@ cb:implementation-svm_learner a tb:LearnerImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "SVM Learner" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_56bac116-1cb9-4cda-8dc3-c5f28b6d5219 ;
+            tb:hasTag cb:Shape_d3766214-f284-4683-a51b-2786921c93f4 ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:SVMModel ;

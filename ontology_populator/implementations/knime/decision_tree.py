@@ -42,6 +42,7 @@ decision_tree_learner_component = Component(
     ],
     exposed_parameters=[
         'Class column',
+        'Number of records to store for view',
         'Min number records per node',
         'Pruning method',
         'Reduced error pruning',
