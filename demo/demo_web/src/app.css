@@ -17,3 +17,9 @@ body {
     max-height: 30vh;
     overflow-y: auto;
 }
+
+:root {
+    --anchor-width: 0;
+    --anchor-height: 0;
+}
+

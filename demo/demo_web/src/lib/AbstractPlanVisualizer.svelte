@@ -1,17 +1,16 @@
 <script lang="ts">
     import {Background, Node, Svelvet} from 'svelvet';
-    import {createEventDispatcher} from 'svelte';
     import {plan_layout} from './utils'
     import CircularProgress from "@smui/circular-progress";
+    import Paper, {Title} from '@smui/paper';
+    import CustomEdge from "./CustomEdge.svelte";
 
-    const dispatch = createEventDispatcher();
 
     export let plan: { [key: string]: string[] };
     export let plan_id: string;
 
     let nodes: any[];
     let edges: any[];
-    let initialPosition: any;
 
     async function initialize() {
         let layout = await plan_layout(plan);
@@ -31,26 +30,38 @@
         console.log(edges);
     }
 
-    let initializing = initialize();
+    let initializing: Promise<void>;
+
+    if (plan && plan_id) {
+        initializing = initialize()
+    }
 </script>
 
 <div>
-    <h2 id="fullscreen-title">{plan_id.split('#').at(-1)}</h2>
-    {#await initializing}
-        <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-    {:then _}
-        <div id="canvas-div">
-            <Svelvet controls>
-                {#each nodes as node}
-                    <Node id={node.data.label} label={node.data.label} position={{x: node.x, y:node.y}}
-                          dimensions={{width: node.width, height: node.height}}
-                          connections={node.outgoing}>
-                    </Node>
-                {/each}
-                <Background dotColor="transparent" slot="background"/>
-            </Svelvet>
-        </div>
-    {/await}
+    {#if plan && plan_id}
+        <Paper variant="unelevated" class="flex-column">
+            <Title>{plan_id.split('#').at(-1)}</Title>
+        </Paper>
+        {#await initializing}
+            <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
+        {:then _}
+            <div id="canvas-div">
+                <Svelvet controls edge={CustomEdge}>
+                    {#each nodes as node}
+                        <Node id={node.node_id} label={node.data.label} position={{x: node.x, y:node.y}}
+                              dimensions={{width: node.width, height: node.height}}
+                              connections={node.outgoing}>
+                        </Node>
+                    {/each}
+                    <Background dotColor="transparent" slot="background"/>
+                </Svelvet>
+            </div>
+        {/await}
+    {:else}
+        <Paper variant="unelevated" class="flex-column">
+            <Title>No workflow is selected</Title>
+        </Paper>
+    {/if}
 </div>
 
 <style>

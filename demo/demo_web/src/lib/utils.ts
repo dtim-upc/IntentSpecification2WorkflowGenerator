@@ -4,6 +4,15 @@ const elk = new ELK()
 
 export {plan_layout, removeLastPart, windowsStyleSort};
 
+function toTitleCase(str: string): string {
+    return str.replace(
+        /\w\S*/g,
+        function(txt) {
+            return txt.charAt(0).toUpperCase() + txt.substring(1);
+        }
+    );
+}
+
 function removeLastPart(inputString: string): string {
     const parts = inputString.split(' ');
 
@@ -23,14 +32,19 @@ function windowsStyleSort(strings: string[]): string[] {
 
 async function plan_layout(plan: { [key: string]: string[] }) {
     let nodes = Object.keys(plan).map(node => {
-        let label = node.split('#').at(-1)!;
+        let node_id = node.split('#').at(-1)!;
+        let label = toTitleCase(node_id.replaceAll('_', ' ').replaceAll('-', ' ').replace('component ', ''));
+        let width = 200;
+        let label_width = label.length * 12;
+        let height = label_width > width ? 30 * label_width / width : 30;
         return {
             id: node,
+            node_id: node_id,
             data: {
                 label: label,
             },
-            width: label.length * 10 > 50 ? label.length * 10 : 50,
-            height: 50,
+            width: width,
+            height: height,
             sourcePosition: 'right',
             targetPosition: 'left',
         }

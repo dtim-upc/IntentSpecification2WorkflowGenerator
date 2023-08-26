@@ -22,11 +22,11 @@
             label: 'Workflow Planner',
         },
         {
-            icon: 'list',
+            icon: 'share',
             label: 'Workflows',
         },
         {
-            icon: 'share',
+            icon: 'visibility',
             label: 'Visualizer',
         },
     ];
