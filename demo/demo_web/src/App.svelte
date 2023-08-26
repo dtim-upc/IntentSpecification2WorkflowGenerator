@@ -29,22 +29,15 @@
     let active = tabs[0];
 
 
-    let abstract_plans = {};
-    let logical_plans = {};
-    let workflow_plans = {};
-
-    function abstract_planner_finished(event) {
-        abstract_plans = event.detail;
+    function abstract_planner_finished() {
         active = tabs[1];
     }
 
-    function logical_planner_finished(event) {
-        logical_plans = event.detail;
+    function logical_planner_finished() {
         active = tabs[2];
     }
 
-    function workflow_planner_finished(event) {
-        workflow_plans = event.detail;
+    function workflow_planner_finished() {
         active = tabs[3];
     }
 </script>
@@ -77,13 +70,13 @@
                 <AbstractPlanner on:abstract_plans={abstract_planner_finished}></AbstractPlanner>
             </div>
             {#if active.label === 'Logical Planner'}
-                <LogicalPlanner plans={abstract_plans} on:logical_plans={logical_planner_finished}></LogicalPlanner>
+                <LogicalPlanner on:logical_plans={logical_planner_finished}></LogicalPlanner>
             {/if}
             {#if active.label === 'Workflow Planner'}
-                <WorkflowPlanner plans={logical_plans} on:workflow_plans={workflow_planner_finished}></WorkflowPlanner>
+                <WorkflowPlanner on:workflow_plans={workflow_planner_finished}></WorkflowPlanner>
             {/if}
             {#if active.label === 'Workflows'}
-                <Workflows plans={workflow_plans}></Workflows>
+                <Workflows></Workflows>
             {/if}
         </Card>
     </div>

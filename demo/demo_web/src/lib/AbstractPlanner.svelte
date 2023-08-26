@@ -10,8 +10,8 @@
     const dispatch = createEventDispatcher();
 
     let intent_name = 'D';
-    let datasets = [];
-    let problems = [];
+    let datasets: {[key: string]: string} = {};
+    let problems: {[key: string]: string} = {};
 
     let dataset = 'titanic.csv';
     let problem = 'Classification';
@@ -37,7 +37,7 @@
 
         creating_plans = true;
 
-        const response = await fetch('http://localhost:5000/abstract_planner', {
+        await fetch('http://localhost:5000/abstract_planner', {
             method: 'POST',
             body: JSON.stringify({
                 'intent_name': intent_name,
@@ -48,8 +48,7 @@
                 'Content-Type': 'application/json'
             }
         });
-        let plans = await response.json();
-        dispatch('abstract_plans', plans);
+        dispatch('abstract_plans');
         creating_plans = false;
     }
 </script>

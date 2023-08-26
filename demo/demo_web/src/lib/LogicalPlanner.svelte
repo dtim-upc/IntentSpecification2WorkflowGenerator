@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import List, {Item, Label, Meta} from '@smui/list';
     import Checkbox from '@smui/checkbox';
     import IconButton from '@smui/icon-button';
@@ -10,31 +10,38 @@
 
     const dispatch = createEventDispatcher();
 
-    export let plans;
+    let plans: {[key: string]: {[key: string]: string[]}};
+    let keys: string[];
+    let selected: string[];
 
-    let creating_plans = false;
+    let loading = false;
 
-    let keys = Object.keys(plans);
-    let selected = Object.keys(plans || {});
-    let changeEvent;
+    async function initialize() {
+        let response = await fetch('http://localhost:5000/abstract_plans');
+        plans = await response.json();
+        keys = Object.keys(plans);
+        selected = Object.keys(plans || {});
+    }
+
+    let initializing = initialize()
 
     let open = false;
-    let view_plan = undefined;
+    let view_plan: {[key: string]: string[]} | undefined = undefined;
 
-    function viewAbstractPlan(plan_id) {
+    function viewAbstractPlan(plan_id: string) {
         view_plan = plans[plan_id];
         open = true;
     }
 
-    function closeVisualization(event) {
+    function closeVisualization() {
         open = false;
         view_plan = undefined;
     }
 
     async function run_planner() {
-        creating_plans = true;
+        loading = true;
 
-        const response = await fetch('http://localhost:5000/logical_planner', {
+        await fetch('http://localhost:5000/logical_planner', {
             method: 'POST',
             body: JSON.stringify(selected),
             headers: {
@@ -42,53 +49,55 @@
             }
         });
 
-        let plans = await response.json();
-        dispatch('logical_plans', plans);
-        creating_plans = false;
+        dispatch('logical_plans');
+        loading = false;
     }
 
 </script>
 
 <Paper variant="unelevated" class="flex-column">
     <Title>Logical Planner</Title>
-    <Subtitle>Select the Abstract Plans to send to the Logical Planner:</Subtitle>
+    {#if loading}
+        <Subtitle>Select the Abstract Plans to send to the Logical Planner:</Subtitle>
+    {/if}
     <Content class="flex-column">
-        {#if creating_plans}
+        {#if loading}
             <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
         {:else}
-            <List
-                    class="demo-list"
-                    checkList
-                    on:SMUIList:selectionChange={(event) => (changeEvent = event)}
-            >
-                {#each keys as key}
-                    <div class="item-div">
-                        <Item>
-                            <div class="inner-item-div">
+            {#await initializing}
+                <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
+            {:then _}
+                <List class="demo-list" checkList>
+                    {#each keys as key}
+                        <div class="item-div">
+                            <Item>
+                                <div class="inner-item-div">
+                                    <Meta>
+                                        <Checkbox bind:group={selected} value="{key}"/>
+                                    </Meta>
+                                    <Label>{key.split('#').at(-1)}</Label>
+                                </div>
                                 <Meta>
-                                    <Checkbox bind:group={selected} value="{key}"/>
+                                    <IconButton class="material-icons" on:click={() => viewAbstractPlan(key)}>visibility
+                                    </IconButton>
                                 </Meta>
-                                <Label>{key.split('#').at(-1)}</Label>
-                            </div>
-                            <Meta>
-                                <IconButton class="material-icons" on:click={() => viewAbstractPlan(key)}>visibility
-                                </IconButton>
-                            </Meta>
-                        </Item>
-                    </div>
-                {/each}
-            </List>
+                            </Item>
+                        </div>
+                    {/each}
+                </List>
 
-            <Button on:click={run_planner} variant="outlined">
-                <Label>Run Logical Planner</Label>
-            </Button>
+                <Button on:click={run_planner} variant="outlined">
+                    <Label>Run Logical Planner</Label>
+                </Button>
+            {/await}
         {/if}
     </Content>
 
 </Paper>
 
 {#if open}
-    <AbstractPlanVisualizer open={open} plan={view_plan} on:close={closeVisualization}></AbstractPlanVisualizer>
+    <AbstractPlanVisualizer open={open} plan={view_plan}
+                            on:close={closeVisualization}></AbstractPlanVisualizer>
 {/if}
 <style>
     .inner-item-div {

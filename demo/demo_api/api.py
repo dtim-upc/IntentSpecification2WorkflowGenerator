@@ -1,6 +1,7 @@
 import shutil
+from time import sleep
 
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, Response
 from flask_cors import CORS
 
 from demo.demo_api.functions import *
@@ -50,6 +51,12 @@ def run_abstract_planner():
     global abstract_plans, algorithm_implementations, intent
     intent = intent_graph
     abstract_plans, algorithm_implementations = abstract_planner(ontology, intent)
+    return Response(status=204)
+
+
+@app.get('/abstract_plans')
+def get_abstract_plans():
+    global abstract_plans
     return abstract_plans
 
 
@@ -67,6 +74,12 @@ def run_logical_planner():
 
     logical_plans, logical_to_workflows = logical_planner(ontology, workflow_plans)
 
+    return Response(status=204)
+
+
+@app.get('/logical_plans')
+def get_logical_plans():
+    global logical_plans
     return logical_plans
 
 
@@ -77,7 +90,16 @@ def run_workflow_planner():
     global selected_plans
     selected_plans = plan_ids
 
-    return plan_ids
+    sleep(5)
+
+    return Response(status=204)
+
+
+@app.get('/workflow_plans')
+def get_workflow_plans():
+    global selected_plans
+
+    return selected_plans
 
 
 @app.get('/workflow_plans/rdf/all')
