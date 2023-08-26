@@ -19,7 +19,7 @@ ab:penguins.csv a dmop:TabularDataset ;
 """ ;
     dmop:numberOfColumns 7 ;
     dmop:numberOfRows 344 ;
-    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\penguins.csv" ;
+    dmop:path "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\penguins.csv" ;
     dmop:quoteChar "\"" ;
     dmop:skipInitialSpace false .
 

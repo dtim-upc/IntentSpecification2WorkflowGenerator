@@ -24,7 +24,7 @@ ab:titanic.csv a dmop:TabularDataset ;
 """ ;
     dmop:numberOfColumns 12 ;
     dmop:numberOfRows 891 ;
-    dmop:path "C:\\Users\\Victor\\Development\\thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
+    dmop:path "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\titanic.csv" ;
     dmop:quoteChar "\"" ;
     dmop:skipInitialSpace false .
 
