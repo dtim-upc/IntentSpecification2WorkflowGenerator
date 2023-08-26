@@ -75,7 +75,7 @@
     />
 
     <div class="center">
-        <Card padded>
+        <Card padded class="main-card">
             <TabBar {tabs} let:tab bind:active>
                 <Tab {tab}>
                     <Icon class="material-icons">{tab.icon}</Icon>

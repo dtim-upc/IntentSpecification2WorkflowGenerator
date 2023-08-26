@@ -13,16 +13,17 @@
     let keys: string[];
     let selected: string[];
 
-    let loading = false;
+    let loading = true;
 
     async function initialize() {
         let response = await fetch('http://localhost:5000/abstract_plans');
         plans = await response.json();
         keys = Object.keys(plans);
         selected = Object.keys(plans || {});
+        loading = false;
     }
 
-    let initializing = initialize()
+    initialize()
 
     function viewAbstractPlan(plan_id: string) {
         let plan = plans[plan_id];
@@ -46,43 +47,37 @@
 
 </script>
 
-<Paper variant="unelevated" class="flex-column">
+<Paper variant="unelevated" class="flex-column overflow-80">
     <Title>Logical Planner</Title>
     {#if loading}
+        <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
+    {:else}
         <Subtitle>Select the Abstract Plans to send to the Logical Planner:</Subtitle>
-    {/if}
-    <Content class="flex-column">
-        {#if loading}
-            <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-        {:else}
-            {#await initializing}
-                <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-            {:then _}
-                <List class="demo-list" checkList>
-                    {#each keys as key}
-                        <div class="item-div">
-                            <Item>
-                                <div class="inner-item-div">
-                                    <Meta>
-                                        <Checkbox bind:group={selected} value="{key}"/>
-                                    </Meta>
-                                    <Label>{key.split('#').at(-1)}</Label>
-                                </div>
+        <Content class="flex-column">
+            <List class="overflow-30" checkList>
+                {#each keys as key}
+                    <div class="item-div">
+                        <Item>
+                            <div class="inner-item-div">
                                 <Meta>
-                                    <IconButton class="material-icons" on:click={() => viewAbstractPlan(key)}>visibility
-                                    </IconButton>
+                                    <Checkbox bind:group={selected} value="{key}"/>
                                 </Meta>
-                            </Item>
-                        </div>
-                    {/each}
-                </List>
+                                <Label>{key.split('#').at(-1)}</Label>
+                            </div>
+                            <Meta>
+                                <IconButton class="material-icons" on:click={() => viewAbstractPlan(key)}>visibility
+                                </IconButton>
+                            </Meta>
+                        </Item>
+                    </div>
+                {/each}
+            </List>
 
-                <Button on:click={run_planner} variant="outlined">
-                    <Label>Run Logical Planner</Label>
-                </Button>
-            {/await}
-        {/if}
-    </Content>
+            <Button on:click={run_planner} variant="outlined">
+                <Label>Run Logical Planner</Label>
+            </Button>
+        </Content>
+    {/if}
 </Paper>
 <style>
     .inner-item-div {

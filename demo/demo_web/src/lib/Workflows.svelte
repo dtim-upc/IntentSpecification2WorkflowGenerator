@@ -13,6 +13,8 @@
         [key: string]: string[]
     };
 
+    let loading = true;
+
     async function initialize() {
         let response = await fetch('http://localhost:5000/workflow_plans');
         plans = await response.json();
@@ -25,9 +27,10 @@
             }
             groups[group].push(key);
         }
+        loading = false;
     }
 
-    let initializing = initialize();
+    initialize();
 
     async function download_rdf(plan_id: string) {
         let element = document.createElement('a');
@@ -59,47 +62,49 @@
 
 </script>
 
-<Paper variant="unelevated" class="flex-column">
+<Paper variant="unelevated" class="flex-column overflow-80">
     <Title>Final Workflows</Title>
-    {#await initializing}
+    {#if loading}
         <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-    {:then _}
+    {:else}
         <Subtitle>Select the Abstract Plans to send to the Logical Planner:</Subtitle>
-        <Content class="flex-column">
-            <Accordion>
-                {#each Object.keys(groups) as group_id}
-                    <Panel>
-                        <Header>{group_id}</Header>
-                        <AccContent>
-                            <List class="demo-list">
-                                {#each windowsStyleSort(groups[group_id]) as element}
-                                    <div class="item-div">
-                                        <Item>
-                                            <div class="inner-item-div">
-                                                <Label>{element}</Label>
-                                            </div>
-                                            <Meta>
-                                                <Wrapper>
-                                                    <IconButton class="material-icons"
-                                                                on:click={() => download_rdf(element)}>share
-                                                    </IconButton>
-                                                    <Tooltip>Download RDF representation</Tooltip>
-                                                </Wrapper>
-                                                <Wrapper>
-                                                    <IconButton class="material-icons"
-                                                                on:click={() => download_knime(element)}>download
-                                                    </IconButton>
-                                                    <Tooltip>Download KNIME representation</Tooltip>
-                                                </Wrapper>
-                                            </Meta>
-                                        </Item>
-                                    </div>
-                                {/each}
-                            </List>
-                        </AccContent>
-                    </Panel>
-                {/each}
-            </Accordion>
+        <Content class="flex-column overflow-50">
+            <div class="overflow-50">
+                <Accordion>
+                    {#each Object.keys(groups) as group_id}
+                        <Panel>
+                            <Header>{group_id}</Header>
+                            <AccContent>
+                                <List>
+                                    {#each windowsStyleSort(groups[group_id]) as element}
+                                        <div class="item-div">
+                                            <Item>
+                                                <div class="inner-item-div">
+                                                    <Label>{element}</Label>
+                                                </div>
+                                                <Meta>
+                                                    <Wrapper>
+                                                        <IconButton class="material-icons"
+                                                                    on:click={() => download_rdf(element)}>share
+                                                        </IconButton>
+                                                        <Tooltip>Download RDF representation</Tooltip>
+                                                    </Wrapper>
+                                                    <Wrapper>
+                                                        <IconButton class="material-icons"
+                                                                    on:click={() => download_knime(element)}>download
+                                                        </IconButton>
+                                                        <Tooltip>Download KNIME representation</Tooltip>
+                                                    </Wrapper>
+                                                </Meta>
+                                            </Item>
+                                        </div>
+                                    {/each}
+                                </List>
+                            </AccContent>
+                        </Panel>
+                    {/each}
+                </Accordion>
+            </div>
 
             <div>
                 <Button on:click={download_all_rdf} variant="outlined">
@@ -110,7 +115,7 @@
                 </Button>
             </div>
         </Content>
-    {/await}
+    {/if}
 
 </Paper>
 

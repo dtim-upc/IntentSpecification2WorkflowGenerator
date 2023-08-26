@@ -35,7 +35,7 @@
     }
 </script>
 
-<div>
+<div class="overflow-80">
     {#if plan && plan_id}
         <Paper variant="unelevated" class="flex-column">
             <Title>{plan_id.split('#').at(-1)}</Title>

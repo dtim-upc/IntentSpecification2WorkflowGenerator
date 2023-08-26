@@ -15,7 +15,7 @@
         [key: string]: any
     };
 
-    let creating_plans = false;
+    let loading = true;
 
     let keys;
     let groups: {
@@ -40,9 +40,10 @@
         }
 
         selectedGroups = JSON.parse(JSON.stringify(groups));
+        loading = false;
     }
 
-    let initializing = initialize();
+    initialize();
 
     function toggle_group(event: any, group_id: string) {
         event.stopPropagation();
@@ -59,7 +60,7 @@
     }
 
     async function run_planner() {
-        creating_plans = true;
+        loading = true;
         let selected: string[] = [];
         for (let group_selected of Object.values(selectedGroups)) {
             selected = selected.concat(group_selected);
@@ -74,21 +75,19 @@
         });
 
         dispatch('workflow_plans');
-        creating_plans = false;
+        loading = false;
     }
 
 </script>
 
-<Paper variant="unelevated" class="flex-column">
+<Paper variant="unelevated" class="flex-column overflow-80">
     <Title>Workflow Planner</Title>
-    <Subtitle>Select the Logical Plans to send to the Workflow Planner:</Subtitle>
-    <Content class="flex-column">
-        {#if creating_plans}
-            <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-        {:else}
-            {#await initializing}
-                <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
-            {:then _}
+    {#if loading}
+        <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
+    {:else}
+        <Subtitle>Select the Logical Plans to send to the Workflow Planner:</Subtitle>
+        <Content class="flex-column overflow-50">
+            <div class="overflow-50">
                 <Accordion>
                     {#each Object.keys(groups) as group_id}
                         <Panel>
@@ -109,7 +108,7 @@
                                 </div>
                             </Header>
                             <AccContent>
-                                <List class="demo-list" checkList>
+                                <List checkList>
                                     {#each windowsStyleSort(groups[group_id]) as element}
                                         <div class="item-div">
                                             <Item>
@@ -133,16 +132,14 @@
                         </Panel>
                     {/each}
                 </Accordion>
+            </div>
+            Total of {Object.values(selectedGroups).reduce((a, b) => a + b.length, 0)} Logical Plans selected.
 
-                Total of {Object.values(selectedGroups).reduce((a, b) => a + b.length, 0)} Logical Plans selected.
-
-                <Button on:click={run_planner} variant="outlined">
-                    <Label>Run Workflow Planner</Label>
-                </Button>
-            {/await}
-        {/if}
-    </Content>
-
+            <Button on:click={run_planner} variant="outlined">
+                <Label>Run Workflow Planner</Label>
+            </Button>
+        </Content>
+    {/if}
 </Paper>
 
 
