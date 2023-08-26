@@ -26,8 +26,6 @@
             nodes.find(n => n.id == edge.source).outgoing.push(t);
             nodes.find(n => n.id == edge.target).incoming.push(s);
         }
-        console.log(nodes);
-        console.log(edges);
     }
 
     let initializing: Promise<void>;

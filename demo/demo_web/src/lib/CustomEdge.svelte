@@ -1,5 +1,5 @@
 <script>
-    import { Edge } from 'svelvet';
+    import {Edge} from 'svelvet';
 </script>
 
 <Edge animate></Edge>

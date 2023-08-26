@@ -1,13 +1,21 @@
 import ELK from 'elkjs/lib/elk.bundled.js'
 
-const elk = new ELK()
+const elk = new ELK({
+    defaultLayoutOptions: {
+        'elk.algorithm': 'layered',
+        'org.eclipse.elk.spacing.nodeNode': '60',
+        'elk.layered.spacing.nodeNodeBetweenLayers': '100',
+        'org.eclipse.elk.layered.spacing.edgeNodeBetweenLayers': '50.0',
+        'org.eclipse.elk.spacing.edgeNode': '50.0',
+    }
+})
 
 export {plan_layout, removeLastPart, windowsStyleSort};
 
 function toTitleCase(str: string): string {
     return str.replace(
         /\w\S*/g,
-        function(txt) {
+        function (txt) {
             return txt.charAt(0).toUpperCase() + txt.substring(1);
         }
     );
@@ -68,14 +76,9 @@ async function plan_layout(plan: { [key: string]: string[] }) {
 
     const graph = {
         id: "root",
-        layoutOptions: {
-            'elk.algorithm': 'layered',
-            'elk.direction': 'org.eclipse.elk.core.options.Direction.DOWN'
-        },
         children: nodes,
         edges: edges
     }
-
     const layout = await elk.layout(graph);
 
     return {
