@@ -27,6 +27,18 @@ def load_workflow(path: str) -> Graph:
 
 def get_workflow_steps(graph: Graph) -> List[URIRef]:
     steps = list(graph.subjects(RDF.type, tb.Step))
+
+    connections = list(graph.subject_objects(tb.followedBy))
+    disordered = True
+    while disordered:
+        disordered = False
+        for source, target in connections:
+            si = steps.index(source)
+            ti = steps.index(target)
+            if si > ti:
+                disordered = True
+                steps[si] = target
+                steps[ti] = source
     return steps
 
 
@@ -104,6 +116,7 @@ def get_step_model_config(ontology: Graph, workflow_graph: Graph, step: URIRef) 
 
     types = {
         XSD.string: 'xstring',
+        cb.term('char'): 'xchar',
         XSD.int: 'xint',
         XSD.integer: 'xint',
         XSD.long: 'xlong',

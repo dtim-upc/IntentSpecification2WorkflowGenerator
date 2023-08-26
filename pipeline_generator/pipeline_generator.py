@@ -309,6 +309,9 @@ def perform_param_substitution(graph: Graph, parameters: Dict[URIRef, Tuple[Lite
         if isinstance(value.value, str) and '$$CSV_PATH$$' in value.value:
             new_value = value.replace('$$CSV_PATH$$', f'{get_csv_path(graph, inputs)}')
             parameters[param] = (Literal(new_value), order, condition)
+        if isinstance(value.value, str) and '&amp;' in value.value:
+            new_value = value.replace('&amp;', '&')
+            parameters[param] = (Literal(new_value), order, condition)
 
     return parameters
 
@@ -636,6 +639,13 @@ def build_workflow_train_test(workflow_name: str, ontology: Graph, dataset: URIR
         test_dataset_node = test_transformation_outputs[test_output_data_index]
         previous_test_step = test_step
         task_order += 1
+
+    saver_component = cb.term('component-csv_local_writer')
+    saver_step_name = get_step_name(workflow_name, task_order + 1, saver_component)
+    saver_parameters = get_component_parameters(ontology, saver_component)
+    saver_parameters = perform_param_substitution(workflow_graph, saver_parameters, [test_dataset_node])
+    add_step(workflow_graph, workflow, saver_step_name, saver_component, saver_parameters, task_order,
+             previous_test_step, [test_dataset_node], [])
 
     return workflow_graph, workflow
 

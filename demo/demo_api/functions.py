@@ -22,12 +22,14 @@ def abstract_planner(ontology: Graph, intent: Graph) -> Tuple[
                 cb.DataLoading: [cb.Partitioning],
                 cb.Partitioning: [trainer, alg],
                 trainer: [alg],
-                alg: [],
+                alg: [cb.DataStoring],
+                cb.DataStoring: []
             }
         else:
             plans[alg] = {
                 cb.DataLoading: [alg],
-                alg: [],
+                alg: [cb.DataStoring],
+                cb.DataStoring: []
             }
 
     alg_plans = {alg: [] for alg, _ in algs}
@@ -97,7 +99,8 @@ def logical_planner(ontology: Graph, workflow_plans: List[Graph]):
         logical_plan = {
             step_components[step]: [step_components[s] for s in nexts] for step, nexts in step_next.items()
         }
-        main_component = next(comp for comp in logical_plan.keys() if logical_plan[comp] == [])
+        main_component = next(
+            comp for comp in logical_plan.keys() if logical_plan[comp] == [cb.term('component-csv_local_writer')])
         if (main_component, RDF.type, tb.ApplierImplementation) in ontology:
             options = list(ontology.objects(main_component, tb.hasLearner))
             main_component = next(o for o in options if (None, None, o) in workflow_plan)

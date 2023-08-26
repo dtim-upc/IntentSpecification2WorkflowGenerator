@@ -115,6 +115,27 @@ cb:component-csv_local_reader a tb:Component ;
             tb:forParameter cb:implementation-csv_reader-location_flag ;
             tb:has_value true ] .
 
+cb:component-csv_local_writer a tb:Component ;
+    rdfs:label "CSV Local writer" ;
+    tb:exposesParameter cb:implementation-csv_writer-column_delimieter,
+        cb:implementation-csv_writer-create_missing_folders,
+        cb:implementation-csv_writer-file,
+        cb:implementation-csv_writer-on_existing_file,
+        cb:implementation-csv_writer-quote_char,
+        cb:implementation-csv_writer-quote_escape_char,
+        cb:implementation-csv_writer-row_delimieter,
+        cb:implementation-csv_writer-skip_column_header_on_append,
+        cb:implementation-csv_writer-write_column_header,
+        cb:implementation-csv_writer-write_row_header ;
+    tb:hasImplementation cb:implementation-csv_writer ;
+    tb:hasTransformation [ rdf:rest () ] ;
+    tb:overridesParameter [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-csv_writer-filesystem ;
+            tb:has_value "LOCAL" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-csv_writer-location_flag ;
+            tb:has_value true ] .
+
 cb:component-random_absolute_train_test_split a tb:Component ;
     rdfs:label "Random Absolute Train-Test Split" ;
     tb:exposesParameter cb:implementation-partitioning-count_\(absolute_size\),
@@ -146,11 +167,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Absolute" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "Random" ] .
+            tb:has_value "Random" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
+            tb:has_value "Absolute" ] .
 
 cb:component-random_relative_train_test_split a tb:Component ;
     rdfs:label "Random Relative Train-Test Split" ;
@@ -183,11 +204,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "Random" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Relative" ] .
+            tb:has_value "Relative" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-sampling_method ;
+            tb:has_value "Random" ] .
 
 cb:component-top_k_absolute_train_test_split a tb:Component ;
     rdfs:label "Top K Absolute Train-Test Split" ;
@@ -219,11 +240,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Absolute" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "First" ] .
+            tb:has_value "First" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
+            tb:has_value "Absolute" ] .
 
 cb:component-top_k_relative_train_test_split a tb:Component ;
     rdfs:label "Top K Relative Train-Test Split" ;
@@ -255,11 +276,11 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
-            tb:has_value "Relative" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-partitioning-sampling_method ;
-            tb:has_value "First" ] .
+            tb:has_value "First" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-partitioning-size_of_first_partition ;
+            tb:has_value "Relative" ] .
 
 cb:DuplicationRemoval a tb:Problem ;
     tb:subProblemOf cb:DataCleaning .
@@ -289,13 +310,13 @@ cb:NumericColumnShape a sh:NodeShape ;
     sh:property cb:NumericColumnProperty ;
     sh:targetClass dmop:Column .
 
-cb:Shape_3b4b13e3-7f11-480b-8816-be4203eeee06 a sh:NodeShape,
-        tb:DataTag ;
-    sh:and ( cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
-
-cb:Shape_d3766214-f284-4683-a51b-2786921c93f4 a sh:NodeShape,
+cb:Shape_e912e5b7-6381-465a-aa23-1bb443b614fe a sh:NodeShape,
         tb:DataTag ;
     sh:and ( cb:LabeledTabularDatasetShape cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
+
+cb:Shape_f4f23cd3-970b-40e4-9592-231e1ede34d2 a sh:NodeShape,
+        tb:DataTag ;
+    sh:and ( cb:NormalizedTabularDatasetShape cb:NonNullTabularDatasetShape ) .
 
 cb:component-decimal_scaling a tb:LearnerComponent ;
     rdfs:label "Decimal Scaling" ;
@@ -414,13 +435,13 @@ INSERT DATA {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-integer ;
-            tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
-        [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-string ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-float ;
+            tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ],
+        [ a tb:ParameterValue ;
+            tb:forParameter cb:implementation-missing_value-integer ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.pmml.RemoveRowMissingCellHandlerFactory" ] .
 
 cb:component-hypertangent_svm_learner a tb:LearnerComponent ;
@@ -462,14 +483,14 @@ WHERE {
 }
 """ ] ) ;
     tb:overridesParameter [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-string ;
-            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ],
+            tb:forParameter cb:implementation-missing_value-integer ;
+            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
             tb:forParameter cb:implementation-missing_value-float ;
             tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ],
         [ a tb:ParameterValue ;
-            tb:forParameter cb:implementation-missing_value-integer ;
-            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.DoubleMeanMissingCellHandlerFactory" ] .
+            tb:forParameter cb:implementation-missing_value-string ;
+            tb:has_value "org.knime.base.node.preproc.pmml.missingval.handlers.MostFrequentValueMissingCellHandlerFactory" ] .
 
 cb:component-min_max_scaling a tb:LearnerComponent ;
     rdfs:label "Min-Max Scaling" ;
@@ -1241,6 +1262,312 @@ cb:implementation-csv_reader-use_line_break_row_delimiter a tb:Parameter ;
     tb:knime_key "use_line_break_row_delimiter" ;
     tb:knime_path "model/settings" .
 
+cb:implementation-csv_writer a tb:Implementation ;
+    rdfs:label "CSV Writer" ;
+    tb:engine "KNIME" ;
+    tb:hasParameter cb:implementation-csv_writer-add_custom_text_to_comment,
+        cb:implementation-csv_writer-add_table_name_to_comment,
+        cb:implementation-csv_writer-add_time_to_comment,
+        cb:implementation-csv_writer-add_user_to_comment,
+        cb:implementation-csv_writer-character_set,
+        cb:implementation-csv_writer-column_delimieter,
+        cb:implementation-csv_writer-comment_indentation,
+        cb:implementation-csv_writer-comment_line_marker,
+        cb:implementation-csv_writer-compress_with_gzip,
+        cb:implementation-csv_writer-connected_fs,
+        cb:implementation-csv_writer-convenience_fs_category,
+        cb:implementation-csv_writer-create_missing_folders,
+        cb:implementation-csv_writer-custom_comment_text,
+        cb:implementation-csv_writer-custom_url_timeout,
+        cb:implementation-csv_writer-decimal_separator,
+        cb:implementation-csv_writer-fcsi_enabledstatus,
+        cb:implementation-csv_writer-fcsi_settingsmodelid,
+        cb:implementation-csv_writer-file,
+        cb:implementation-csv_writer-filesystem,
+        cb:implementation-csv_writer-fmi_enabledstatus,
+        cb:implementation-csv_writer-fmi_settingsmodelid,
+        cb:implementation-csv_writer-has_fs_port,
+        cb:implementation-csv_writer-keep_trailing_zero_in_decimals,
+        cb:implementation-csv_writer-location_flag,
+        cb:implementation-csv_writer-missing_value_pattern,
+        cb:implementation-csv_writer-mountpoint,
+        cb:implementation-csv_writer-on_existing_file,
+        cb:implementation-csv_writer-overwritten_by_variable,
+        cb:implementation-csv_writer-quote_char,
+        cb:implementation-csv_writer-quote_escape_char,
+        cb:implementation-csv_writer-quote_mode,
+        cb:implementation-csv_writer-relative_to,
+        cb:implementation-csv_writer-row_delimieter,
+        cb:implementation-csv_writer-separator_replacement,
+        cb:implementation-csv_writer-skip_column_header_on_append,
+        cb:implementation-csv_writer-spaceid,
+        cb:implementation-csv_writer-spacename,
+        cb:implementation-csv_writer-use_scientific_format,
+        cb:implementation-csv_writer-write_column_header,
+        cb:implementation-csv_writer-write_row_header ;
+    tb:implements cb:DataStoring ;
+    tb:knime-factory "org.knime.base.node.io.filehandling.csv.writer.CSVWriter2NodeFactory" ;
+    tb:knime-node-bundle-name "KNIME Base Nodes" ;
+    tb:knime-node-bundle-symbolic-name "org.knime.base" ;
+    tb:knime-node-bundle-vendor "KNIME AG, Zurich, Switzerland" ;
+    tb:knime-node-bundle-version "4.7.0.v202301251625" ;
+    tb:knime-node-name "CSV Writer" ;
+    tb:specifiesInput [ a tb:IOSpec ;
+            tb:hasTag cb:TabularDataset ;
+            tb:has_position 0 ] .
+
+cb:implementation-csv_writer-add_custom_text_to_comment a tb:Parameter ;
+    rdfs:label "add_custom_text_to_comment" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 37 ;
+    tb:knime_key "add_custom_text_to_comment" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-add_table_name_to_comment a tb:Parameter ;
+    rdfs:label "add_table_name_to_comment" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 36 ;
+    tb:knime_key "add_table_name_to_comment" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-add_time_to_comment a tb:Parameter ;
+    rdfs:label "add_time_to_comment" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 34 ;
+    tb:knime_key "add_time_to_comment" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-add_user_to_comment a tb:Parameter ;
+    rdfs:label "add_user_to_comment" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 35 ;
+    tb:knime_key "add_user_to_comment" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-character_set a tb:Parameter ;
+    rdfs:label "character_set" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "windows-1252" ;
+    tb:has_condition "" ;
+    tb:has_position 39 ;
+    tb:knime_key "character_set" ;
+    tb:knime_path "model/encoding" .
+
+cb:implementation-csv_writer-comment_indentation a tb:Parameter ;
+    rdfs:label "comment_indentation" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "%%00009" ;
+    tb:has_condition "" ;
+    tb:has_position 33 ;
+    tb:knime_key "comment_indentation" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-comment_line_marker a tb:Parameter ;
+    rdfs:label "comment_line_marker" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "#" ;
+    tb:has_condition "" ;
+    tb:has_position 32 ;
+    tb:knime_key "comment_line_marker" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-compress_with_gzip a tb:Parameter ;
+    rdfs:label "compress_with_gzip" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 26 ;
+    tb:knime_key "compress_with_gzip" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-connected_fs a tb:Parameter ;
+    rdfs:label "connected_fs" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 15 ;
+    tb:knime_key "connected_fs" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-convenience_fs_category a tb:Parameter ;
+    rdfs:label "convenience_fs_category" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "LOCAL" ;
+    tb:has_condition "" ;
+    tb:has_position 9 ;
+    tb:knime_key "convenience_fs_category" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-custom_comment_text a tb:Parameter ;
+    rdfs:label "custom_comment_text" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "" ;
+    tb:has_condition "" ;
+    tb:has_position 38 ;
+    tb:knime_key "custom_comment_text" ;
+    tb:knime_path "model/comment_header_settings" .
+
+cb:implementation-csv_writer-custom_url_timeout a tb:Parameter ;
+    rdfs:label "custom_url_timeout" ;
+    tb:hasDatatype xsd:integer ;
+    tb:hasDefaultValue 1000 ;
+    tb:has_condition "" ;
+    tb:has_position 14 ;
+    tb:knime_key "custom_url_timeout" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-decimal_separator a tb:Parameter ;
+    rdfs:label "decimal_separator" ;
+    tb:hasDatatype cb:char ;
+    tb:hasDefaultValue "." ;
+    tb:has_condition "" ;
+    tb:has_position 29 ;
+    tb:knime_key "decimal_separator" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-fcsi_enabledstatus a tb:Parameter ;
+    rdfs:label "FCSI EnabledStatus" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 6 ;
+    tb:knime_key "EnabledStatus" ;
+    tb:knime_path "model/settings/file_chooser_settings_Internals" .
+
+cb:implementation-csv_writer-fcsi_settingsmodelid a tb:Parameter ;
+    rdfs:label "FCSI SettingsModelID" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "SMID_WriterFileChooser" ;
+    tb:has_condition "" ;
+    tb:has_position 5 ;
+    tb:knime_key "SettingsModelID" ;
+    tb:knime_path "model/settings/file_chooser_settings_Internals" .
+
+cb:implementation-csv_writer-fmi_enabledstatus a tb:Parameter ;
+    rdfs:label "FMI EnabledStatus" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 17 ;
+    tb:knime_key "EnabledStatus" ;
+    tb:knime_path "model/settings/file_chooser_settings/filter_mode_Internals" .
+
+cb:implementation-csv_writer-fmi_settingsmodelid a tb:Parameter ;
+    rdfs:label "FMI SettingsModelID" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "SMID_FilterMode" ;
+    tb:has_condition "" ;
+    tb:has_position 16 ;
+    tb:knime_key "SettingsModelID" ;
+    tb:knime_path "model/settings/file_chooser_settings/filter_mode_Internals" .
+
+cb:implementation-csv_writer-has_fs_port a tb:Parameter ;
+    rdfs:label "has_fs_port" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 7 ;
+    tb:knime_key "has_fs_port" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-keep_trailing_zero_in_decimals a tb:Parameter ;
+    rdfs:label "keep_trailing_zero_in_decimals" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 31 ;
+    tb:knime_key "keep_trailing_zero_in_decimals" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-missing_value_pattern a tb:Parameter ;
+    rdfs:label "missing_value_pattern" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "" ;
+    tb:has_condition "" ;
+    tb:has_position 25 ;
+    tb:knime_key "missing_value_pattern" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-mountpoint a tb:Parameter ;
+    rdfs:label "mountpoint" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "LOCAL" ;
+    tb:has_condition "" ;
+    tb:has_position 11 ;
+    tb:knime_key "mountpoint" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-overwritten_by_variable a tb:Parameter ;
+    rdfs:label "overwritten_by_variable" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 8 ;
+    tb:knime_key "overwritten_by_variable" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-quote_mode a tb:Parameter ;
+    rdfs:label "quote_mode" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "STRINGS_ONLY" ;
+    tb:has_condition "" ;
+    tb:has_position 27 ;
+    tb:knime_key "quote_mode" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-relative_to a tb:Parameter ;
+    rdfs:label "relative_to" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "knime.workflow.data" ;
+    tb:has_condition "" ;
+    tb:has_position 10 ;
+    tb:knime_key "relative_to" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-separator_replacement a tb:Parameter ;
+    rdfs:label "separator_replacement" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "" ;
+    tb:has_condition "" ;
+    tb:has_position 28 ;
+    tb:knime_key "separator_replacement" ;
+    tb:knime_path "model/advanced_settings" .
+
+cb:implementation-csv_writer-spaceid a tb:Parameter ;
+    rdfs:label "spaceId" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "" ;
+    tb:has_condition "" ;
+    tb:has_position 12 ;
+    tb:knime_key "spaceId" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-spacename a tb:Parameter ;
+    rdfs:label "spaceName" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "" ;
+    tb:has_condition "" ;
+    tb:has_position 13 ;
+    tb:knime_key "spaceName" ;
+    tb:knime_path "model/settings/file_chooser_settings/file_system_chooser__Internals" .
+
+cb:implementation-csv_writer-use_scientific_format a tb:Parameter ;
+    rdfs:label "use_scientific_format" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 30 ;
+    tb:knime_key "use_scientific_format" ;
+    tb:knime_path "model/advanced_settings" .
+
 cb:implementation-decision_tree_predictor-change_prediction a tb:Parameter ;
     rdfs:label "Change Prediction" ;
     tb:hasDatatype xsd:boolean ;
@@ -1467,6 +1794,114 @@ cb:implementation-csv_reader-location_flag a tb:Parameter ;
     tb:knime_key "location_present" ;
     tb:knime_path "model/settings/file_selection/path" .
 
+cb:implementation-csv_writer-column_delimieter a tb:Parameter ;
+    rdfs:label "Column Delimieter" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "," ;
+    tb:has_condition "" ;
+    tb:has_position 18 ;
+    tb:knime_key "column_delimiter" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-create_missing_folders a tb:Parameter ;
+    rdfs:label "Create Missing Folders" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 3 ;
+    tb:knime_key "create_missing_folders" ;
+    tb:knime_path "model/settings/file_chooser_settings" .
+
+cb:implementation-csv_writer-file a tb:Parameter ;
+    rdfs:label "File" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "C:\\Users\\Victor\\Downloads\\output.csv" ;
+    tb:has_condition "" ;
+    tb:has_position 0 ;
+    tb:knime_key "path" ;
+    tb:knime_path "model/settings/file_chooser_settings/path" .
+
+cb:implementation-csv_writer-filesystem a tb:Parameter ;
+    rdfs:label "Filesystem" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "None" ;
+    tb:has_condition "" ;
+    tb:has_position 2 ;
+    tb:knime_key "file_system_type" ;
+    tb:knime_path "model/settings/file_chooser_settings/path" .
+
+cb:implementation-csv_writer-location_flag a tb:Parameter ;
+    rdfs:label "Location flag" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 1 ;
+    tb:knime_key "location_present" ;
+    tb:knime_path "model/settings/file_chooser_settings/path" .
+
+cb:implementation-csv_writer-on_existing_file a tb:Parameter ;
+    rdfs:label "On Existing File" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "fail" ;
+    tb:has_condition "" ;
+    tb:has_position 4 ;
+    tb:knime_key "if_path_exists" ;
+    tb:knime_path "model/settings/file_chooser_settings" .
+
+cb:implementation-csv_writer-quote_char a tb:Parameter ;
+    rdfs:label "Quote char" ;
+    tb:hasDatatype cb:char ;
+    tb:hasDefaultValue "\"" ;
+    tb:has_condition "" ;
+    tb:has_position 20 ;
+    tb:knime_key "quote_char" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-quote_escape_char a tb:Parameter ;
+    rdfs:label "Quote escape char" ;
+    tb:hasDatatype cb:char ;
+    tb:hasDefaultValue "\"" ;
+    tb:has_condition "" ;
+    tb:has_position 21 ;
+    tb:knime_key "quote_escape_char" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-row_delimieter a tb:Parameter ;
+    rdfs:label "Row Delimieter" ;
+    tb:hasDatatype xsd:string ;
+    tb:hasDefaultValue "None" ;
+    tb:has_condition "" ;
+    tb:has_position 19 ;
+    tb:knime_key "row_delimiter" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-skip_column_header_on_append a tb:Parameter ;
+    rdfs:label "Skip column header on append" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 23 ;
+    tb:knime_key "skip_column_header_on_append" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-write_column_header a tb:Parameter ;
+    rdfs:label "Write column header" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue true ;
+    tb:has_condition "" ;
+    tb:has_position 22 ;
+    tb:knime_key "write_column_header" ;
+    tb:knime_path "model/settings" .
+
+cb:implementation-csv_writer-write_row_header a tb:Parameter ;
+    rdfs:label "Write row header" ;
+    tb:hasDatatype xsd:boolean ;
+    tb:hasDefaultValue false ;
+    tb:has_condition "" ;
+    tb:has_position 24 ;
+    tb:knime_key "write_row_header" ;
+    tb:knime_path "model/settings" .
+
 cb:implementation-decision_tree_learner a tb:LearnerImplementation ;
     rdfs:label "Decision Tree Learner" ;
     tb:engine "KNIME" ;
@@ -1662,11 +2097,11 @@ cb:implementation-decision_tree_predictor a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "Decision Tree Predictor" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:DecisionTreeModel ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:TabularDataset ;
-            tb:has_position 1 ] ;
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:DecisionTreeModel ;
+            tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:LabeledTabularDatasetShape ;
             tb:has_position 0 ] .
@@ -1692,11 +2127,11 @@ cb:implementation-missing_value a tb:LearnerImplementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:NonNullTabularDatasetShape ;
-            tb:has_position 0 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:MissingValueModel ;
-            tb:has_position 1 ] .
+            tb:has_position 1 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:NonNullTabularDatasetShape ;
+            tb:has_position 0 ] .
 
 cb:implementation-normalizer_\(pmml\)-new_maximum a tb:Parameter ;
     rdfs:label "New maximum" ;
@@ -1728,11 +2163,11 @@ cb:implementation-normalizer_apply_\(pmml\) a tb:ApplierImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "Normalizer Apply (PMML)" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:TabularDataset ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:NormalizerModel ;
-            tb:has_position 0 ] ;
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:TabularDataset ;
+            tb:has_position 1 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:NormalizerModel ;
             tb:has_position 0 ],
@@ -1813,7 +2248,7 @@ cb:implementation-svm_predictor a tb:ApplierImplementation ;
             tb:hasTag cb:SVMModel ;
             tb:has_position 0 ],
         [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_3b4b13e3-7f11-480b-8816-be4203eeee06 ;
+            tb:hasTag cb:Shape_f4f23cd3-970b-40e4-9592-231e1ede34d2 ;
             tb:has_position 1 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:LabeledTabularDatasetShape ;
@@ -2053,11 +2488,11 @@ cb:implementation-partitioning a tb:Implementation ;
             tb:hasTag cb:TabularDataset ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
-            tb:hasTag cb:TestDataset ;
-            tb:has_position 1 ],
-        [ a tb:IOSpec ;
             tb:hasTag cb:TrainDataset ;
-            tb:has_position 0 ] .
+            tb:has_position 0 ],
+        [ a tb:IOSpec ;
+            tb:hasTag cb:TestDataset ;
+            tb:has_position 1 ] .
 
 cb:implementation-svm_learner a tb:LearnerImplementation ;
     rdfs:label "SVM Learner" ;
@@ -2080,7 +2515,7 @@ cb:implementation-svm_learner a tb:LearnerImplementation ;
     tb:knime-node-bundle-version "4.7.0.v202301251625" ;
     tb:knime-node-name "SVM Learner" ;
     tb:specifiesInput [ a tb:IOSpec ;
-            tb:hasTag cb:Shape_d3766214-f284-4683-a51b-2786921c93f4 ;
+            tb:hasTag cb:Shape_e912e5b7-6381-465a-aa23-1bb443b614fe ;
             tb:has_position 0 ] ;
     tb:specifiesOutput [ a tb:IOSpec ;
             tb:hasTag cb:SVMModel ;
