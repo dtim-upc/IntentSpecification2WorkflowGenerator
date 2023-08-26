@@ -6,23 +6,28 @@
     import LogicalPlanner from "./lib/LogicalPlanner.svelte";
     import WorkflowPlanner from "./lib/WorkflowPlanner.svelte";
     import Workflows from "./lib/Workflows.svelte";
+    import AbstractPlanVisualizer from "./lib/AbstractPlanVisualizer.svelte";
 
     let tabs = [
         {
-            icon: 'access_time',
+            icon: 'start',
             label: 'Abstract Planner',
         },
         {
-            icon: 'near_me',
+            icon: 'call_split',
             label: 'Logical Planner',
         },
         {
-            icon: 'favorite',
+            icon: 'settings',
             label: 'Workflow Planner',
         },
         {
-            icon: 'favorite',
+            icon: 'list',
             label: 'Workflows',
+        },
+        {
+            icon: 'share',
+            label: 'Visualizer',
         },
     ];
 
@@ -40,6 +45,17 @@
     function workflow_planner_finished() {
         active = tabs[3];
     }
+
+    let view_plan_id: string;
+    let view_plan: { [key: string]: string[] };
+
+    function visualize_plan(event: any) {
+        view_plan_id = event.detail.plan_id;
+        view_plan = event.detail.plan;
+
+        active = tabs[4];
+    }
+
 </script>
 
 <main>
@@ -70,13 +86,18 @@
                 <AbstractPlanner on:abstract_plans={abstract_planner_finished}></AbstractPlanner>
             </div>
             {#if active.label === 'Logical Planner'}
-                <LogicalPlanner on:logical_plans={logical_planner_finished}></LogicalPlanner>
+                <LogicalPlanner on:logical_plans={logical_planner_finished}
+                                on:visualize_plan={visualize_plan}></LogicalPlanner>
             {/if}
             {#if active.label === 'Workflow Planner'}
-                <WorkflowPlanner on:workflow_plans={workflow_planner_finished}></WorkflowPlanner>
+                <WorkflowPlanner on:workflow_plans={workflow_planner_finished}
+                                 on:visualize_plan={visualize_plan}></WorkflowPlanner>
             {/if}
             {#if active.label === 'Workflows'}
                 <Workflows></Workflows>
+            {/if}
+            {#if active.label === 'Visualizer'}
+                <AbstractPlanVisualizer plan={view_plan} plan_id={view_plan_id}></AbstractPlanVisualizer>
             {/if}
         </Card>
     </div>

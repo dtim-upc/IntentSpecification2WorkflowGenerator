@@ -4,13 +4,12 @@
     import IconButton from '@smui/icon-button';
     import Button from "@smui/button";
     import Paper, {Content, Subtitle, Title} from '@smui/paper';
-    import AbstractPlanVisualizer from "./AbstractPlanVisualizer.svelte";
     import {createEventDispatcher} from 'svelte';
     import CircularProgress from '@smui/circular-progress';
 
     const dispatch = createEventDispatcher();
 
-    let plans: {[key: string]: {[key: string]: string[]}};
+    let plans: { [key: string]: { [key: string]: string[] } };
     let keys: string[];
     let selected: string[];
 
@@ -25,17 +24,9 @@
 
     let initializing = initialize()
 
-    let open = false;
-    let view_plan: {[key: string]: string[]} | undefined = undefined;
-
     function viewAbstractPlan(plan_id: string) {
-        view_plan = plans[plan_id];
-        open = true;
-    }
-
-    function closeVisualization() {
-        open = false;
-        view_plan = undefined;
+        let plan = plans[plan_id];
+        dispatch('visualize_plan', {plan: plan, plan_id: plan_id});
     }
 
     async function run_planner() {
@@ -92,13 +83,7 @@
             {/await}
         {/if}
     </Content>
-
 </Paper>
-
-{#if open}
-    <AbstractPlanVisualizer open={open} plan={view_plan}
-                            on:close={closeVisualization}></AbstractPlanVisualizer>
-{/if}
 <style>
     .inner-item-div {
         display: flex;

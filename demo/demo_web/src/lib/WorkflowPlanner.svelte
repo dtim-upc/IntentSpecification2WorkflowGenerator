@@ -1,32 +1,15 @@
 <script lang="ts">
     import Button from "@smui/button";
     import Paper, {Content, Subtitle, Title} from '@smui/paper';
-    import AbstractPlanVisualizer from "./AbstractPlanVisualizer.svelte";
     import {createEventDispatcher} from 'svelte';
     import CircularProgress from '@smui/circular-progress';
     import Accordion, {Content as AccContent, Header, Panel} from '@smui-extra/accordion';
     import List, {Item, Label, Meta} from '@smui/list';
     import Checkbox from '@smui/checkbox';
     import IconButton from '@smui/icon-button';
+    import {removeLastPart, windowsStyleSort} from "./utils";
 
     const dispatch = createEventDispatcher();
-
-    function removeLastPart(inputString: string) {
-        const parts = inputString.split(' ');
-
-        if (parts.length > 1) {
-            parts.pop(); // Remove the last part
-            return parts.join(' ');
-        } else {
-            return inputString; // Return the original string if there's only one part
-        }
-    }
-
-    function windowsStyleSort(strings: string[]) {
-        return strings.slice().sort((a, b) => {
-            return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
-        });
-    }
 
     let plans: {
         [key: string]: any
@@ -41,9 +24,6 @@
     let selectedGroups: {
         [key: string]: string[]
     };
-
-    let open = false;
-    let view_plan: boolean | undefined = undefined;
 
     async function initialize() {
         let response = await fetch('http://localhost:5000/logical_plans');
@@ -74,13 +54,8 @@
     }
 
     function viewLogicalPlan(plan_id: string) {
-        view_plan = plans[plan_id];
-        open = true;
-    }
-
-    function closeVisualization() {
-        open = false;
-        view_plan = undefined;
+        let plan = plans[plan_id];
+        dispatch('visualize_plan', {plan: plan, plan_id: plan_id});
     }
 
     async function run_planner() {
@@ -170,9 +145,7 @@
 
 </Paper>
 
-{#if open}
-    <AbstractPlanVisualizer open={open} plan={view_plan} on:close={closeVisualization}></AbstractPlanVisualizer>
-{/if}
+
 <style>
     .inner-item-div {
         display: flex;

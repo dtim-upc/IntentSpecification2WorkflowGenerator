@@ -6,24 +6,7 @@
     import IconButton from '@smui/icon-button';
     import CircularProgress from "@smui/circular-progress";
     import Tooltip, {Wrapper} from '@smui/tooltip';
-
-
-    function removeLastPart(inputString: string) {
-        const parts = inputString.split(' ');
-
-        if (parts.length > 1) {
-            parts.pop(); // Remove the last part
-            return parts.join(' ');
-        } else {
-            return inputString; // Return the original string if there's only one part
-        }
-    }
-
-    function windowsStyleSort(strings: string[]) {
-        return strings.slice().sort((a, b) => {
-            return a.localeCompare(b, undefined, {numeric: true, sensitivity: 'base'});
-        });
-    }
+    import {removeLastPart, windowsStyleSort} from "./utils";
 
     let plans: string[];
     let groups: {
