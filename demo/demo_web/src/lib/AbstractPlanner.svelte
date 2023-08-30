@@ -9,12 +9,12 @@
 
     const dispatch = createEventDispatcher();
 
-    let intent_name = 'D';
     let datasets: {[key: string]: string} = {};
     let problems: {[key: string]: string} = {};
 
-    let dataset = 'titanic.csv';
-    let problem = 'Classification';
+    let intent_name = '';
+    let dataset = '';
+    let problem = '';
 
     let loading_datasets = true;
     let loading_problems = true;
