@@ -53,7 +53,7 @@
     }
 </script>
 
-<Paper variant="unelevated" class="flex-column overflow-80">
+<Paper variant="unelevated" class="flex-column">
     <Title>Abstract Planner</Title>
     <Content class="flex-column">
         {#if loading_datasets || loading_problems || creating_plans}
