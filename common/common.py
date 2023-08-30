@@ -33,8 +33,9 @@ def get_ontology_graph():
         r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\tbox.ttl',
         r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\cbox.ttl',
         r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\abox.ttl',
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\penguins_annotated.ttl',
+        # r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\penguins_annotated.ttl',
         r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\titanic_annotated.ttl',
+        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\diabetes_annotated.ttl',
     ]
     for o in ontologies:
         graph.parse(o, format="turtle")

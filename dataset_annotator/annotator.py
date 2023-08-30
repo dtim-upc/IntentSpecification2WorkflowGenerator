@@ -117,3 +117,4 @@ def main(source_path, output_path):
 if __name__ == '__main__':
     main('./titanic.csv', './titanic_annotated.ttl')
     main('./penguins.csv', './penguins_annotated.ttl')
+    main('./diabetes.csv', './diabetes_annotated.ttl')

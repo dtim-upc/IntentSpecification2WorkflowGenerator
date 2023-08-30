@@ -1,0 +1,117 @@
+@prefix ab: <https://extremexp.eu/ontology/abox#> .
+@prefix dmop: <http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ab:diabetes.csv a dmop:TabularDataset ;
+    dmop:delimiter "," ;
+    dmop:doubleQuote false ;
+    dmop:encoding "cp1252" ;
+    dmop:fileFormat "csv" ;
+    dmop:hasColumn <https://extremexp.eu/ontology/abox#diabetes.csv/Age>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/BMI>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/BloodPressure>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/DiabetesPedigreeFunction>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/Glucose>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/Insulin>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/Outcome>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/Pregnancies>,
+        <https://extremexp.eu/ontology/abox#diabetes.csv/SkinThickness> ;
+    dmop:hasHeader true ;
+    dmop:lineDelimiter """\r
+""" ;
+    dmop:numberOfColumns 9 ;
+    dmop:numberOfRows 768 ;
+    dmop:path "C:\\Users\\Victor\\Development\\BDMA\\Thesis\\Ontology\\dataset_annotator\\diabetes.csv" ;
+    dmop:quoteChar "\"" ;
+    dmop:skipInitialSpace false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/Age> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Age" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 7 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/BMI> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "BMI" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+    dmop:hasPosition 5 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/BloodPressure> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "BloodPressure" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 2 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/DiabetesPedigreeFunction> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "DiabetesPedigreeFunction" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Float ;
+    dmop:hasPosition 6 ;
+    dmop:isCategorical false ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/Glucose> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Glucose" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 1 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/Insulin> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Insulin" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 4 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/Outcome> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Outcome" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 8 ;
+    dmop:isCategorical true ;
+    dmop:isFeature false ;
+    dmop:isLabel true ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/Pregnancies> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "Pregnancies" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 0 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
+<https://extremexp.eu/ontology/abox#diabetes.csv/SkinThickness> a dmop:Column ;
+    dmop:containsNulls "False" ;
+    dmop:hasColumnName "SkinThickness" ;
+    dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
+    dmop:hasPosition 3 ;
+    dmop:isCategorical true ;
+    dmop:isFeature true ;
+    dmop:isLabel false ;
+    dmop:isUnique false .
+
