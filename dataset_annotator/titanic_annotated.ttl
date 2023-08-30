@@ -29,7 +29,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:skipInitialSpace false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Age> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "Age" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 5 ;
@@ -39,7 +39,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Cabin> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "Cabin" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 10 ;
@@ -49,7 +49,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Embarked> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "Embarked" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 11 ;
@@ -59,7 +59,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Fare> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Fare" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 9 ;
@@ -69,7 +69,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Name> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Name" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 3 ;
@@ -79,7 +79,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique true .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Parch> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Parch" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 7 ;
@@ -89,7 +89,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/PassengerId> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "PassengerId" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 0 ;
@@ -99,7 +99,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique true .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Pclass> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Pclass" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 2 ;
@@ -109,7 +109,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Sex> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Sex" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 4 ;
@@ -119,7 +119,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/SibSp> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "SibSp" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 6 ;
@@ -129,7 +129,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Survived> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Survived" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 1 ;
@@ -139,7 +139,7 @@ ab:titanic.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#titanic.csv/Ticket> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Ticket" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 8 ;

@@ -56,7 +56,7 @@ def get_column_type(column_type, column):
 
 
 def has_nulls(column):
-    return column.isnull().values.any() or column.isna().values.any()
+    return bool(column.isnull().values.any() or column.isna().values.any())
 
 
 def is_categorical(column_type, column):

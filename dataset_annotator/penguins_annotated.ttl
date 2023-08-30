@@ -24,7 +24,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:skipInitialSpace false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/body_mass_g> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "body_mass_g" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 5 ;
@@ -34,7 +34,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/culmen_depth_mm> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "culmen_depth_mm" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 3 ;
@@ -44,7 +44,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/culmen_length_mm> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "culmen_length_mm" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 2 ;
@@ -54,7 +54,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/flipper_length_mm> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "flipper_length_mm" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 4 ;
@@ -64,7 +64,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/island> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "island" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 1 ;
@@ -74,7 +74,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/sex> a dmop:Column ;
-    dmop:containsNulls "True" ;
+    dmop:containsNulls true ;
     dmop:hasColumnName "sex" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 6 ;
@@ -84,7 +84,7 @@ ab:penguins.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#penguins.csv/species> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "species" ;
     dmop:hasDataPrimitiveTypeColumn dmop:String ;
     dmop:hasPosition 0 ;

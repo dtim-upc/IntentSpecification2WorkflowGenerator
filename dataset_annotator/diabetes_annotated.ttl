@@ -26,7 +26,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:skipInitialSpace false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/Age> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Age" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 7 ;
@@ -36,7 +36,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/BMI> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "BMI" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 5 ;
@@ -46,7 +46,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/BloodPressure> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "BloodPressure" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 2 ;
@@ -56,7 +56,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/DiabetesPedigreeFunction> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "DiabetesPedigreeFunction" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Float ;
     dmop:hasPosition 6 ;
@@ -66,7 +66,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/Glucose> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Glucose" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 1 ;
@@ -76,7 +76,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/Insulin> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Insulin" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 4 ;
@@ -86,7 +86,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/Outcome> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Outcome" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 8 ;
@@ -96,7 +96,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/Pregnancies> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "Pregnancies" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 0 ;
@@ -106,7 +106,7 @@ ab:diabetes.csv a dmop:TabularDataset ;
     dmop:isUnique false .
 
 <https://extremexp.eu/ontology/abox#diabetes.csv/SkinThickness> a dmop:Column ;
-    dmop:containsNulls "False" ;
+    dmop:containsNulls false ;
     dmop:hasColumnName "SkinThickness" ;
     dmop:hasDataPrimitiveTypeColumn dmop:Integer ;
     dmop:hasPosition 3 ;
