@@ -90,8 +90,6 @@ def run_workflow_planner():
     global selected_plans
     selected_plans = plan_ids
 
-    sleep(len(plan_ids) * 0.02)
-
     return Response(status=204)
 
 
