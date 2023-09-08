@@ -10,7 +10,8 @@ from pipeline_translator.pipeline_translator import translate_graph_folder, tran
 app = Flask(__name__)
 CORS(app)
 
-files_folder = r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\demo\demo_api\temp_files'
+# TODO Change folder
+files_folder = os.path.abspath(r'./demo/demo_api/temp_files')
 
 ontology = get_ontology_graph()
 intent: Optional[Graph] = None

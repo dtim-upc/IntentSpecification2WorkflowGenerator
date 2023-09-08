@@ -1815,7 +1815,7 @@ cb:implementation-csv_writer-create_missing_folders a tb:Parameter ;
 cb:implementation-csv_writer-file a tb:Parameter ;
     rdfs:label "File" ;
     tb:hasDatatype xsd:string ;
-    tb:hasDefaultValue "C:\\Users\\Victor\\Downloads\\output.csv" ;
+    tb:hasDefaultValue "~\\output.csv" ;
     tb:has_condition "" ;
     tb:has_position 0 ;
     tb:knime_key "path" ;

@@ -16,26 +16,15 @@ def get_graph_xp():
     return g
 
 
-def get_graph():
-    g = Graph()
-    g.bind('dmop', dmop)
-    g.bind('dtbox', do)
-    g.bind('dshapes', ds)
-    g.bind('dabox', da)
-    g.bind('ddata', dd)
-    g.bind('dworkflow', dw)
-    return g
-
-
 def get_ontology_graph():
     graph = get_graph_xp()
     ontologies = [
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\tbox.ttl',
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\cbox.ttl',
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\ontologies\abox.ttl',
-        # r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\penguins_annotated.ttl',
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\titanic_annotated.ttl',
-        r'C:\Users\Victor\Development\BDMA\Thesis\Ontology\dataset_annotator\diabetes_annotated.ttl',
+        r'ontologies/tbox.ttl',
+        r'ontologies/cbox.ttl',
+        r'ontologies/abox.ttl',
+        # r'dataset_annotator/penguins_annotated.ttl',
+        r'dataset_annotator/titanic_annotated.ttl',
+        r'dataset_annotator/diabetes_annotated.ttl',
     ]
     for o in ontologies:
         graph.parse(o, format="turtle")

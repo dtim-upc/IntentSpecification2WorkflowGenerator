@@ -68,7 +68,6 @@
     {#if loading}
         <CircularProgress style="height: 32px; width: 32px;" indeterminate/>
     {:else}
-        <Subtitle>Select the Abstract Plans to send to the Logical Planner:</Subtitle>
         <Content class="flex-column overflow-50">
             <div class="overflow-50">
                 <Accordion>

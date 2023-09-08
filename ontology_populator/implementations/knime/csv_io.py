@@ -156,7 +156,7 @@ csv_writer_implementation = KnimeImplementation(
     name='CSV Writer',
     algorithm=cb.DataStoring,
     parameters=[
-        KnimeParameter('File', XSD.string, r'C:\Users\Victor\Downloads\output.csv', 'path',
+        KnimeParameter('File', XSD.string, r'~\output.csv', 'path',
                        path='model/settings/file_chooser_settings/path'),
         KnimeParameter('Location flag', XSD.boolean, True, 'location_present',
                        path='model/settings/file_chooser_settings/path'),
