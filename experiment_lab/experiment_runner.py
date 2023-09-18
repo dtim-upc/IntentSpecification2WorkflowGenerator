@@ -13,7 +13,7 @@ def build_workflow(workflow_name: str, ontology: Graph, dataset: URIRef, main_co
                    transformations: List[URIRef]) -> Tuple[Graph, URIRef]:
     workflow_graph = get_graph_xp()
     workflow = ab.term(workflow_name)
-    workflow_graph.add((workflow, RDF.type, dtbox.Workflow))
+    workflow_graph.add((workflow, RDF.type, tb.Workflow))
     task_order = 0
 
     dataset_node = ab.term(f'{workflow_name}-original_dataset')
@@ -90,8 +90,8 @@ def build_workflows(ontology: Graph, intent_graph: Graph, destination_folder: st
             workflow_name = f'workflow_{workflow_order}_{intent_iri.fragment}_{uuid.uuid4()}'.replace('-', '_')
             wg, w = build_workflow(workflow_name, ontology, dataset, component, transformation_combination)
 
-            wg.add((w, dtbox.createdFor, intent_iri))
-            wg.add((intent_iri, RDF.type, dtbox.Intent))
+            wg.add((w, tb.createdFor, intent_iri))
+            wg.add((intent_iri, RDF.type, tb.Intent))
 
             wg.serialize(os.path.join(destination_folder, f'{workflow_name}.ttl'), format='turtle')
             workflow_order += 1
@@ -104,8 +104,8 @@ def generate_intent(file: str) -> Graph:
     intent_graph = get_graph_xp()
     intent = ab.term(f'Intent_{file[:-4]}')
     intent_graph.add((intent, RDF.type, tb.Intent))
-    intent_graph.add((intent, dtbox.overData, ab.term('penguins.csv')))
-    intent_graph.add((intent, dtbox.tackles, cb.MainProblem))
+    intent_graph.add((intent, tb.overData, ab.term('penguins.csv')))
+    intent_graph.add((intent, tb.tackles, cb.MainProblem))
 
     return intent_graph
 
