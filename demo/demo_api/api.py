@@ -1,5 +1,4 @@
 import shutil
-from time import sleep
 
 from flask import Flask, request, send_file, Response
 from flask_cors import CORS

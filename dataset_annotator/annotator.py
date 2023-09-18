@@ -115,6 +115,6 @@ def main(source_path, output_path):
 
 
 if __name__ == '__main__':
-    main('./titanic.csv', './titanic_annotated.ttl')
-    main('./penguins.csv', './penguins_annotated.ttl')
-    main('./diabetes.csv', './diabetes_annotated.ttl')
+    main('.datasets/titanic.csv', './annotated_datasets/titanic_annotated.ttl')
+    main('.datasets/penguins.csv', './annotated_datasets/penguins_annotated.ttl')
+    main('.datasets/diabetes.csv', './annotated_datasets/diabetes_annotated.ttl')
