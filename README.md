@@ -41,6 +41,22 @@ python3 main.py
 
 ## Experiments
 
+Scripts to execute the complexity experiments. Contains two scripts:
+
+- [`fake_cbox_generator.py`](./experiment_lab/fake_cbox_generator.py): Creates a series of CBoxes representing different scenarios. The parameters of the
+  scenarios (number of component, number of requirements per component and number of components per requirement) can be
+  modified [from inside the script](./experiment_lab/fake_cbox_generator.py#L174-L175). Stores the generated CBoxes in
+  the [`fake_cboxes`](./experiment_lab/fake_cboxes) directory.
+```bash
+cd experiment_lab
+python3 fake_cbox_generator.py
+```
+- [`experiment_runner.py`](./experiment_lab/experiment_runner.py): Runs the experiments and outputs the results in the `results` directory.
+```bash
+cd experiment_lab
+python3 experiment_runner.py
+```
+
 ## Ontology Populator
 
 ## Pipeline Generator

@@ -134,7 +134,7 @@ def run_experiment_suite(source_folder: str, destination_folder: str):
     result_file.write('comps,reqs_per_comp,comps_per_req,overlap,time,num_workflows\n')
 
     for cbox in tqdm(cboxes, desc='Experiments', position=2):
-        experiment_folder = os.path.join(destination_folder, cbox.split('.')[0])
+        experiment_folder = os.path.join(destination_folder, 'workflows',  cbox.split('.')[0])
         if not os.path.exists(experiment_folder):
             os.makedirs(experiment_folder)
 
