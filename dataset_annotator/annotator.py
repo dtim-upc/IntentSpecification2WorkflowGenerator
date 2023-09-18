@@ -1,4 +1,5 @@
 import csv
+import os
 from os import path
 
 import pandas as pd
@@ -105,7 +106,7 @@ def read_graph(urls):
     return ontology
 
 
-def main(source_path, output_path):
+def annotate_dataset(source_path, output_path):
     print(f'Annotating {source_path}')
 
     dataset_graph = get_graph_xp()
@@ -114,7 +115,11 @@ def main(source_path, output_path):
     dataset_graph.serialize(destination=output_path)
 
 
+def main():
+    for file in os.listdir('./datasets'):
+        if file.endswith('.csv'):
+            annotate_dataset(f'./datasets/{file}', f'./annotated_datasets/{file[:-4]}_annotated.ttl')
+
+
 if __name__ == '__main__':
-    main('.datasets/titanic.csv', './annotated_datasets/titanic_annotated.ttl')
-    main('.datasets/penguins.csv', './annotated_datasets/penguins_annotated.ttl')
-    main('.datasets/diabetes.csv', './annotated_datasets/diabetes_annotated.ttl')
+    main()

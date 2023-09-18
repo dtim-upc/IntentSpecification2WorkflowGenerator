@@ -29,7 +29,15 @@
 
 ## Dataset Annotator
 
-## Demo
+Utility script to annotate csv datasets with ontology terms.  
+Reads all the csv files in the [`datasets`](./dataset_annotator/datasets) directory and outputs the annotated datasets
+in the [`annotated_datasets`](./dataset_annotator/annotated_datasets) directory.  
+Must be run from the `dataset_annotator` directory.
+
+```bash
+cd dataset_annotator
+python3 main.py
+```
 
 ## Experiments
 
@@ -38,3 +46,5 @@
 ## Pipeline Generator
 
 ## Pipeline Translator
+
+## Demo
