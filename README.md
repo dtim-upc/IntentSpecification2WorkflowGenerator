@@ -128,6 +128,23 @@ KNIME-specific information necessary to translate the RDF triples into KNIME wor
 The [`knime` package](./ontology_populator/implementations/knime) also contains several implemented implementations and
 components, which can be checked for reference.
 
+The [`knime_miner.py`](./ontology_populator/implementations/knime/knime_miner.py) script can be used to generate a
+skeleton of the implementations available in KNIME. It takes as input a JSON file containing the information of the
+KNIME Nodes ([`nodeDocumentation.json`](./ontology_populator/sources/nodeDocumentation.json)), and creates a hierarchy
+of Python packages. This can be used as a starting point to define the implementations in the ontology.
+
+However, the public documentation doesn't provide many of the necessary information, specially for the parameters, so to
+define the implementations and components, the following steps are recommended:
+
+1. Open KNIME and create a workflow with the desired nodes.
+2. Save the workflow as a KNIME workflow (`.knwf` file).
+3. Decompress the KNIME workflow (the `.knwf` is a zip file).
+4. Check the config file of the nodes you want to define (there is a directory for each node with a `settings.xml` file
+   inside).
+5. Define the parameters. There has to be a Parameter for every leaf tag in the `model` tag.
+6. Define the components. There has to be at least one Component for every Implementation, specifying which parameters
+   are exposed and which are overriden.
+
 ## Pipeline Generator
 
 ## Pipeline Translator
