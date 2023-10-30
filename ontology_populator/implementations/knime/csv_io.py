@@ -1,6 +1,5 @@
 from common import *
 from ontology_populator.implementations.core import *
-from ontology_populator.implementations.core.transformation import LoaderTransformation
 from ontology_populator.implementations.knime import KnimeImplementation, KnimeParameter, KnimeBaseBundle
 
 csv_reader_implementation = KnimeImplementation(
@@ -212,7 +211,6 @@ csv_writer_implementation = KnimeImplementation(
         KnimeParameter('Write row header', XSD.boolean, False, 'write_row_header',
                        path='model/settings'),
 
-
         KnimeParameter('missing_value_pattern', XSD.string, '', 'missing_value_pattern',
                        path='model/advanced_settings'),
         KnimeParameter('compress_with_gzip', XSD.boolean, False, 'compress_with_gzip',
@@ -228,7 +226,6 @@ csv_writer_implementation = KnimeImplementation(
         KnimeParameter('keep_trailing_zero_in_decimals', XSD.boolean, False, 'keep_trailing_zero_in_decimals',
                        path='model/advanced_settings'),
 
-
         KnimeParameter('comment_line_marker', XSD.string, '#', 'comment_line_marker',
                        path='model/comment_header_settings'),
         KnimeParameter('comment_indentation', XSD.string, '%%00009', 'comment_indentation',
@@ -243,7 +240,6 @@ csv_writer_implementation = KnimeImplementation(
                        path='model/comment_header_settings'),
         KnimeParameter('custom_comment_text', XSD.string, '', 'custom_comment_text',
                        path='model/comment_header_settings'),
-
 
         KnimeParameter('character_set', XSD.string, 'windows-1252', 'character_set',
                        path='model/encoding'),
