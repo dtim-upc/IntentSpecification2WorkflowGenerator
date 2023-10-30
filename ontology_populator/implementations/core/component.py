@@ -3,9 +3,8 @@ from typing import List, Union, Tuple, Any
 from rdflib.collection import Collection
 
 from common import *
-from .parameter import Parameter
-from .transformation import Transformation
 from .implementation import Implementation
+from .transformation import Transformation
 
 LiteralValue = Union[str, bool, int, float, None]
 
