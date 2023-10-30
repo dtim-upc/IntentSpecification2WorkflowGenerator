@@ -95,7 +95,7 @@ def build_file_from_nodes(nodes, path) -> Tuple[List[str], List[str]]:
 
 
 def create_package(path):
-    os.mkdir(path.lower())
+    os.makedirs(path.lower(), exist_ok=True)
     open(os.path.join(path.lower(), '__init__.py'), 'a').close()
 
 
