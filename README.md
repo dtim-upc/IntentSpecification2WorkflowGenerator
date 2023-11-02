@@ -199,3 +199,23 @@ python workflow_translator.py --keep <source_folder> <destination_folder>
 ```
 
 ## Demo
+
+The Demo is a web application that allows the user to generate workflows using the ontology, as well as giving a more
+fine-grained control over the generation process.
+
+To run it, make sure you have all the dependencies installed (see [Requirements](#requirements)), and run the following
+commands.
+
+The backend must be run from the project root directory.
+```shell
+flask --app ./demo/demo_api/api.py run
+```
+
+The frontend must be run from the `demo_web` directory.
+```shell
+cd demo/demo_web
+npm run dev
+```
+
+Note that the demo uses slightly modified versions of the pipeline generator and translator, which can be found in the
+[`demo_api`](./demo/demo_api) directory.
