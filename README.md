@@ -147,6 +147,55 @@ define the implementations and components, the following steps are recommended:
 
 ## Pipeline Generator
 
+The pipeline generator can be used to generate workflows using the ontology and some user input.  
+It has to be run from the `pipeline_generator` directory.
+
+```shell
+cd pipeline_generator
+python3 pipeline_generator.py
+```
+
+It will ask for the intent name (which can be whatever you want), the dataset name (which must be an annotated existing
+dataset), and the problem name (which must be an existing problem). It will also ask for a folder to store the generated
+workflows.
+
+```
+Introduce the intent name [DescriptionIntent]:  
+Introduce the data name [titanic.csv]: 
+Introduce the problem name [Description]: 
+Introduce the folder to save the workflows:
+```
+
+You can use the default values for the three first questions for a quick example.
+
 ## Pipeline Translator
+
+The pipeline translator will translate the ontology-represented workflows into KNIME workflows.  
+It has to be run from the `pipeline_translator` directory.
+
+```shell
+cd pipeline_translator
+python3 pipeline_translator.py
+```
+
+It will ask for a source directory (which must contain the ontology-represented workflows) and a destination directory,
+where the translated workflows will be stored. It will also ask whether you want to keep the KNIME workflows in the
+folder format or not.  
+The folder format is just the `.knwf` file decompressed. If you are testing or debugging the
+translation, it will make it easier to check the generated workflows (you can still just decompress the workflow
+yourself).
+
+```
+Source folder:
+Destination folder:
+Keep workflows in folder format? [Y/n]:
+```
+
+You can also use the translator in non-interactive mode, by passing the source and destination folders as parameters.
+
+```shell
+python workflow_translator.py <source_folder> <destination_folder>
+python workflow_translator.py --keep <source_folder> <destination_folder>
+```
 
 ## Demo
