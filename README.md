@@ -1,4 +1,4 @@
-# Ontology and Workflow Generation
+# Intent Specification and Workflow Generation
 
 ## Requirements
 
