@@ -1,4 +1,5 @@
-# Intent Specification and Workflow Generation
+# Intent Specification to Workflow Generation
+
 
 ## Requirements
 
